@@ -28,7 +28,23 @@ angular.module('app')
                 $urlRouterProvider
                     .otherwise('/page/home');
                 $stateProvider
-
+                    // authentication pages
+                    .state('authentication', {
+                        url: '/authentication',
+                        template: '<div class="indigo bg-big"><div ui-view class="fade-in-down smooth"></div></div>'
+                    })
+                    .state('authentication.signin', {
+                        url: '/signin',
+                        templateUrl: 'views/authentication/signin.html'
+                    })
+                    .state('authentication.signup', {
+                        url: '/signup',
+                        templateUrl: 'views/authentication/signup.html'
+                    })
+                    .state('authentication.forgot-password', {
+                        url: '/forgot-password',
+                        templateUrl: 'views/authentication/forgot-password.html'
+                    })
                     .state('page', {
                         url: '/page',
                         views: {
