@@ -2,8 +2,214 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e32fbcc-f908-42d5-9479-d050ab0c6058" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/scripts/config.router.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/layout.h.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/layout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/pages/profile-settings.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/inbox/detail.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/inbox/inbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/inbox/inbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/inbox/inbox.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/inbox/list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/inbox/new.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/note/item.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/note/list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/note/main.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/note/navbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/note/note.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/todo/todo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/apps/todo/todo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/scripts/config.router.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layout.h.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layout.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/partials/aside.tpl.chat.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/partials/aside.tpl.user.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/chart/chart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/arrow.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/badge-label.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/button.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/color.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/grid.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/icon.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/modal.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/nav.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/progressbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/streamline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/timeline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/component/uibootstrap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/editor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/element.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/file-upload.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/image-crop.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/layout.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/select.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/slider.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/tree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/validation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/form/xeditable.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/map/google.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/map/vector.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/button.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/card.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/color.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/dialog.tmpl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/form.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/icon.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/list.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/ngmaterial.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/material/toast.tmpl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/table/datatable.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/table/editable.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/table/footable.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/table/nggrid.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/table/smart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/table/static.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/ui/table/uigrid.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/api/datatable.json" afterPath="$PROJECT_DIR$/public/api/datatable.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/api/groups" afterPath="$PROJECT_DIR$/public/api/groups" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/LICENSE.txt" afterPath="$PROJECT_DIR$/public/fonts/LICENSE.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/Material-Design-Icons.eot" afterPath="$PROJECT_DIR$/public/fonts/Material-Design-Icons.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/Material-Design-Icons.svg" afterPath="$PROJECT_DIR$/public/fonts/Material-Design-Icons.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/Material-Design-Icons.ttf" afterPath="$PROJECT_DIR$/public/fonts/Material-Design-Icons.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/Material-Design-Icons.woff" afterPath="$PROJECT_DIR$/public/fonts/Material-Design-Icons.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/roboto/font.css" afterPath="$PROJECT_DIR$/public/fonts/roboto/font.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/roboto/roboto-bold.woff" afterPath="$PROJECT_DIR$/public/fonts/roboto/roboto-bold.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/roboto/roboto-light.woff" afterPath="$PROJECT_DIR$/public/fonts/roboto/roboto-light.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/fonts/roboto/roboto.woff" afterPath="$PROJECT_DIR$/public/fonts/roboto/roboto.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/i18n/en.js" afterPath="$PROJECT_DIR$/public/i18n/en.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/i18n/zh_CN.js" afterPath="$PROJECT_DIR$/public/i18n/zh_CN.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a0.jpg" afterPath="$PROJECT_DIR$/public/images/a0.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a1.jpg" afterPath="$PROJECT_DIR$/public/images/a1.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a10.jpg" afterPath="$PROJECT_DIR$/public/images/a10.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a2.jpg" afterPath="$PROJECT_DIR$/public/images/a2.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a3.jpg" afterPath="$PROJECT_DIR$/public/images/a3.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a4.jpg" afterPath="$PROJECT_DIR$/public/images/a4.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a5.jpg" afterPath="$PROJECT_DIR$/public/images/a5.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a6.jpg" afterPath="$PROJECT_DIR$/public/images/a6.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a7.jpg" afterPath="$PROJECT_DIR$/public/images/a7.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a8.jpg" afterPath="$PROJECT_DIR$/public/images/a8.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/a9.jpg" afterPath="$PROJECT_DIR$/public/images/a9.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/bg.png" afterPath="$PROJECT_DIR$/public/images/bg.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c0.jpg" afterPath="$PROJECT_DIR$/public/images/c0.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c1.jpg" afterPath="$PROJECT_DIR$/public/images/c1.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c2.jpg" afterPath="$PROJECT_DIR$/public/images/c2.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c3.jpg" afterPath="$PROJECT_DIR$/public/images/c3.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c4.jpg" afterPath="$PROJECT_DIR$/public/images/c4.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c5.jpg" afterPath="$PROJECT_DIR$/public/images/c5.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c6.jpg" afterPath="$PROJECT_DIR$/public/images/c6.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c7.jpg" afterPath="$PROJECT_DIR$/public/images/c7.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c8.jpg" afterPath="$PROJECT_DIR$/public/images/c8.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/c9.jpg" afterPath="$PROJECT_DIR$/public/images/c9.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/logo.png" afterPath="$PROJECT_DIR$/public/images/logo.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/images/p0.jpg" afterPath="$PROJECT_DIR$/public/images/p0.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/index.min.html" afterPath="$PROJECT_DIR$/public/index.min.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/app.less" afterPath="$PROJECT_DIR$/public/less/app.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.badge.label.less" afterPath="$PROJECT_DIR$/public/less/bs.badge.label.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.base.less" afterPath="$PROJECT_DIR$/public/less/bs.base.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.button.less" afterPath="$PROJECT_DIR$/public/less/bs.button.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.dropdown.less" afterPath="$PROJECT_DIR$/public/less/bs.dropdown.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.form.less" afterPath="$PROJECT_DIR$/public/less/bs.form.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.less" afterPath="$PROJECT_DIR$/public/less/bs.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.list-group.less" afterPath="$PROJECT_DIR$/public/less/bs.list-group.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.modal.less" afterPath="$PROJECT_DIR$/public/less/bs.modal.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.nav.less" afterPath="$PROJECT_DIR$/public/less/bs.nav.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.navbar.less" afterPath="$PROJECT_DIR$/public/less/bs.navbar.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.pager.less" afterPath="$PROJECT_DIR$/public/less/bs.pager.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.panel.less" afterPath="$PROJECT_DIR$/public/less/bs.panel.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.progressbar.less" afterPath="$PROJECT_DIR$/public/less/bs.progressbar.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.row.less" afterPath="$PROJECT_DIR$/public/less/bs.row.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/bs.table.less" afterPath="$PROJECT_DIR$/public/less/bs.table.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.base.less" afterPath="$PROJECT_DIR$/public/less/md.base.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.btn.less" afterPath="$PROJECT_DIR$/public/less/md.btn.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.card.less" afterPath="$PROJECT_DIR$/public/less/md.card.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.check.less" afterPath="$PROJECT_DIR$/public/less/md.check.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.color.less" afterPath="$PROJECT_DIR$/public/less/md.color.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.icon.less" afterPath="$PROJECT_DIR$/public/less/md.icon.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.input.less" afterPath="$PROJECT_DIR$/public/less/md.input.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.less" afterPath="$PROJECT_DIR$/public/less/md.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.list.less" afterPath="$PROJECT_DIR$/public/less/md.list.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.switch.less" afterPath="$PROJECT_DIR$/public/less/md.switch.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.variables.less" afterPath="$PROJECT_DIR$/public/less/md.variables.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/md.whiteframe.less" afterPath="$PROJECT_DIR$/public/less/md.whiteframe.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/mixins.less" afterPath="$PROJECT_DIR$/public/less/mixins.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ng.less" afterPath="$PROJECT_DIR$/public/less/ng.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.arrow.less" afterPath="$PROJECT_DIR$/public/less/ui.arrow.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.box.less" afterPath="$PROJECT_DIR$/public/less/ui.box.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.checks.less" afterPath="$PROJECT_DIR$/public/less/ui.checks.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.colors.less" afterPath="$PROJECT_DIR$/public/less/ui.colors.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.icon.less" afterPath="$PROJECT_DIR$/public/less/ui.icon.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.item.less" afterPath="$PROJECT_DIR$/public/less/ui.item.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.layout.less" afterPath="$PROJECT_DIR$/public/less/ui.layout.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.less" afterPath="$PROJECT_DIR$/public/less/ui.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.nav.less" afterPath="$PROJECT_DIR$/public/less/ui.nav.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.plugin.less" afterPath="$PROJECT_DIR$/public/less/ui.plugin.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.streamline.less" afterPath="$PROJECT_DIR$/public/less/ui.streamline.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.switch.less" afterPath="$PROJECT_DIR$/public/less/ui.switch.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/ui.timeline.less" afterPath="$PROJECT_DIR$/public/less/ui.timeline.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.base.less" afterPath="$PROJECT_DIR$/public/less/util.base.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.border.less" afterPath="$PROJECT_DIR$/public/less/util.border.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.hover.less" afterPath="$PROJECT_DIR$/public/less/util.hover.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.margin.less" afterPath="$PROJECT_DIR$/public/less/util.margin.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.padding.less" afterPath="$PROJECT_DIR$/public/less/util.padding.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.radius.less" afterPath="$PROJECT_DIR$/public/less/util.radius.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.scroll.less" afterPath="$PROJECT_DIR$/public/less/util.scroll.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.shadow.less" afterPath="$PROJECT_DIR$/public/less/util.shadow.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.text.less" afterPath="$PROJECT_DIR$/public/less/util.text.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/util.width.less" afterPath="$PROJECT_DIR$/public/less/util.width.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/utils.less" afterPath="$PROJECT_DIR$/public/less/utils.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/less/variables.less" afterPath="$PROJECT_DIR$/public/less/variables.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/app.ctrl.js" afterPath="$PROJECT_DIR$/public/scripts/app.ctrl.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="$PROJECT_DIR$/public/scripts/app.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/config.js" afterPath="$PROJECT_DIR$/public/scripts/config.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/config.lazyload.js" afterPath="$PROJECT_DIR$/public/scripts/config.lazyload.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/angular-strap.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/angular-strap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/bootstrap.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/bootstrap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/chart.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/chart.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/editor.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/editor.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/googlemap.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/googlemap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/imgcrop.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/imgcrop.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/largeLoad.json" afterPath="$PROJECT_DIR$/public/scripts/controllers/largeLoad.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/load-google-maps.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/load-google-maps.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/material.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/material.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/nggrid.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/nggrid.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/select.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/select.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/slider.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/slider.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/table.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/table.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/tree.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/tree.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/uigrid.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/uigrid.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/upload.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/upload.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/upload.php" afterPath="$PROJECT_DIR$/public/scripts/controllers/upload.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/vectormap.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/vectormap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/controllers/xeditable.js" afterPath="$PROJECT_DIR$/public/scripts/controllers/xeditable.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/directives/lazyload.js" afterPath="$PROJECT_DIR$/public/scripts/directives/lazyload.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/directives/ui-fullscreen.js" afterPath="$PROJECT_DIR$/public/scripts/directives/ui-fullscreen.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/directives/ui-jp.js" afterPath="$PROJECT_DIR$/public/scripts/directives/ui-jp.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/directives/ui-nav.js" afterPath="$PROJECT_DIR$/public/scripts/directives/ui-nav.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/directives/ui-scroll.js" afterPath="$PROJECT_DIR$/public/scripts/directives/ui-scroll.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/directives/ui-toggle.js" afterPath="$PROJECT_DIR$/public/scripts/directives/ui-toggle.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/filters/fromnow.js" afterPath="$PROJECT_DIR$/public/scripts/filters/fromnow.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/services/ngstore.js" afterPath="$PROJECT_DIR$/public/scripts/services/ngstore.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/scripts/services/ui-load.js" afterPath="$PROJECT_DIR$/public/scripts/services/ui-load.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/styles/app.css" afterPath="$PROJECT_DIR$/public/styles/app.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/styles/font.css" afterPath="$PROJECT_DIR$/public/styles/font.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/styles/material-design-icons.css" afterPath="$PROJECT_DIR$/public/styles/material-design-icons.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/aside.h.html" afterPath="$PROJECT_DIR$/public/views/aside.h.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/aside.html" afterPath="$PROJECT_DIR$/public/views/aside.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/content.h.html" afterPath="$PROJECT_DIR$/public/views/content.h.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/content.html" afterPath="$PROJECT_DIR$/public/views/content.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/pages/blank.html" afterPath="$PROJECT_DIR$/public/views/pages/blank.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/partials/aside.nav.uikit.html" afterPath="$PROJECT_DIR$/public/views/partials/aside.nav.uikit.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/partials/aside.setting.html" afterPath="$PROJECT_DIR$/public/views/partials/aside.setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
     </list>
     <ignored path="materil-profile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,21 +231,74 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
+      <file leaf-file-name="aside.nav.uikit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/partials/aside.nav.uikit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.2">
-              <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+            <state vertical-scroll-proportion="-0.7">
+              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+              <folding>
+                <element signature="n#li#1;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#2;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#3;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#4;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#5;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#6;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#7;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#8;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#10;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+                <element signature="n#li#11;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.min.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.min.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.0">
+              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1171875">
-              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.60623556">
+              <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aside.h.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/aside.h.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aside.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/aside.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.0">
+              <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aside.setting.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/partials/aside.setting.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -53,14 +312,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/scripts/app.ctrl.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/ngstore.js" />
         <option value="$PROJECT_DIR$/libs/angular/angular-material/angular-material.js" />
         <option value="$PROJECT_DIR$/app/views/partials/aside.nav.uikit.html" />
+        <option value="$PROJECT_DIR$/app/scripts/directives/ui-toggle.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/views/pages/home.html" />
+        <option value="$PROJECT_DIR$/app/views/layout.h.html" />
         <option value="$PROJECT_DIR$/app/views/layout.html" />
         <option value="$PROJECT_DIR$/app/scripts/config.router.js" />
-        <option value="$PROJECT_DIR$/app/scripts/directives/ui-toggle.js" />
+        <option value="$PROJECT_DIR$/bower.json" />
+        <option value="$PROJECT_DIR$/public/scripts/config.router.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/views/partials/aside.nav.uikit.html" />
       </list>
     </option>
   </component>
@@ -87,11 +353,11 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -127,7 +393,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
+            <PATH_ELEMENT USER_OBJECT="public">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -162,7 +428,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -176,7 +442,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -194,7 +460,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -216,7 +482,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -225,6 +491,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="materil-profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="materil-profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -238,6 +518,12 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\mine\materil-profile\public\views\pages" />
+      <recent name="C:\xampp\htdocs\mine\materil-profile\app\views\pages" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -335,52 +621,27 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/partials/aside.nav.uikit.html">
+    <entry file="file://$PROJECT_DIR$/public/scripts/config.router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <caret line="132" column="52" selection-start-line="132" selection-start-column="52" selection-end-line="132" selection-end-column="52" />
           <folding>
-            <element signature="n#li#1;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#2;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#3;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#4;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#5;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#6;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#7;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#8;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#9;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#10;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#12;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#13;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+            <element signature="e#2293#4057#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/aside.tpl.user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="132" column="52" selection-start-line="132" selection-start-column="52" selection-end-line="132" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/aside.html">
+    <entry file="file://$PROJECT_DIR$/public/views/aside.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/directives/ui-toggle.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/directives/ui-toggle.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
@@ -388,7 +649,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/app.ctrl.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/app.ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
@@ -396,7 +657,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout.html">
+    <entry file="file://$PROJECT_DIR$/public/views/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="119" selection-start-line="2" selection-start-column="119" selection-end-line="2" selection-end-column="119" />
@@ -404,7 +665,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/aside.h.html">
+    <entry file="file://$PROJECT_DIR$/public/views/aside.h.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
@@ -412,7 +673,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout.h.html">
+    <entry file="file://$PROJECT_DIR$/public/views/layout.h.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -455,42 +716,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/directives/lazyload.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/directives/lazyload.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/directives/ui-nav.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/directives/ui-nav.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/ui-load.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/services/ui-load.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09364548">
           <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/ngstore.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/services/ngstore.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16896552">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/directives/ui-fullscreen.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/directives/ui-fullscreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/less/ui.nav.less">
+    <entry file="file://$PROJECT_DIR$/public/less/ui.nav.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35595238">
           <caret line="175" column="13" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="13" />
@@ -504,7 +765,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/less/util.margin.less">
+    <entry file="file://$PROJECT_DIR$/public/less/util.margin.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19377163">
           <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
@@ -515,6 +776,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="511" column="9" selection-start-line="511" selection-start-column="9" selection-end-line="511" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -525,59 +787,194 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/styles/app.css">
+    <entry file="file://$PROJECT_DIR$/public/styles/app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34486735">
           <caret line="5086" column="1" selection-start-line="5086" selection-start-column="1" selection-end-line="5086" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/less/bs.nav.less">
+    <entry file="file://$PROJECT_DIR$/public/less/bs.nav.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.245614">
           <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/styles/material-design-icons.css">
+    <entry file="file://$PROJECT_DIR$/public/styles/material-design-icons.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3690888">
           <caret line="450" column="14" selection-start-line="450" selection-start-column="14" selection-end-line="450" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/config.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.min.html">
+    <entry file="file://$PROJECT_DIR$/public/scripts/controllers/angular-strap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48442906">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+        <state vertical-scroll-proportion="-1.8729097">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/aside.setting.html">
+    <entry file="file://$PROJECT_DIR$/public/scripts/app.ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79930794">
-          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.9375">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/aside.nav.uikit.html">
+    <entry file="file://$PROJECT_DIR$/public/scripts/directives/ui-scroll.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/directives/ui-toggle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28125">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/pages/blank.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/pages/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09699769">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/angular/angular-ui-router/release/angular-ui-router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3325893">
+          <caret line="2939" column="6" selection-start-line="2939" selection-start-column="6" selection-end-line="2939" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68475753">
+          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/pages/profile-settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.03125">
+          <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
+          <folding>
+            <element signature="e#2293#4057#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/content.h.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4792148">
+          <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16974595">
+          <caret line="7" column="69" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/layout.h.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19399539">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/aside.h.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/aside.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0">
+          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/partials/aside.setting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/partials/aside.nav.uikit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
           <folding>
             <element signature="n#li#1;n#ul#0;n#nav#0;n#!!top" expanded="false" />
             <element signature="n#li#2;n#ul#0;n#nav#0;n#!!top" expanded="false" />
@@ -587,111 +984,24 @@
             <element signature="n#li#6;n#ul#0;n#nav#0;n#!!top" expanded="false" />
             <element signature="n#li#7;n#ul#0;n#nav#0;n#!!top" expanded="false" />
             <element signature="n#li#8;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#9;n#ul#0;n#nav#0;n#!!top" expanded="false" />
             <element signature="n#li#10;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#12;n#ul#0;n#nav#0;n#!!top" expanded="false" />
-            <element signature="n#li#13;n#ul#0;n#nav#0;n#!!top" expanded="false" />
+            <element signature="n#li#11;n#ul#0;n#nav#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/angular-strap.js">
+    <entry file="file://$PROJECT_DIR$/public/index.min.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8729097">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pages/blank.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.024221454">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout.h.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-14.0">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/app.ctrl.js">
+    <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9375">
-          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.048498847">
-          <caret line="2" column="119" selection-start-line="2" selection-start-column="119" selection-end-line="2" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/aside.h.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5577367">
-          <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/directives/ui-scroll.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/aside.tpl.user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="132" column="52" selection-start-line="132" selection-start-column="52" selection-end-line="132" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/directives/ui-toggle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28125">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/aside.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6789838">
-          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2">
-          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1171875">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.60623556">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
           <folding />
         </state>
       </provider>

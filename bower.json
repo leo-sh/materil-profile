@@ -1,11 +1,11 @@
 {
-  "name": "Materil",
+  "name": "Materil-Profile",
   "version": "1.0.3",
   "authors": [
     "Flatfull"
   ],
-  "description": "Admin web application template with Bootstrap 3 and AngularJS.",
-  "license": "Envato REGULAR LICENSE",
+  "description": "Profile Template For all Projects.",
+  "license": "JetNiXX corporations",
   "homepage": "",
   "private": true,
   "ignore": [
@@ -23,7 +23,7 @@
     "angular-resource": "1.4.x",
     "angular-sanitize": "1.4.x",
     "angular-touch": "1.4.x",
-    "angular-material": "0.10.0",
+    "angular-material": "1.0.6",
     "angular-translate": "~2.5.2",
     "angular-translate-loader-static-files": "~2.5.2",
     "angular-translate-storage-cookie": "~2.5.2",
