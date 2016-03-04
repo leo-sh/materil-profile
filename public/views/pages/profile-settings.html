@@ -1,80 +1,175 @@
-<div class="padding-out">
-  <div class="p-h-md p-v bg-white box-shadow pos-rlt">
-    <h3 class="no-margin">Settings</h3>
-  </div>
-  <div class="box">
-    <div class="col-md-3">
-      <div style="background:url(images/a1.jpg) center center; background-size:cover">
-        <div class="p-lg bg-white-overlay text-center">
-          <a href class="w-xs inline">
-            <img src="images/a1.jpg" class="img-circle img-responsive">
-          </a>
-          <div class="m-b m-t-sm h2">
-            <span class="text-black">Mike</span>
-          </div>
-          <p>
-            Great day, Great life
-          </p>
+<div class="row row-sm">
+    <div class="col-sm-3">
+        <div class="panel panel-card">
+            <div class="r-t pos-rlt" md-ink-ripple
+                 style="background:url(images/a0.jpg) center center; background-size:cover">
+                <div class="p-lg bg-white-overlay text-center r-t">
+                    <a href class="w-xs inline">
+                        <img src="images/a0.jpg" class="img-circle img-responsive">
+                    </a>
+                    <div class="m-b m-t-sm h2">
+                        <span class="">David M.</span>
+                    </div>
+                    <a class="btn btn-sm btn-success m-b p-h no-border">Edit</a>
+                    <p>
+                        I am designing something.
+                    </p>
+                </div>
+            </div>
+            <div ng-cloak>
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                        <md-tab label="one">
+                            <md-content class="md-padding">
+                                <h1 class="md-display-2">Tab One</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                                    Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In
+                                    sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                                    feugiat ultricies mi.</p>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="two">
+                            <md-content class="md-padding">
+                                <h1 class="md-display-2">Tab Two</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                                    Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In
+                                    sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                                    feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices
+                                    porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis
+                                    sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a
+                                    nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna
+                                    dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar
+                                    at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu,
+                                    bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur
+                                    faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci
+                                    posuere, nec luctus mauris semper.</p>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="three">
+                            <md-content class="md-padding">
+                                <h1 class="md-display-2">Tab Three</h1>
+                                <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur
+                                    posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse
+                                    vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
+                                    commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque,
+                                    finibus commodo lectus.</p>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
         </div>
-      </div>
-      <ul class="nav nav-lists b-t" ui-nav>
-        <li class="active">
-          <a href>Profile</a>
-        </li>
-        <li>
-          <a href>Account Settings</a>
-        </li>
-        <li>
-          <a href>Emails</a>
-        </li>
-        <li>
-          <a href>Notifications</a>
-        </li>
-        <li>
-          <a href>Security</a>
-        </li>
-        <li>
-          <a href>Organizations</a>
-        </li>
-      </ul>
     </div>
-    <div class="col-md-9 b-l bg-white bg-auto">
-      <div class="p-md bg-light lt b-b font-bold">Public profile</div>
-      <form role="form" class="p-md col-md-6">
-        <div class="form-group">
-          <label>Profile picture</label>
-          <div class="form-file">
-            <input type="file">
-            <button class="btn btn-default">Upload new picture</button>
-          </div>
+    <div class="col-sm-9">
+        <h4>Your Activities</h4>
+        <div class="panel panel-card clearfix">
+            <div class="p-h-lg m-b-lg">
+                <div class="streamline b-l p-v m-l-xs">
+                    <div>
+                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
+                            <img src="images/a2.jpg" class="img-responsive rounded" alt="...">
+                        </a>
+                        <div class="clear">
+                            <div class="m-b-xs">
+                                <a href>James</a> said
+                <span class="text-muted block text-xs">
+                  Just now
+                </span>
+                            </div>
+                            <div class="m-b">
+                                <div>Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh
+                                    euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id
+                                    neque quam. Aliquam sollicitudin
+                                </div>
+                                <div class="m-t-sm">
+                                    <a href class="text-muted m-xs">Like</a>
+                                    <a href class="text-muted m-xs">Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
+                            <img src="images/a3.jpg" class="img-responsive rounded" alt="...">
+                        </a>
+                        <div class="clear">
+                            <div class="m-b-xs">
+                                <a href>Oscar</a> upload a file
+                <span class="text-muted block text-xs">
+                  3 minutes ago
+                </span>
+                            </div>
+                            <div class="m-b">
+                                <div class="w-xl w-auto-xs">
+                                    <div class="box bg-light">
+                                        <div class="box-col w-xs text-center dk p-md v-m">
+                                            <i class="fa fa-file-text-o text-3x text-muted-lt"></i>
+                                        </div>
+                                        <div class="box-col p">
+                                            <a href>Geuismod tincidunt</a>
+                                            <div>Diam nonummy nibh euismod tincidunt ut laoreet.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-t-sm">
+                                    <a href class="text-muted m-xs">Like</a>
+                                    <a href class="text-muted m-xs">Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
+                            <img src="images/a4.jpg" class="img-responsive rounded" alt="...">
+                        </a>
+                        <div class="clear">
+                            <div class="m-b-xs">
+                                <a href>Anny</a> post a photo
+                <span class="text-muted block text-xs">
+                  6 minutes ago
+                </span>
+                            </div>
+                            <div class="m-b">
+                                <div><img src="images/a10.jpg" class="b p-xs"></div>
+                                <div class="m-t-sm">
+                                    <a href class="text-muted m-xs">Like</a>
+                                    <a href class="text-muted m-xs">Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
+                            <img src="images/a5.jpg" class="img-responsive rounded" alt="...">
+                        </a>
+                        <div class="clear">
+                            <div class="m-b-xs">
+                                <a href>Michel</a> post a comment
+                <span class="text-muted block text-xs">
+                  10 minutes ago
+                </span>
+                            </div>
+                            <div class="m-b bg-light">
+                                <div class="p-sm b-b b-white">
+                                    <img src="images/a4.jpg" class="rounded w-20 pull-left m-r-sm" alt="...">
+                                    <a href>Tony</a> liked it
+                                </div>
+                                <div class="p-sm">
+                                    <img src="images/a6.jpg" class="rounded w-20 pull-left m-r-sm" alt="...">
+                                    <a href>Anney</a> Commented it
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Email address</label>
-          <input type="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>URL</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Company</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Location</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="checkbox">
-          <label class="ui-checks">
-            <input type="checkbox"><i></i> Available for hire
-          </label>
-        </div>
-        <button type="submit" class="btn btn-info m-t">Submit</button>
-      </form>
     </div>
-  </div>
 </div>
+<script>
+
+</script>
