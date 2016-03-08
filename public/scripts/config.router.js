@@ -78,6 +78,26 @@ angular.module('app')
                             title: 'Profile'
                         }
                     })
+                    .state('app', {
+                        url: '/app',
+                        abstract: true,
+                        views: {
+                            '': {
+                                templateUrl: layout
+                            },
+                            'aside': {
+                                templateUrl: aside
+                            },
+                            'content': {
+                                templateUrl: content
+                            }
+                        }
+                    })
+                    .state('app.contacts', {
+                        url: '/contacts',
+                        templateUrl: 'views/application/contacts/index.html',
+                        data: {title: 'List'}
+                    })
                 ;
 
                 function load(srcs, callback) {
