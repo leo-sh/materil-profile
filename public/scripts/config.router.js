@@ -28,7 +28,7 @@ angular.module('app')
                 $urlRouterProvider
                     .otherwise('/page/home');
                 $stateProvider
-                    // authentication pages
+                // authentication pages
                     .state('authentication', {
                         url: '/authentication',
                         template: '<div class="indigo bg-big"><div ui-view class="fade-in-down smooth"></div></div>'

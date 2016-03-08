@@ -1,3 +1,6 @@
-/**
- * Created by 1084760 on 2016/03/08.
- */
+// config/database.js
+module.exports = {
+
+    'url': 'mongodb://localhost/materilProfile' // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
+
+};
