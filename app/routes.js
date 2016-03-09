@@ -1,5 +1,8 @@
 module.exports = function (app, passport) {
 
+    require('./routes/route_sample')(app);
+    require('./routes/route_authentication')(app, passport);   // routes for authentication of users
+
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
@@ -45,11 +48,32 @@ module.exports = function (app, passport) {
     });
 
     // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/signup', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
-    }));
+    //app.post('/signup', passport.authenticate('local-signup', {
+    //    successRedirect: '/profile', // redirect to the secure profile section
+    //    failureRedirect: '/signup', // redirect back to the signup page if there is an error
+    //    failureFlash: true // allow flash messages
+    //}));
+
+    app.get('/authentication/signup', function (request, response) {
+
+        console.log(request.param('name'));
+        var send = {
+            'name': "asdgasdg",
+        }
+
+        response.json(send);
+
+    });
+    app.post('/authentication/signup', function (request, response) {
+
+        console.log(request.body);
+        var send = {
+            'name': "asdgasdg",
+        }
+
+        response.json(send);
+
+    });
 
     // facebook -------------------------------
 
