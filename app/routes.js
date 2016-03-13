@@ -1,6 +1,6 @@
-module.exports = function (app, passport) {
+module.exports = function (app, passport, boomError) {
 
-    require('./routes/route_sample')(app);
+    require('./routes/route_sample')(app, boomError);
     require('./routes/route_authentication')(app, passport);   // routes for authentication of users
 
 // normal routes ===============================================================
@@ -64,17 +64,6 @@ module.exports = function (app, passport) {
         response.json(send);
 
     });
-    app.post('/authentication/signup', function (request, response) {
-
-        console.log(request.body);
-        var send = {
-            'name': "asdgasdg",
-        }
-
-        response.json(send);
-
-    });
-
     // facebook -------------------------------
 
     // send to facebook to do the authentication

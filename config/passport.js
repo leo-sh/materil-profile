@@ -83,72 +83,43 @@ module.exports = function (passport) {
 
             // asynchronous
             process.nextTick(function () {
-                // if the user is not already logged in:
-                if (!req.user) {
-                    User.findOne({'email': email}, function (err, user) {
-                        // if there are any errors, return the error
-                        if (err)
-                            return done(err);
+                User.findOne({'email': email}, function (err, user) {
+                    // if there are any errors, return the error
+                    if (err) {
+                        return done(err, req.flash('signupMessage', 'That email is already taken.'));
+                    }
 
-                        // check to see if theres already a user with that email
-                        if (user) {
-                            //return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-                            return done(null, false, { 'signupMessage' : 'That email is already taken.' });
-                        } else {
+                    // check to see if theres already a user with that email
+                    if (user) {
 
-                            // create the user
-                            var newUser = new User();
-                            newUser.email = email;
-                            newUser.password = newUser.generateHash(password);
+                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    } else {
 
-                            newUser.save(function (err) {
-                                if (err)
-                                    return done(err);
-                            });
+                        // create the user
+                        var newUser = new User();
+                        newUser.email = email;
+                        newUser.password = newUser.generateHash(password);
 
-                            var userDetails = new UserDetails();
-                            userDetails.first_name = req.body.first_name;
-                            userDetails.last_name = req.body.last_name;
-                            userDetails._user_access_id = newUser._id;
+                        newUser.save(function (err) {
+                            if (err)
+                                return done(err);
+                        });
 
-                            userDetails.save(function (err) {
-                                if (err)
-                                    return done(err);
-                            });
+                        var userDetails = new UserDetails();
+                        userDetails.first_name = req.body.first_name;
+                        userDetails.last_name = req.body.last_name;
+                        userDetails._user_access_id = newUser._id;
 
-                            return done(null, newUser, {'signupMessage': 'Your Registration is successful.'});
-                        }
-                    });
-                    // if the user is logged in but has no local account...
-                } else if (!req.user.email) {
-                    // ...presumably they're trying to connect a local account
-                    // BUT let's check if the email used to connect a local account is being used by another user
-                    User.findOne({'email': email}, function (err, user) {
-                        if (err)
-                            return done(err);
+                        userDetails.save(function (err) {
+                            if (err)
+                                return done(err);
+                        });
 
-                        if (user) {
-                            return done(null, false, req.flash('loginMessage', 'That email is already taken.'));
-                            // Using 'loginMessage instead of signupMessage because it's used by /connect/local'
-                        } else {
-                            var user = req.user;
-                            user.email = email;
-                            user.password = user.generateHash(password);
-                            user.save(function (err) {
-                                if (err)
-                                    return done(err);
-
-                                return done(null, user);
-                            });
-                        }
-                    });
-                } else {
-                    // user is logged in and already has a local account. Ignore signup. (You should log out before trying to create a new account, user!)
-                    return done(null, req.user);
-                }
+                        return done(null, newUser, req.flash('signupMessage', 'Your Registration is successful.'));
+                    }
+                });
 
             });
-
         })
     );
 

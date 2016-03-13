@@ -14,6 +14,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var boomError = require('boom');
+
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
@@ -48,7 +50,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // Routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport, boomError); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
 app.listen(port);

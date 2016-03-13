@@ -12,11 +12,11 @@
         </div>
     </div>
 
-    <div class="p-lg panel md-whiteframe-z1 text-color m">
+    <div class="p-lg panel md-whiteframe-z1 text-color m" ng-controller="authentication">
         <div class="m-b text-sm">
             Sign up to your {{app.name}} Account
         </div>
-        <form name="form">
+        <form name="formSignUp" id="formSignUp">
             <div class="md-form-group">
                 <input type="text" class="md-input" ng-model="user.first_name" required>
                 <label>First Name</label>
@@ -39,7 +39,7 @@
                     policy</a>
                 </label>
             </div>
-            <button md-ink-ripple type="submit" class="md-btn md-raised pink btn-block p-h-md">Sign up</button>
+            <button md-ink-ripple type="submit" ng-click="submitSignUp()" class="md-btn md-raised pink btn-block p-h-md">Sign up</button>
         </form>
     </div>
 
