@@ -61,7 +61,8 @@
     "flot.tooltip": "~0.8.4",
     "flot.orderbars": "*",
     "flot-spline": "*",
-    "waves": "~0.7.2"
+    "waves": "~0.7.2",
+    "angular-http-api": "*"
   },
   "resolutions": {
     "angular-touch": "1.4.x",

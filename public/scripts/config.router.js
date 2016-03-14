@@ -28,22 +28,25 @@ angular.module('app')
                 $urlRouterProvider
                     .otherwise('/page/home');
                 $stateProvider
-                    // authentication pages
+                // authentication pages
                     .state('authentication', {
                         url: '/authentication',
                         template: '<div class="indigo bg-big"><div ui-view class="fade-in-down smooth"></div></div>'
                     })
                     .state('authentication.signin', {
                         url: '/signin',
-                        templateUrl: 'views/authentication/signin.html'
+                        templateUrl: 'views/authentication/signin.html',
+                        resolve: load('scripts/controllers/authentication.js')
                     })
                     .state('authentication.signup', {
                         url: '/signup',
-                        templateUrl: 'views/authentication/signup.html'
+                        templateUrl: 'views/authentication/signup.html',
+                        resolve: load(['scripts/controllers/authentication.js', 'scripts/services/authenticationService.js'])
                     })
                     .state('authentication.forgot-password', {
                         url: '/forgot-password',
-                        templateUrl: 'views/authentication/forgot-password.html'
+                        templateUrl: 'views/authentication/forgot-password.html',
+                        resolve: load('scripts/controllers/authentication.js')
                     })
                     .state('page', {
                         url: '/page',
@@ -77,6 +80,26 @@ angular.module('app')
                         data: {
                             title: 'Profile'
                         }
+                    })
+                    .state('app', {
+                        url: '/app',
+                        abstract: true,
+                        views: {
+                            '': {
+                                templateUrl: layout
+                            },
+                            'aside': {
+                                templateUrl: aside
+                            },
+                            'content': {
+                                templateUrl: content
+                            }
+                        }
+                    })
+                    .state('app.contacts', {
+                        url: '/contacts',
+                        templateUrl: 'views/application/contacts/index.html',
+                        data: {title: 'List'}
                     })
                 ;
 
