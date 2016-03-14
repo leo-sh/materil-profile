@@ -1,12 +1,8 @@
-module.exports = function notFound(message, errorCode) {
+module.exports = function (err, req, res, next) {
 
-    Error.captureStackTrace(this, this.constructor);
+    if (err.status !== 404) {
+        return next();
+    }
 
-    this.name = this.constructor.name;
-    this.message = message || 'The requested resource couldn\'t be found';
-    this.statusCode = 404;
-    this.errorCode = errorCode || 404;
-};
-
-
-require('util').inherits(module.exports, Error);
+    res.send({ 'Not Found' : 'This route is not found' });
+}

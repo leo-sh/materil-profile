@@ -16,6 +16,9 @@
         <div class="m-b text-sm">
             Sign up to your {{app.name}} Account
         </div>
+        <div class="m-b-md">
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
         <form name="formSignUp" id="formSignUp">
             <div class="md-form-group">
                 <input type="text" class="md-input" ng-model="user.first_name" required>

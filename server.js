@@ -14,8 +14,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var boomError = require('boom');
-
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
@@ -50,9 +48,27 @@ app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // Routes ======================================================================
-require('./app/routes.js')(app, passport, boomError); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
+
+var errorNotFoundHandler = require('./app/errors/notFoundError.js');
+
+//app.get('*', function (req, res, next) {
+//    var err = new Error();
+//    err.status = 404;
+//    next(err);
+//});
+
+// handling 404 errors
+//app.use(errorNotFoundHandler);
 // launch ======================================================================
-app.listen(port);
-console.log('The Materil-Profile Server Starts on port ' + port);
+
+var server = app.listen(8080, function () {
+
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log('Materil-Profile app listening at http://%s:%s', host, port);
+
+});
 

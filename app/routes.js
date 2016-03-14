@@ -1,6 +1,6 @@
-module.exports = function (app, passport, boomError) {
+module.exports = function (app, passport) {
 
-    require('./routes/route_sample')(app, boomError);
+    require('./routes/route_sample')(app);
     require('./routes/route_authentication')(app, passport);   // routes for authentication of users
 
 // normal routes ===============================================================
@@ -33,13 +33,6 @@ module.exports = function (app, passport, boomError) {
     app.get('/login', function (req, res) {
         res.render('login.ejs', {message: req.flash('loginMessage')});
     });
-
-    // process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/login', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
-    }));
 
     // SIGNUP =================================
     // show the signup form
