@@ -9,9 +9,6 @@ var User = require('../app/models/user_access');
 var UserDetails = require('../app/models/user_details');
 var UserAccessDetails = require('../app/models/user_access_details');
 
-// load up the user access controller
-var UserDetailsController = require('../app/controllers/userDetailsController');
-
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
 
@@ -44,43 +41,51 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         },
         function (req, email, password, done) {
-            console.log(req.body);
-
             if (email)
                 email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
             // asynchronous
             process.nextTick(function () {
                 User.findOne({'email': email}, function (err, user) {
+
+                    var flash = {
+                        'status': 'failed',
+                        'statusCode': 401,
+                        'statusText': 'Some Error Occurred.'
+                    }
+
                     // if there are any errors, return the error
-                    console.log(user);
-                    console.log(err);
-
                     if (err) {
-
-                        console.log("3-asdfgasg");
-                        return done(err, req.flash('loginMessage', 'Some Error Occurred.'));
+                        return done(err, req.flash('result', flash));
                     }
 
                     // if no user is found, return the message
                     if (!user || !user.validPassword(password)) {
 
-                        console.log("2-asdfgasg");
-                        return done(null, false, req.flash('loginMessage', 'Oops! Wrong email or password.'));
+                        var flash = {
+                            'status': 'failed',
+                            'statusCode': 401,
+                            'statusText': 'Email or password Invalid!!.'
+                        }
 
-                    } else if (user) {
-                        console.log("1-asdfgasg");
+                        return done(null, false, req.flash('result', flash));
+                    } else if (user && user.validPassword(password)) {
+
                         var userAccessDetails = new UserAccessDetails();
                         userAccessDetails.login_at = new Date();
-
                         userAccessDetails.save(function (err) {
-                            console.log(err);
 
                             if (err)
-                                return done(err, req.flash('loginMessage', 'Some Error Occurred.'));
+                                return done(err, req.flash('result', flash));
                         });
 
-                        return done(null, user, req.flash('loginMessage', 'Successfully Authenticated.'));
+                        var flash = {
+                            'status': 'success',
+                            'statusCode': 200,
+                            'data': user,
+                            'statusText': 'Successfully Authenticated!!'
+                        }
+                        return done(null, user, req.flash('result', flash));
                     }
                 });
             });
@@ -97,22 +102,35 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         },
         function (req, email, password, done) {
-            console.log(req);
             if (email)
                 email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
             // asynchronous
             process.nextTick(function () {
                 User.findOne({'email': email}, function (err, user) {
+
+                    var flash = {
+                        'status': 'failed',
+                        'statusCode': 401,
+                        'statusText': 'Some Error Occurred.'
+                    }
+
                     // if there are any errors, return the error
                     if (err) {
-                        return done(err, req.flash('signupMessage', 'That email is already taken.'));
+
+                        return done(err, req.flash('result', flash));
                     }
 
                     // check to see if theres already a user with that email
                     if (user) {
 
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        var flash = {
+                            'status': 'failed',
+                            'statusCode': 409,
+                            'statusText': 'That Email is already Taken.'
+                        }
+
+                        return done(null, false, req.flash('result', flash));
                     } else {
 
                         // create the user
@@ -122,7 +140,7 @@ module.exports = function (passport) {
 
                         newUser.save(function (err) {
                             if (err)
-                                return done(err);
+                                return done(err, req.flash('result', flash));
                         });
 
                         var userDetails = new UserDetails();
@@ -132,10 +150,16 @@ module.exports = function (passport) {
 
                         userDetails.save(function (err) {
                             if (err)
-                                return done(err);
+                                return done(err, req.flash('result', flash));
                         });
 
-                        return done(null, newUser, req.flash('signupMessage', 'Your Registration is successful.'));
+                        var flash = {
+                            'status': 'success',
+                            'statusCode': 200,
+                            'statusText': 'Your Registration is successful.'
+                        }
+
+                        return done(null, newUser, req.flash('result', flash));
                     }
                 });
 

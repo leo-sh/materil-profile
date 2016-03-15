@@ -1,18 +1,14 @@
-module.exports = function (app, boomError) {
+module.exports = function (app) {
 
-    var sampleAPi = require('./../api/sample_api');
-    var throws = require('./../errors/notFoundError');
-
-    app.get('/sample/:id/:name', sampleAPi.sample_get);
     app.get('/sample', function (req, res, next) {
 
-        var suit = true;
-
-        if (suit) {
-            var error = new Error('Unexpected input');
-            error.status = 400;
-            res.send(error);
+        var flash = {
+            'status': 'failed',
+            'statusCode': 401,
+            'statusText': 'Some Error Occurred.'
         }
+
+        res.json({'result': flash});
 
     });
 

@@ -25,4 +25,13 @@ module.exports = function (app, passport) {
 
         res.json(req.flash());
     });
+
+    //Logout
+    app.get('/authentication/logout', function (req, res) {
+
+        req.logout();
+        res.status(404).json({
+            status: 'Bye!'
+        });
+    });
 }

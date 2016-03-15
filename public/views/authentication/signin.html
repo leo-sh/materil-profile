@@ -16,6 +16,9 @@
         <div class="m-b text-sm">
             Sign in with your {{app.name}} Account
         </div>
+        <div class="m-b-md">
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
         <form name="form">
             <div class="md-form-group float-label">
                 <input type="email" class="md-input" ng-model="user.email" required>
@@ -30,7 +33,7 @@
                     <input type="checkbox"><i class="indigo"></i> Keep me signed in
                 </label>
             </div>
-            <button md-ink-ripple type="submit" class="md-btn md-raised pink btn-block p-h-md">Sign in</button>
+            <button md-ink-ripple type="submit" ng-click="submitSignIn()" class="md-btn md-raised pink btn-block p-h-md">Sign in</button>
         </form>
     </div>
 

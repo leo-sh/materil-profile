@@ -1,8 +1,9 @@
+// --------------500: Internal Server Error----------------------------------------
+
 module.exports = function (err, req, res, next) {
-
-    if (err.status !== 500) {
-        return next();
-    }
-
-    res.send('500 Error');
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: err
+    });
 }

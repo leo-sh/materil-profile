@@ -35,18 +35,24 @@ angular.module('app')
                     })
                     .state('authentication.signin', {
                         url: '/signin',
+                        params: {alertParam: null},
                         templateUrl: 'views/authentication/signin.html',
-                        resolve: load('scripts/controllers/authentication.js')
+                        controller: 'authenticationController',
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js'])
                     })
                     .state('authentication.signup', {
                         url: '/signup',
+                        params: {alertParam: null},
                         templateUrl: 'views/authentication/signup.html',
-                        resolve: load(['scripts/controllers/authentication.js', 'scripts/services/authenticationService.js'])
+                        controller: 'authenticationController',
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js'])
                     })
                     .state('authentication.forgot-password', {
                         url: '/forgot-password',
+                        params: {alertParam: null},
                         templateUrl: 'views/authentication/forgot-password.html',
-                        resolve: load('scripts/controllers/authentication.js')
+                        controller: 'authenticationController',
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js'])
                     })
                     .state('page', {
                         url: '/page',
@@ -69,16 +75,19 @@ angular.module('app')
                     })
                     .state('page.home', {
                         url: '/home',
+                        params: {userParam: null},
                         templateUrl: 'views/pages/home.html',
                         data: {
-                            title: 'Home'
+                            title: 'Home',
+                            access: false
                         }
                     })
                     .state('page.profile-settings', {
                         url: '/profile-settings',
                         templateUrl: 'views/pages/profile-settings.html',
                         data: {
-                            title: 'Profile'
+                            title: 'Profile',
+                            access: false
                         }
                     })
                     .state('app', {
@@ -99,7 +108,10 @@ angular.module('app')
                     .state('app.contacts', {
                         url: '/contacts',
                         templateUrl: 'views/application/contacts/index.html',
-                        data: {title: 'List'}
+                        data: {
+                            title: 'List',
+                            access: false
+                        }
                     })
                 ;
 

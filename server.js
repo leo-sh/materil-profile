@@ -47,23 +47,22 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
+var throwjs = require('throw.js');
+
 // Routes ======================================================================
+
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
+// Error Handling ---------------------------------------------------------------------Handling Errors---------------------
 
-var errorNotFoundHandler = require('./app/errors/notFoundError.js');
+var error404Handler = require('./app/errors/404Error');
+var error500Handler = require('./app/errors/500Error');
 
-//app.get('*', function (req, res, next) {
-//    var err = new Error();
-//    err.status = 404;
-//    next(err);
-//});
+app.use(error404Handler);
+app.use(error500Handler);
 
-// handling 404 errors
-//app.use(errorNotFoundHandler);
 // launch ======================================================================
-
-var server = app.listen(8080, function () {
+var server = app.listen(port, function () {
 
     var host = server.address().address;
     var port = server.address().port;
