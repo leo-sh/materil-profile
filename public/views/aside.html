@@ -47,9 +47,9 @@
                 </a>
               </li>
               <li>
-                <a md-ink-ripple ui-sref="access.lockme">
+                <a md-ink-ripple ng-controller="authenticationController">
                   <i class="icon mdi-action-exit-to-app i-20"></i>
-                  <span>Logout</span>
+                  <span ng-click="logOut()">Logout</span>
                 </a>
               </li>
               <li class="m-v-sm b-b b"></li>

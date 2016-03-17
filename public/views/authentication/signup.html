@@ -19,7 +19,7 @@
         <div class="m-b-md">
             <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         </div>
-        <form name="formSignUp" id="formSignUp">
+        <form name="formSignUp" id="formSignUp" ng-submit="submitSignUp()">
             <div class="md-form-group">
                 <input type="text" class="md-input" ng-model="user.first_name" required>
                 <label>First Name</label>
@@ -42,7 +42,7 @@
                     policy</a>
                 </label>
             </div>
-            <button md-ink-ripple type="submit" ng-click="submitSignUp()" class="md-btn md-raised pink btn-block p-h-md">Sign up</button>
+            <button md-ink-ripple type="submit" class="md-btn md-raised pink btn-block p-h-md">Sign up</button>
         </form>
     </div>
 

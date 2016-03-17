@@ -1,17 +1,17 @@
 // load the things we need
 var mongoose = require('mongoose');
 
-const OS_TYPE_WEB_BROWSER = 1;
-const OS_TYPE_ANDROID = 2;
-const OS_TYPE_IOS = 3;
+const OS_NOT_YET_USED = 0;
 
+const OS_USED = 1;
 
 // define the schema for our user model
 var userAccessDetailsSchema = mongoose.Schema({
 
     _user_access_id: mongoose.Schema.Types.ObjectId,
-    login_at: Date,
-    os_type: String,
+    ios: Boolean,
+    android: Boolean,
+    web_browser: Boolean,
     created_at: Date,
     updated_at: Date,
     deleted_at: Date

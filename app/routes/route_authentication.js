@@ -26,12 +26,25 @@ module.exports = function (app, passport) {
         res.json(req.flash());
     });
 
+    //get user status
+    app.get('/authentication/user/status', function (req, res) {
+
+        if (!req.isAuthenticated()) {
+            return res.status(200).json({
+                status: false
+            });
+        }
+        res.status(200).json({
+            status: true
+        });
+    });
+
     //Logout
     app.get('/authentication/logout', function (req, res) {
 
         req.logout();
-        res.status(404).json({
-            status: 'Bye!'
+        res.status(200).json({
+            status: 'Logged Out Successfully!!'
         });
     });
 }

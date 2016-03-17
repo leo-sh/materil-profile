@@ -70,9 +70,10 @@ module.exports = function (passport) {
 
                         return done(null, false, req.flash('result', flash));
                     } else if (user && user.validPassword(password)) {
-
+                        // user is found and password is also authenticated
                         var userAccessDetails = new UserAccessDetails();
                         userAccessDetails.login_at = new Date();
+                        userAccessDetails._user_access_id = user._id;
                         userAccessDetails.save(function (err) {
 
                             if (err)
@@ -403,5 +404,4 @@ module.exports = function (passport) {
             });
 
         }));
-
 };

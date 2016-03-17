@@ -11,10 +11,10 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
 
         // function to run when signup button is clicked
         $scope.submitSignUp = function () {
-
-            authenticationService.login($scope.user)
+            authenticationService.registration($scope.user)
                 .then(function (response) {
                     if (response.statusCode == 409 || response.statusCode == 401) {
+
                         $scope.alerts.push({type: 'danger', msg: response.statusText});
                     } else if (response.statusCode == 200) {
                         $state.transitionTo('authentication.signin', {alertParam: response});
@@ -22,7 +22,7 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
                         $scope.alerts.push({type: 'danger', msg: 'something Went wrong!!'});
                     }
                 })
-        }
+        },
 
         // function to run when signup button is clicked
         $scope.submitSignIn = function () {
@@ -36,6 +36,14 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
                     } else {
                         $scope.alerts.push({type: 'danger', msg: 'something Went wrong!!'});
                     }
+                })
+        },
+
+        // function to run when logout is clicked
+        $scope.logOut = function () {
+            authenticationService.logout()
+                .then(function () {
+                    $state.transitionTo('authentication.signin', {alertParam: {'statusText': 'Logged Out!!'}});
                 })
         }
     }

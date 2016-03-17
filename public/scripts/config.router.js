@@ -9,8 +9,24 @@
  */
 angular.module('app')
     .run(
-        ['$rootScope', '$state', '$stateParams',
-            function ($rootScope, $state, $stateParams) {
+        ['$rootScope', '$state', '$stateParams', 'authenticationService',
+            function ($rootScope, $state, $stateParams, authenticationService) {
+
+                // check if the user is logged in and page is restricted without login
+                $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+                    authenticationService.getUserStatus();
+                    if (toState.data.restricted && authenticationService.isLoggedIn() == false) {
+                        e.preventDefault();
+                        var alert = {
+                            'statusText': 'You are not Logged In!!'
+                        };
+                        $state.go('authentication.signin', {alertParam: alert});
+                    } else if (!toState.data.restricted && authenticationService.isLoggedIn() == true) {
+                        e.preventDefault();
+                        $state.go('page.home');
+                    }
+                });
+
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
             }
@@ -38,21 +54,30 @@ angular.module('app')
                         params: {alertParam: null},
                         templateUrl: 'views/authentication/signin.html',
                         controller: 'authenticationController',
-                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js'])
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
+                        data: {
+                            restricted: false
+                        }
                     })
                     .state('authentication.signup', {
                         url: '/signup',
                         params: {alertParam: null},
                         templateUrl: 'views/authentication/signup.html',
                         controller: 'authenticationController',
-                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js'])
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
+                        data: {
+                            restricted: false
+                        }
                     })
                     .state('authentication.forgot-password', {
                         url: '/forgot-password',
                         params: {alertParam: null},
                         templateUrl: 'views/authentication/forgot-password.html',
                         controller: 'authenticationController',
-                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js'])
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
+                        data: {
+                            restricted: false
+                        }
                     })
                     .state('page', {
                         url: '/page',
@@ -71,15 +96,20 @@ angular.module('app')
                     .state('page.blank', {
                         url: '/blank',
                         templateUrl: 'views/pages/blank.html',
-                        data: {title: 'Blank'}
+                        data: {
+                            title: 'Blank',
+                            restricted: true
+                        }
                     })
                     .state('page.home', {
                         url: '/home',
                         params: {userParam: null},
                         templateUrl: 'views/pages/home.html',
+                        controller: 'authenticationController',
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
                         data: {
                             title: 'Home',
-                            access: false
+                            restricted: true
                         }
                     })
                     .state('page.profile-settings', {
@@ -87,7 +117,7 @@ angular.module('app')
                         templateUrl: 'views/pages/profile-settings.html',
                         data: {
                             title: 'Profile',
-                            access: false
+                            restricted: true
                         }
                     })
                     .state('app', {
@@ -110,7 +140,7 @@ angular.module('app')
                         templateUrl: 'views/application/contacts/index.html',
                         data: {
                             title: 'List',
-                            access: false
+                            restricted: true
                         }
                     })
                 ;

@@ -78,7 +78,9 @@ angular.module('app')
             };
 
             $scope.getColor = function (color, hue) {
-                if (color == "bg-dark" || color == "bg-white") return $scope.app.color[color.substr(3, color.length)];
+                if (color == "bg-dark" || color == "bg-white")
+                    return $scope.app.color[color.substr(3, color.length)];
+
                 return rgb2hex($mdColorPalette[color][hue]['value']);
             }
 
