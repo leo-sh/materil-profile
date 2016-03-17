@@ -8,11 +8,35 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../app/models/user_access');
 var UserDetails = require('../app/models/user_details');
 var UserAccessDetails = require('../app/models/user_access_details');
+var UserAccessDevices = require('../app/models/user_devices');
 
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
 
 module.exports = function (passport) {
+
+    function userDeviceUsed(_user_id, os_type) {
+
+        UserAccessDevices.findOne({_user_access_id: _user_id, os_type: os_type}, function (err, userAccessDevice) {
+
+            if (err) {
+                next(err);
+            }
+
+            if (!userAccessDevice) {
+
+                var userAccessDevice = new UserAccessDevices();
+                userAccessDevice._user_access_id = _user_id;
+                userAccessDevice.os_type = os_type;
+
+                userAccessDevice.save(function (err) {
+
+                    if (err)
+                        return next(err);
+                });
+            }
+        })
+    }
 
     // passport session setup ==================================================
     // =========================================================================
@@ -41,6 +65,12 @@ module.exports = function (passport) {
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         },
         function (req, email, password, done) {
+            var os_type = req.body.os_type;
+
+            if (!os_type) {
+                os_type = 9;
+            }
+
             if (email)
                 email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
 
@@ -71,14 +101,20 @@ module.exports = function (passport) {
                         return done(null, false, req.flash('result', flash));
                     } else if (user && user.validPassword(password)) {
                         // user is found and password is also authenticated
+
+                        // Insert login time and os_type in the database
                         var userAccessDetails = new UserAccessDetails();
                         userAccessDetails.login_at = new Date();
+                        userAccessDetails.os_type = os_type;
                         userAccessDetails._user_access_id = user._id;
                         userAccessDetails.save(function (err) {
 
                             if (err)
                                 return done(err, req.flash('result', flash));
                         });
+
+                        // log the device type which was used to login
+                        userDeviceUsed(user._id, os_type);
 
                         var flash = {
                             'status': 'success',

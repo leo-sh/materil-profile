@@ -4,14 +4,14 @@ var mongoose = require('mongoose');
 const OS_TYPE_WEB_BROWSER = 1;
 const OS_TYPE_ANDROID = 2;
 const OS_TYPE_IOS = 3;
-
+const OS_TYPE_UNKNOWN = 9;
 
 // define the schema for our user model
 var userAccessDetailsSchema = mongoose.Schema({
 
     _user_access_id: mongoose.Schema.Types.ObjectId,
     login_at: Date,
-    os_type: String,
+    os_type: Number,
     created_at: Date,
     updated_at: Date,
     deleted_at: Date

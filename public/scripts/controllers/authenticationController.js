@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('authenticationController', ['$scope', 'authenticationService', '$state', '$stateParams',
-    function ($scope, authenticationService, $state, $stateParams) {
+app.controller('authenticationController', ['$scope', 'authenticationService', '$state', '$stateParams', 'HTTP_CODES',
+    function ($scope, authenticationService, $state, $stateParams, HTTP_CODES) {
 
         $scope.alerts = [];
 
@@ -13,31 +13,31 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
         $scope.submitSignUp = function () {
             authenticationService.registration($scope.user)
                 .then(function (response) {
-                    if (response.statusCode == 409 || response.statusCode == 401) {
+                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.CLIENT_ERROR.UNAUTHORISED) {
 
                         $scope.alerts.push({type: 'danger', msg: response.statusText});
-                    } else if (response.statusCode == 200) {
+                    } else if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
                         $state.transitionTo('authentication.signin', {alertParam: response});
                     } else {
                         $scope.alerts.push({type: 'danger', msg: 'something Went wrong!!'});
                     }
                 })
-        },
+        }
 
         // function to run when signup button is clicked
         $scope.submitSignIn = function () {
 
             authenticationService.login($scope.user)
                 .then(function (response) {
-                    if (response.statusCode == 409 || response.statusCode == 401) {
+                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.CLIENT_ERROR.UNAUTHORISED) {
                         $scope.alerts.push({type: 'danger', msg: response.statusText});
-                    } else if (response.statusCode == 200) {
+                    } else if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
                         $state.transitionTo('page.home', {userParam: response});
                     } else {
                         $scope.alerts.push({type: 'danger', msg: 'something Went wrong!!'});
                     }
                 })
-        },
+        }
 
         // function to run when logout is clicked
         $scope.logOut = function () {
