@@ -25,12 +25,9 @@
     "passport-facebook": "~1.0.2",
     "passport-google-oauth": "~0.1.5",
     "passport-local": "~0.1.6",
-<<<<<<< HEAD
     "passport-twitter": "~1.0.2",
-    "throw.js": "^1.0.0"
-=======
-    "passport-twitter": "~1.0.2"
->>>>>>> d970e1deefb66faa3abf5503b1ff074da76cc269
+    "throw.js": "^1.0.0",
+    "hashids": "1.0.2"
   },
   "devDependencies": {
     "node-env-file": "^0.1.8"
