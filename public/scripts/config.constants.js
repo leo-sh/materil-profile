@@ -8,18 +8,26 @@ angular.module('app')
             'LOG_IN': '/authentication/login',
             'LOG_OUT': '/authentication/logout',
             'USER_STATUS': '/authentication/user/status',
+            'USER_ACTIVATION': '/authentication/activate/',
         }
+    })
+    .constant('STATUS_TYPE', {
+        'SUCCESS': 'success',
+        'INVALID': 'invalid',
+        'FAILED': 'failed',
     })
     .constant('OS_TYPE', {
         'WEB_BROWSER': 1,
         'ANDROID': 2,
         'IOS': 3,
-        'UNKNOWN': 2,
+        'UNKNOWN': 9,
     })
     .constant('HTTP_CODES', {
         'SUCCESS': {
             'OK': 200,
-            'NO_CONSENT': 204
+            'NON_AUTHORITATIVE_INFORMATION': 203,
+            'NO_CONSENT': 204,
+            'ALREADY_REPORTED': 208
         },
         'CLIENT_ERROR': {
             'BAD_REQUEST': 400,

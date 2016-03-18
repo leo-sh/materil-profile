@@ -1,6 +1,7 @@
 // load the things we need
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var randomstring = require("randomstring");
 
 // define the schema for our user model
 var userAccessSchema = mongoose.Schema({
@@ -14,7 +15,7 @@ var userAccessSchema = mongoose.Schema({
     },
     password_updated_at: Date,
     activated: Boolean,
-    activation_code: String,
+    activation_code: {type: String, default: '', trim: true},
     activated_at: Date,
     reset_password_code: String,
     created_at: Date,
@@ -25,6 +26,11 @@ var userAccessSchema = mongoose.Schema({
 // generating a hash
 userAccessSchema.methods.generateHash = function (param) {
     return bcrypt.hashSync(param, bcrypt.genSaltSync(8), null);
+};
+
+//generating a random string for activation of user
+userAccessSchema.methods.generateActivationCode = function () {
+    return randomstring.generate(10);
 };
 
 // checking if password is valid
@@ -40,11 +46,11 @@ userAccessSchema.pre('save', function (next) {
 
     this.updated_at = currentDate;
 
-    if(!this.email_updated_at || this.isModified('email')){
+    if (!this.email_updated_at || this.isModified('email')) {
         this.email_updated_at = currentDate;
     }
 
-    if(!this.password_updated_at || this.isModified('password')){
+    if (!this.password_updated_at || this.isModified('password')) {
         this.password_updated_at = currentDate;
     }
 

@@ -1,3 +1,5 @@
+var userAccessController = require('./../controllers/userAccessController');
+
 module.exports = function (app, passport) {
 
     // process the signup form
@@ -27,24 +29,14 @@ module.exports = function (app, passport) {
     });
 
     //get user status
-    app.get('/authentication/user/status', function (req, res) {
+    app.get('/authentication/user/status', userAccessController.userStatus);
 
-        if (!req.isAuthenticated()) {
-            return res.status(200).json({
-                status: false
-            });
-        }
-        res.status(200).json({
-            status: true
-        });
-    });
+    //GET: check if user exists
+    app.get('/authentication/user/:email', userAccessController.checkIfUserExists);
+
+    //User Activation
+    app.get('/authentication/activate/:user_id/:activation_code', userAccessController.activate);
 
     //Logout
-    app.get('/authentication/logout', function (req, res) {
-
-        req.logout();
-        res.status(200).json({
-            status: 'Logged Out Successfully!!'
-        });
-    });
+    app.get('/authentication/logout', userAccessController.logOut);
 }

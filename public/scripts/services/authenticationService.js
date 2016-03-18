@@ -80,6 +80,18 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
                         userPersistenceService.clearCookieData();
                     });
             },
+            //---------------------------------------user Activation----------------------------------------------------
+            'userActivation': function (user_id, activation_code) {
+
+                var defer = $q.defer();
+                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.USER_ACTIVATION + user_id + '/' + activation_code)
+                    .then(function (response) {
+                        defer.resolve(response.data.result);
+                    }, function (response) {
+                        defer.resolve(response.data.result);
+                    });
+                return defer.promise;
+            },
             //-------------------------------------logout the user--------------------------------------------------------
             'logout': function () {
 

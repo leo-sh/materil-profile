@@ -13,6 +13,9 @@ var UserAccessDevices = require('../app/models/user_devices');
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
 
+// loading user constants
+var CONSTANTS = require('./../app/helpers/constants');
+
 module.exports = function (passport) {
 
     function userDeviceUsed(_user_id, os_type) {
@@ -28,7 +31,6 @@ module.exports = function (passport) {
                 var userAccessDevice = new UserAccessDevices();
                 userAccessDevice._user_access_id = _user_id;
                 userAccessDevice.os_type = os_type;
-
                 userAccessDevice.save(function (err) {
 
                     if (err)
@@ -68,7 +70,7 @@ module.exports = function (passport) {
             var os_type = req.body.os_type;
 
             if (!os_type) {
-                os_type = 9;
+                os_type = CONSTANTS.OS_TYPE.UNKNOWN;
             }
 
             if (email)
@@ -80,7 +82,7 @@ module.exports = function (passport) {
 
                     var flash = {
                         'status': 'failed',
-                        'statusCode': 401,
+                        'statusCode': CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
                         'statusText': 'Some Error Occurred.'
                     }
 
@@ -94,13 +96,24 @@ module.exports = function (passport) {
 
                         var flash = {
                             'status': 'failed',
-                            'statusCode': 401,
+                            'statusCode': CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
                             'statusText': 'Email or password Invalid!!.'
                         }
 
                         return done(null, false, req.flash('result', flash));
                     } else if (user && user.validPassword(password)) {
                         // user is found and password is also authenticated
+
+                        if (!user.activated) {
+
+                            var flash = {
+                                'status': 'failed',
+                                'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION,
+                                'statusText': 'User Not Activated!!.'
+                            }
+
+                            return done(null, false, req.flash('result', flash));
+                        }
 
                         // Insert login time and os_type in the database
                         var userAccessDetails = new UserAccessDetails();
@@ -118,7 +131,7 @@ module.exports = function (passport) {
 
                         var flash = {
                             'status': 'success',
-                            'statusCode': 200,
+                            'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.OK,
                             'data': user,
                             'statusText': 'Successfully Authenticated!!'
                         }
@@ -147,14 +160,13 @@ module.exports = function (passport) {
                 User.findOne({'email': email}, function (err, user) {
 
                     var flash = {
-                        'status': 'failed',
-                        'statusCode': 401,
+                        'status': CONSTANTS.STATUS_TYPE.FAILED,
+                        'statusCode': CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
                         'statusText': 'Some Error Occurred.'
                     }
 
                     // if there are any errors, return the error
                     if (err) {
-
                         return done(err, req.flash('result', flash));
                     }
 
@@ -162,8 +174,8 @@ module.exports = function (passport) {
                     if (user) {
 
                         var flash = {
-                            'status': 'failed',
-                            'statusCode': 409,
+                            'status': CONSTANTS.STATUS_TYPE.FAILED,
+                            'statusCode': CONSTANTS.HTTP_CODES.CLIENT_ERROR.CONFLICT,
                             'statusText': 'That Email is already Taken.'
                         }
 
@@ -174,6 +186,8 @@ module.exports = function (passport) {
                         var newUser = new User();
                         newUser.email = email;
                         newUser.password = newUser.generateHash(password);
+                        newUser.activated = false;
+                        newUser.activation_code = newUser.generateActivationCode(new Date());
 
                         newUser.save(function (err) {
                             if (err)
@@ -190,9 +204,11 @@ module.exports = function (passport) {
                                 return done(err, req.flash('result', flash));
                         });
 
+                        // TODO - send email to the registered user for activation
+
                         var flash = {
-                            'status': 'success',
-                            'statusCode': 200,
+                            'status': CONSTANTS.STATUS_TYPE.SUCCESS,
+                            'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.OK,
                             'statusText': 'Your Registration is successful.'
                         }
 

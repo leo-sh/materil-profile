@@ -59,6 +59,16 @@ angular.module('app')
                             restricted: false
                         }
                     })
+                    .state('authentication.activation', {
+                        url: '/activate/:user_id/:activation_code',
+                        params: {alertParam: null},
+                        templateUrl: 'views/authentication/activation.html',
+                        controller: 'activationController',
+                        resolve: load(['scripts/controllers/activationController.js', 'scripts/services/authenticationService.js']),
+                        data: {
+                            restricted: false
+                        }
+                    })
                     .state('authentication.signup', {
                         url: '/signup',
                         params: {alertParam: null},

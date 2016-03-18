@@ -1,34 +1,131 @@
-var userAccess = require('./../models/user_access');
+var UserAccess = require('./../models/user_access');
+// loading user constants
+var CONSTANTS = require('./../helpers/constants');
 
 module.exports = {
 
-    createUser: function (req, res) {
+    checkIfUserExists: function (req, res, next) {
 
-        var currentDate = new Date();
+        var email = req.params.email;
 
-        var user = new userAccess();
-        user.email = req.body.email;
-        user.email_updated_at = currentDate;
-        user.password = user.generateHash(req.body.password);
-        user.password_updated_at = currentDate;
-        user.activated = 0;
+        UserAccess.findOne({email: email}, '_id email activated', function (err, userAccess) {
 
-        user.save(function (err) {
             if (err)
-                res.send(err);
+                next(err);
 
-            return user;
+            var result = {
+                'status': CONSTANTS.STATUS_TYPE.FAILED,
+                'statusCode': CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+                'statusText': 'Some Error Occurred.'
+            }
+
+            if (userAccess) {
+
+                if (!userAccess.activated) {
+
+                    var result = {
+                        'status': CONSTANTS.STATUS_TYPE.SUCCESS,
+                        'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION,
+                        'statusText': 'User Not activated!!'
+                    }
+                } else {
+
+                    var result = {
+                        'status': CONSTANTS.STATUS_TYPE.SUCCESS,
+                        'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                        'data': userAccess,
+                        'statusText': 'User Found!!'
+                    }
+                }
+            } else {
+
+                var result = {
+                    'status': CONSTANTS.STATUS_TYPE.INVALID,
+                    'statusCode': CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                    'statusText': 'User Not Found!!'
+                }
+            }
+            res.json({'result': result});
+        })
+    },
+    userStatus: function (req, res, next) {
+
+        if (!req.isAuthenticated()) {
+            return res.status(CONSTANTS.HTTP_CODES.SUCCESS.OK).json({
+                status: false
+            });
+        }
+        res.status(CONSTANTS.HTTP_CODES.SUCCESS.OK).json({
+            status: true
         });
 
     },
+    logOut: function (req, res, next) {
 
-    getUser: function (req, res) {
+        req.logout();
+        res.status(CONSTANTS.HTTP_CODES.SUCCESS.OK).json({
+            status: 'Logged Out Successfully!!'
+        });
+    },
+    // user activation
+    activate: function (req, res, next) {
 
-        userAccess.findById(req.params.auth_id, function (err, user) {
-            if (err)
-                throw err;
+        UserAccess.findOne({
+            _id: req.params.user_id
+        }, function (err, userAccess) {
 
-            res.json(user);
+            var result = {
+                'status': CONSTANTS.STATUS_TYPE.FAILED,
+                'statusCode': CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+                'statusText': 'Some Error Occurred.'
+            }
+
+            if (err) {
+                next(err);
+            }
+
+            if (userAccess) {
+
+                if (userAccess.activated) {
+
+                    var result = {
+                        'status': CONSTANTS.STATUS_TYPE.INVALID,
+                        'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.ALREADY_REPORTED,
+                        'statusText': 'Already Activated. Login Now!!'
+                    }
+                } else if (!userAccess.activated && userAccess.activation_code != req.params.activation_code) {
+
+                    var result = {
+                        'status': CONSTANTS.STATUS_TYPE.INVALID,
+                        'statusCode': CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                        'statusText': 'Activation failed. Wrong url or You are not registered yet!!'
+                    }
+                } else if (userAccess.activation_code == req.params.activation_code) {
+
+                    userAccess.activated = true;
+                    userAccess.activated_at = new Date();
+                    userAccess.activation_code = null;
+
+                    userAccess.save(function (err) {
+                        if (err)
+                            next(err);
+                    })
+
+                    var result = {
+                        'status': CONSTANTS.STATUS_TYPE.SUCCESS,
+                        'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                        'statusText': 'Successfully Activated. You can Login Now!!'
+                    }
+                }
+            } else if (!userAccess) {
+
+                var result = {
+                    'status': CONSTANTS.STATUS_TYPE.INVALID,
+                    'statusCode': CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                    'statusText': 'Activation failed. Wrong url or You are not registered yet!!'
+                }
+            }
+            res.json({'result': result});
         });
     }
 }

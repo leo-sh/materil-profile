@@ -13,13 +13,13 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
         $scope.submitSignUp = function () {
             authenticationService.registration($scope.user)
                 .then(function (response) {
-                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.CLIENT_ERROR.UNAUTHORISED) {
+                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR) {
 
                         $scope.alerts.push({type: 'danger', msg: response.statusText});
                     } else if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
                         $state.transitionTo('authentication.signin', {alertParam: response});
                     } else {
-                        $scope.alerts.push({type: 'danger', msg: 'something Went wrong!!'});
+                        $scope.alerts.push({type: 'danger', msg: 'Something Went wrong!!'});
                     }
                 })
         }
@@ -29,7 +29,8 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
 
             authenticationService.login($scope.user)
                 .then(function (response) {
-                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.CLIENT_ERROR.UNAUTHORISED) {
+                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.CLIENT_ERROR.UNAUTHORISED ||
+                        HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION) {
                         $scope.alerts.push({type: 'danger', msg: response.statusText});
                     } else if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
                         $state.transitionTo('page.home', {userParam: response});

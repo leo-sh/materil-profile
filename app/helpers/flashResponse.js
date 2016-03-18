@@ -1,4 +1,4 @@
-module.exports = function(){
-
-
+module.exports = {
+    success: function (req, res, next) {
+    }
 }
