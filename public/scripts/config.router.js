@@ -69,6 +69,16 @@ angular.module('app')
                             restricted: false
                         }
                     })
+                    .state('authentication.resetPassword', {
+                        url: '/reset/:user_id/:reset_code',
+                        params: {alertParam: null},
+                        templateUrl: 'views/authentication/activation.html',
+                        controller: 'resetPasswordController',
+                        resolve: load(['scripts/controllers/activationController.js', 'scripts/services/authenticationService.js']),
+                        data: {
+                            restricted: false
+                        }
+                    })
                     .state('authentication.signup', {
                         url: '/signup',
                         params: {alertParam: null},
@@ -83,6 +93,16 @@ angular.module('app')
                         url: '/forgot-password',
                         params: {alertParam: null},
                         templateUrl: 'views/authentication/forgot-password.html',
+                        controller: 'authenticationController',
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
+                        data: {
+                            restricted: false
+                        }
+                    })
+                    .state('authentication.change-password', {
+                        url: '/change-password/:user_id',
+                        params: {alertParam: null},
+                        templateUrl: 'views/authentication/change-password.html',
                         controller: 'authenticationController',
                         resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
                         data: {

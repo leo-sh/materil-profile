@@ -4,33 +4,40 @@ var define = require("node-constants")(exports);
 define("PI", 3.14);
 // OS types for user devices
 define('OS_TYPE', {
-    'WEB_BROWSER': 1,
-    'ANDROID': 2,
-    'IOS': 3,
-    'UNKNOWN': 9,
+    WEB_BROWSER: 1,
+    ANDROID: 2,
+    IOS: 3,
+    UNKNOWN: 9,
 })
 // Status Types
-define('STATUS_TYPE', {
-    'SUCCESS': 'success',
-    'INVALID': 'invalid',
-    'FAILED': 'failed',
+define('RESPONSE_TYPE', {
+    _VALID_: {
+        SUCCESS: 'success',
+        INVALID: 'invalid',
+        FAILED: 'failed',
+    },
+    _INVALID_: {
+        VALIDATION_ERROR: 'validation_error',
+        ERROR: 'error'
+    }
 })
 // Http Codes
 define('HTTP_CODES', {
-    'SUCCESS': {
+    SUCCESS: {
         'OK': 200,
         'NON_AUTHORITATIVE_INFORMATION': 203,
         'NO_CONSENT': 204,
         'ALREADY_REPORTED': 208
     },
-    'CLIENT_ERROR': {
-        'BAD_REQUEST': 400,
-        'UNAUTHORISED': 401,
-        'FORBIDDEN': 403,
-        'NOT_FOUND': 404,
-        'CONFLICT': 409,
+    CLIENT_ERROR: {
+        BAD_REQUEST: 400,
+        UNAUTHORISED: 401,
+        FORBIDDEN: 403,
+        NOT_FOUND: 404,
+        NOT_ACCEPTABLE: 406,
+        CONFLICT: 409,
     },
-    'SERVER_ERROR': {
+    SERVER_ERROR: {
         'INTERNAL_SERVER_ERROR': 500
     }
 });

@@ -1,4 +1,5 @@
 var userAccessController = require('./../controllers/userAccessController');
+var userAccessValidator = require('./../controllers/parameterValidators/userAccessValidator');
 
 module.exports = function (app, passport) {
 
@@ -32,10 +33,20 @@ module.exports = function (app, passport) {
     app.get('/authentication/user/status', userAccessController.userStatus);
 
     //GET: check if user exists
-    app.get('/authentication/user/:email', userAccessController.checkIfUserExists);
+    app.get('/authentication/user/:email', userAccessValidator.checkIfUserExistsValidator,
+        userAccessController.checkIfUserExists);
+
+    //GET: check if user_id and reset_password_code is correct
+    app.get('/authentication/reset/:user_id/:reset_code', userAccessValidator.checkResetCodeValidator,
+        userAccessController.checkResetCode);
+
+    //GET: change password
+    app.post('/authentication/change/password', userAccessValidator.changePasswordValidator,
+        userAccessController.changePassword);
 
     //User Activation
-    app.get('/authentication/activate/:user_id/:activation_code', userAccessController.activate);
+    app.get('/authentication/activate/:user_id/:activation_code', userAccessValidator.activateValidator,
+        userAccessController.activate);
 
     //Logout
     app.get('/authentication/logout', userAccessController.logOut);

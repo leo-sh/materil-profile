@@ -18,7 +18,31 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
         }
 
         return {
-            //----------------------- for registration of users -------------------------------------
+            //------------------------------change password-------------------------------------------------------
+            'changePassword': function (new_password, change_password) {
+
+                var defer = $q.defer();
+                $http.post(SERVER.URL + API_TYPE._MEMBERSHIP_.CHANGE_PASSWORD, new_password, change_password)
+                    .then(function (response) {
+                        defer.resolve(response.data.result);
+                    }, function (response) {
+                        defer.resolve(response.data.result);
+                    });
+                return defer.promise;
+            },
+            //-----------------------------reset password --------------------------------------------------------
+            'resetPassword': function (user_id, reset_code) {
+
+                var defer = $q.defer();
+                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.RESET_PASSWORD + user_id + '/' + reset_code)
+                    .then(function (response) {
+                        defer.resolve(response.data.result);
+                    }, function (response) {
+                        defer.resolve(response.data.result);
+                    });
+                return defer.promise;
+            },
+            //----------------------- for registration of users --------------------------------------------------
             'registration': function (user) {
 
                 var defer = $q.defer();
@@ -52,7 +76,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
                     });
                 return defer.promise;
             },
-            //-------------------------------check if user is logged in or not------------------------------
+            //-------------------------------check if user is logged in or not------------------------------------
             'isLoggedIn': function () {
 
                 var isLoggedIn = userPersistenceService.getCookieData();
@@ -62,7 +86,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
                     return false;
                 }
             },
-            // ----------------------------------get current user status--------------------------------------------
+            // ----------------------------------get current user status------------------------------------------
             'getUserStatus': function () {
                 $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.USER_STATUS)
                     // handle success
@@ -80,7 +104,20 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
                         userPersistenceService.clearCookieData();
                     });
             },
-            //---------------------------------------user Activation----------------------------------------------------
+            //---------------------------------------user Activation----------------------------------------------
+            'forgotPassword': function (email) {
+
+                var defer = $q.defer();
+                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.CHECK_IF_USER_EXISTS + email)
+                    .then(function (response) {
+                        console.log(response);
+                        defer.resolve(response.data.result);
+                    }, function (response) {
+                        defer.resolve(response.data.result);
+                    });
+                return defer.promise;
+            },
+            //---------------------------------------user Activation----------------------------------------------
             'userActivation': function (user_id, activation_code) {
 
                 var defer = $q.defer();
@@ -92,7 +129,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
                     });
                 return defer.promise;
             },
-            //-------------------------------------logout the user--------------------------------------------------------
+            //-------------------------------------logout the user------------------------------------------------
             'logout': function () {
 
                 var deferred = $q.defer();

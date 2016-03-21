@@ -15,6 +15,7 @@ var configAuth = require('./auth'); // use this one for testing
 
 // loading user constants
 var CONSTANTS = require('./../app/helpers/constants');
+var ResultResponses = require('./../app/helpers/resultResponses');
 
 module.exports = function (passport) {
 
@@ -80,39 +81,32 @@ module.exports = function (passport) {
             process.nextTick(function () {
                 User.findOne({'email': email}, function (err, user) {
 
-                    var flash = {
-                        'status': 'failed',
-                        'statusCode': CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
-                        'statusText': 'Some Error Occurred.'
-                    }
+                    var result = {};
+
+                    result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+                        'Some Error Occurred.');
 
                     // if there are any errors, return the error
                     if (err) {
-                        return done(err, req.flash('result', flash));
+                        return done(err, req.flash('result', result));
                     }
 
                     // if no user is found, return the message
                     if (!user || !user.validPassword(password)) {
 
-                        var flash = {
-                            'status': 'failed',
-                            'statusCode': CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
-                            'statusText': 'Email or password Invalid!!.'
-                        }
+                        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
+                            'Email or password Invalid!!.');
 
-                        return done(null, false, req.flash('result', flash));
+                        return done(null, false, req.flash('result', result));
                     } else if (user && user.validPassword(password)) {
                         // user is found and password is also authenticated
 
                         if (!user.activated) {
 
-                            var flash = {
-                                'status': 'failed',
-                                'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION,
-                                'statusText': 'User Not Activated!!.'
-                            }
+                            result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION,
+                                'User Not Activated!!.');
 
-                            return done(null, false, req.flash('result', flash));
+                            return done(null, false, req.flash('result', result));
                         }
 
                         // Insert login time and os_type in the database
@@ -123,19 +117,15 @@ module.exports = function (passport) {
                         userAccessDetails.save(function (err) {
 
                             if (err)
-                                return done(err, req.flash('result', flash));
+                                return done(err, req.flash('result', result));
                         });
 
                         // log the device type which was used to login
                         userDeviceUsed(user._id, os_type);
 
-                        var flash = {
-                            'status': 'success',
-                            'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                            'data': user,
-                            'statusText': 'Successfully Authenticated!!'
-                        }
-                        return done(null, user, req.flash('result', flash));
+                        result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                            'Successfully Authenticated!!', user);
+                        return done(null, user, req.flash('result', result));
                     }
                 });
             });
@@ -159,27 +149,23 @@ module.exports = function (passport) {
             process.nextTick(function () {
                 User.findOne({'email': email}, function (err, user) {
 
-                    var flash = {
-                        'status': CONSTANTS.STATUS_TYPE.FAILED,
-                        'statusCode': CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
-                        'statusText': 'Some Error Occurred.'
-                    }
+                    var result = {};
+
+                    result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+                        'Some Error Occurred.');
 
                     // if there are any errors, return the error
                     if (err) {
-                        return done(err, req.flash('result', flash));
+                        return done(err, req.flash('result', result));
                     }
 
                     // check to see if theres already a user with that email
                     if (user) {
 
-                        var flash = {
-                            'status': CONSTANTS.STATUS_TYPE.FAILED,
-                            'statusCode': CONSTANTS.HTTP_CODES.CLIENT_ERROR.CONFLICT,
-                            'statusText': 'That Email is already Taken.'
-                        }
+                        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.CLIENT_ERROR.CONFLICT,
+                            'That Email is already Taken.');
 
-                        return done(null, false, req.flash('result', flash));
+                        return done(null, false, req.flash('result', result));
                     } else {
 
                         // create the user
@@ -191,7 +177,7 @@ module.exports = function (passport) {
 
                         newUser.save(function (err) {
                             if (err)
-                                return done(err, req.flash('result', flash));
+                                return done(err, req.flash('result', result));
                         });
 
                         var userDetails = new UserDetails();
@@ -206,13 +192,10 @@ module.exports = function (passport) {
 
                         // TODO - send email to the registered user for activation
 
-                        var flash = {
-                            'status': CONSTANTS.STATUS_TYPE.SUCCESS,
-                            'statusCode': CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                            'statusText': 'Your Registration is successful.'
-                        }
+                        result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                            'Your Registration is successful.');
 
-                        return done(null, newUser, req.flash('result', flash));
+                        return done(null, newUser, req.flash('result', result));
                     }
                 });
 

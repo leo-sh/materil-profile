@@ -17,7 +17,7 @@ var userAccessSchema = mongoose.Schema({
     activated: Boolean,
     activation_code: {type: String, default: '', trim: true},
     activated_at: Date,
-    reset_password_code: String,
+    reset_password_code: {type: String, default: '', trim: true},
     created_at: Date,
     updated_at: Date,
     deleted_at: Date

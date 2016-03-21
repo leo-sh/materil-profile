@@ -13,6 +13,7 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var validator = require('express-validator');
 
 var configDB = require('./config/database.js');
 
@@ -31,6 +32,9 @@ app.use(bodyParser.json()); // get information in json format
 app.use(bodyParser.urlencoded({
     extended: true
 })); // get information in urlEncodedForm
+
+// Express Validator-------------------------------for parameters validations--------------------
+app.use(validator());
 
 // EJS -------------------------------------------------------------------------------Setting Templating Engine------------------------------------------------
 app.set('view engine', 'ejs'); // set up ejs for templating
@@ -58,8 +62,8 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 var error404Handler = require('./app/errors/404Error');
 var error500Handler = require('./app/errors/500Error');
 
-app.use(error404Handler);
-app.use(error500Handler);
+//app.use(error404Handler);
+//app.use(error500Handler);
 
 // launch ======================================================================
 var server = app.listen(port, function () {

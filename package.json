@@ -6,9 +6,12 @@
     "start": "node node_modules/http-server/bin/http-server -o"
   },
   "keywords": [],
-  "repository": "",
-  "author": "Flatfull",
-  "license": "Envato REGULAR LICENSE",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/summmmit/materil-profile.git"
+  },
+  "author": "Sumit Singh",
   "dependencies": {
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.0.0",
@@ -18,6 +21,7 @@
     "ejs": "~0.8.5",
     "express": "~4.0.0",
     "express-session": "~1.0.0",
+    "express-validator": "^2.20.2",
     "hashids": "1.0.2",
     "method-override": "~1.0.0",
     "mongoose": "~3.8.1",
