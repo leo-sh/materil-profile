@@ -1,5 +1,5 @@
 {
-  "name": "Materil",
+  "name": "Materil Profile",
   "version": "1.0.3",
   "description": "Admin web application template with Bootstrap 3 and AngularJS.",
   "scripts": {
@@ -16,6 +16,7 @@
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.0.0",
     "boom": "^3.1.2",
+    "compression": "~1.6.1",
     "connect-flash": "~0.1.1",
     "cookie-parser": "~1.0.0",
     "ejs": "~0.8.5",

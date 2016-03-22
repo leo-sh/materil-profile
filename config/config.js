@@ -1,3 +1,1 @@
-/**
- * Created by summmmit on 08-03-2016.
- */
+module.exports = require('./env/' + process.env.NODE_ENV + '.js');
