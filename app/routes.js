@@ -1,7 +1,10 @@
-module.exports = function (app, passport) {
+module.exports = function (app, passport, express) {
+
+    var route_user = express.router();
 
     require('./routes/route_sample')(app);
     require('./routes/route_authentication')(app, passport);   // routes for authentication of users
+    require('./routes/route_user')(route_user);   // routes for authentication of users
 
 // normal routes ===============================================================
 
@@ -16,6 +19,8 @@ module.exports = function (app, passport) {
             user: req.user
         });
     });
+
+    app.use('/api', route_user);
 }
 
 // route middleware to ensure user is logged in

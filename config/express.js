@@ -1,6 +1,5 @@
 // set up ======================================================================
 var express = require('express');
-var router = express.Router();
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -19,8 +18,8 @@ module.exports = function () {
 
     require('./passport')(passport); // pass passport for configuration
 
-// configuration ===============================================================
-    mongoose.connect(config.mongoDbUrl); // connect to our database
+    // configuration ===============================================================
+    mongoose.connect(config.DATABASE); // connect to our database
 
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
@@ -30,24 +29,24 @@ module.exports = function () {
 
     app.use(cookieParser()); // read cookies (needed for auth)
 
-// Body Parser        ----------------------------------------------------------------To get Information from the Form------------------------------------------------
+    // Body Parser        ----------------------------------------------------------------To get Information from the Form------------------------------------------------
     app.use(bodyParser()); // get information from html forms
     app.use(bodyParser.json()); // get information in json format
     app.use(bodyParser.urlencoded({
         extended: true
     })); // get information in urlEncodedForm
 
-// Express Validator-------------------------------for parameters validations--------------------
+    // Express Validator-------------------------------for parameters validations--------------------
     app.use(validator());
 
-// EJS -------------------------------------------------------------------------------Setting Templating Engine------------------------------------------------
+    // EJS -------------------------------------------------------------------------------Setting Templating Engine------------------------------------------------
     app.set('view engine', 'ejs'); // set up ejs for templating
 
-// Passport            -----------------------------------------------------------------------Passport Settings-----------------------------------------
+    // Passport            -----------------------------------------------------------------------Passport Settings-----------------------------------------
     app.use(session({
             saveUninitialized: true,
             resave: true,
-            secret: config.sessionSecret
+            secret: config.ENV.SESSION_.SECRET
         })
     ); // session secret
     app.use(passport.initialize());
@@ -59,9 +58,20 @@ module.exports = function () {
 
     var throwjs = require('throw.js');
 
-// Routes ======================================================================
+    // Routes ======================================================================
 
-    require('./../app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+    var route_user = express.Router();
+    var route_authentication = express.Router();
+    //require('./../app/routes.js')(app, passport, express); // load our routes and pass in our app and fully configured passport
+    require('./../app/routes/sample')(app);
+
+    // routes for authentication of users
+    require('./../app/routes/authentication')(route_authentication, passport);
+    app.use('/authentication', route_authentication);
+
+    // routes for authentication of users
+    require('./../app/routes/user')(route_user);
+    app.use('/api', route_user);
 
     return app;
 }

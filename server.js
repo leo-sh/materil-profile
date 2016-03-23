@@ -16,7 +16,7 @@ var server = app.listen(port, function () {
     var port = server.address().port;
 
     console.log('Current Environment: %s', app.settings.env);
-    console.log('%s: %s App listening at http://%s:%s', package_json.name, package_json.version, host, port);
+    console.log('%s App Version: %s listening at http://%s:%s', package_json.name, package_json.version, host, port);
 
 });
 
