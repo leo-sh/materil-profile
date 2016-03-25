@@ -101,7 +101,7 @@ angular.module('app')
                     })
                     .state('authentication.change-password', {
                         url: '/change-password/:user_id',
-                        params: {alertParam: null},
+                        params: {alertParam: null, userParam: null},
                         templateUrl: 'views/authentication/change-password.html',
                         controller: 'authenticationController',
                         resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),

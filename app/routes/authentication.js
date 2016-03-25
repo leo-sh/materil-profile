@@ -4,14 +4,14 @@ var userAccessValidator = require('./../controllers/parameterValidators/userAcce
 module.exports = function (authentication, passport) {
 
     // process the signup form
-    authentication.post('/signup', passport.authenticate('local-signup', {
+    authentication.post('/signup', userAccessValidator.signupValidator, passport.authenticate('local-signup', {
         successRedirect: '/authentication/success',
         failureRedirect: '/authentication/failure',
         failureFlash: true
     }));
 
     // process the login form
-    authentication.post('/login', passport.authenticate('local-login', {
+    authentication.post('/login', userAccessValidator.loginValidator, passport.authenticate('local-login', {
         successRedirect: '/authentication/success', // redirect to the secure profile section
         failureRedirect: '/authentication/failure', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages

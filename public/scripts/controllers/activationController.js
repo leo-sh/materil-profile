@@ -11,10 +11,12 @@ app.controller('activationController', ['$scope', 'authenticationService', '$sta
 
         authenticationService.userActivation($stateParams.user_id, $stateParams.activation_code)
             .then(function (response) {
-                if (response.statusCode == HTTP_CODES.CLIENT_ERROR.BAD_REQUEST) {
+                if (response.statusCode == HTTP_CODES.CLIENT_ERROR.BAD_REQUEST || response.statusCode == HTTP_CODES.SUCCESS.ALREADY_REPORTED ||
+                    response.statusCode == HTTP_CODES.CLIENT_ERROR.NOT_ACCEPTABLE || response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT) {
 
                     $scope.alerts.push({type: 'danger', msg: response.statusText});
                 } else if (response.statusCode == HTTP_CODES.SUCCESS.OK || response.statusCode == HTTP_CODES.SUCCESS.ALREADY_REPORTED) {
+                    console.log(response)
                     $state.transitionTo('authentication.signin', {alertParam: response});
                 } else {
                     $scope.alerts.push({type: 'danger', msg: 'Something Went wrong!!'});
@@ -41,7 +43,7 @@ app.controller('resetPasswordController', ['$scope', 'authenticationService', '$
                     $scope.alerts.push({type: 'danger', msg: response.statusText});
                 } else if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
 
-                    $state.transitionTo('authentication.change-password', {alertParam: response});
+                    $state.transitionTo('authentication.change-password', {alertParam: response, userParam: $stateParams.user_id});
                 } else {
 
                     $scope.alerts.push({type: 'danger', msg: 'Something Went wrong!!'});

@@ -56,7 +56,6 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             },
             //---------------------------------for login of users ------------------------------------------------
             'login': function (user) {
-
                 // give user object the device type
                 user.os_type = checkDeviceType();
 
@@ -66,7 +65,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
                         // set cookies for user
                         if (response.data.result[0].statusCode == HTTP_CODES.SUCCESS.OK) {
                             _user = response.data.result[0].data.email;
-                            userPersistenceService.setCookieData(_user);
+                            userPersistenceService.setCookieData(_user, user.remember_me);
                         }
                         defer.resolve(response.data.result[0]);
                     }, function (response) {

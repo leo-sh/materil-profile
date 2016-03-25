@@ -17,7 +17,7 @@
             <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeMsg($index)">{{alert.msg}}</alert>
         </div>
         <form name="form">
-            <button md-ink-ripple type="submit" ng-click="submitSignIn()"
+            <button md-ink-ripple type="submit" ui-sref="authentication.signin"
                     class="md-btn md-raised pink btn-block p-h-md">Sign in
             </button>
         </form>

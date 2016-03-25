@@ -1,7 +1,5 @@
 var define = require("node-constants")(exports);
-// define is a function that binds "constants" to an object (commonly exports)
 
-define("PI", 3.14);
 // OS types for user devices
 define('OS_TYPE', {
     WEB_BROWSER: 1,
@@ -24,10 +22,10 @@ define('RESPONSE_TYPE', {
 // Http Codes
 define('HTTP_CODES', {
     SUCCESS: {
-        'OK': 200,
-        'NON_AUTHORITATIVE_INFORMATION': 203,
-        'NO_CONSENT': 204,
-        'ALREADY_REPORTED': 208
+        OK: 200,
+        NON_AUTHORITATIVE_INFORMATION: 203,
+        NO_CONSENT: 204,
+        ALREADY_REPORTED: 208
     },
     CLIENT_ERROR: {
         BAD_REQUEST: 400,
@@ -38,6 +36,6 @@ define('HTTP_CODES', {
         CONFLICT: 409,
     },
     SERVER_ERROR: {
-        'INTERNAL_SERVER_ERROR': 500
+        INTERNAL_SERVER_ERROR: 500
     }
 });

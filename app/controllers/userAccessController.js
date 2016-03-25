@@ -28,11 +28,11 @@ module.exports = {
                         'User Reset Permission Granted!!', userAccess);
                 } else {
                     result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
-                        'User Reset Code is invalid or Expired!!', userAccess);
+                        'User Reset Code is invalid or Expired!!');
                 }
             } else {
 
-                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.NOT_FOUND,
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
                     'User Not Found.');
             }
             res.json({'result': result});
@@ -78,9 +78,7 @@ module.exports = {
     },
     checkIfUserExists: function (req, res, next) {
 
-        var email = req.params.email;
-
-        UserAccess.findOne({email: email}, '_id email activated reset_password_code', function (err, userAccess) {
+        UserAccess.findOne({email: req.params.email}, '_id email activated reset_password_code', function (err, userAccess) {
 
             var result = {};
 
@@ -94,7 +92,7 @@ module.exports = {
 
                 if (!userAccess.activated) {
 
-                    result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION,
+                    result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION,
                         'User Not activated. Activate First!!', null);
                 } else {
 
@@ -145,7 +143,7 @@ module.exports = {
                 'Some Error Occurred.', null);
 
             if (err) {
-                next(err);
+                throw(err);
             }
 
             if (userAccess) {
@@ -154,11 +152,11 @@ module.exports = {
 
                     result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.SUCCESS.ALREADY_REPORTED,
                         'Already Activated. Login Now!!', null);
-                } else if (!userAccess.activated && userAccess.activation_code != req.params.activation_code) {
+                } else if (!userAccess.activated && userAccess.activation_code !== req.params.activation_code) {
 
                     result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
-                        'Activation failed. Wrong url or You are not registered yet!!', null);
-                } else if (userAccess.activation_code == req.params.activation_code) {
+                        'Activation failed. Wrong Activation Code!!', null);
+                } else if (!userAccess.activated && userAccess.activation_code == req.params.activation_code) {
 
                     userAccess.activated = true;
                     userAccess.activated_at = new Date();
@@ -174,8 +172,8 @@ module.exports = {
                 }
             } else if (!userAccess) {
 
-                result = ResultResponses.failed(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
-                    'Activation failed. Wrong url or You are not registered yet!!', null);
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                    'Activation failed. User Not found!!', null);
             }
             res.json({'result': result});
         });

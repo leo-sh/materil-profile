@@ -65,15 +65,12 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
             authenticationService.forgotPassword($scope.email)
                 .then(function (response) {
                     closeEarlierAlert();
-                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.NOT_ACCEPTABLE) {
-                        console.log(response);
-                        $scope.alerts.push({type: 'danger', msg: response.statusText});
-                    } else if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.CLIENT_ERROR.BAD_REQUEST ||
-                        response.statusCode == HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION) {
+                    if (response.statusCode == HTTP_CODES.CLIENT_ERROR.BAD_REQUEST || response.statusCode == HTTP_CODES.CLIENT_ERROR.NOT_ACCEPTABLE ||
+                        response.statusCode == HTTP_CODES.SUCCESS.NON_AUTHORITATIVE_INFORMATION || response.statusCode == HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR) {
 
                         $scope.alerts.push({type: 'danger', msg: response.statusText});
                     } else if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
-                        $state.transitionTo('page.home', {userParam: response});
+                        $state.transitionTo('authentication.signin', {alertParam: response});
                     } else {
                         $scope.alerts.push({type: 'danger', msg: 'something Went wrong!!'});
                     }
