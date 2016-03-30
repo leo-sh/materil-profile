@@ -8,47 +8,118 @@
                         <img src="images/a0.jpg" class="img-circle img-responsive">
                     </a>
                     <div class="m-b m-t-sm h2">
-                        <span class="">David M.</span>
+                        <span class="">Sumit Singh <small>(Sumi)</small></span>
                     </div>
                 </div>
             </div>
             <div ng-cloak>
                 <md-content>
                     <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
-                        <md-tab label="one">
+                        <md-tab label="Intro">
                             <md-content class="md-padding">
-                                <h1 class="md-display-2">Tab One</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-                                    Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In
-                                    sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-                                    feugiat ultricies mi.</p>
+                                <md-list flex>
+                                    <md-subheader class="md-no-sticky">Personal Information</md-subheader>
+                                    <md-list-item class="md-2-line">
+                                        <md-icon class="mdi-social-person i-24"></md-icon>
+                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                                            <h3>Sumit Singh</h3>
+                                            <p>Full Name</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-list-item class="md-2-line">
+                                        <md-icon class="mdi-social-cake i-24"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>25th-May-1991</h3>
+                                            <p>Birthday</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-subheader class="md-no-sticky">Address</md-subheader>
+                                    <md-list-item class="md-2-line">
+                                        <md-icon class="mdi-maps-place i-24"></md-icon>
+                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                                            <h3>Nishi-Ikebukuro, 3-12-11 <br> Beverly Homes, 301 <br> Toshima-ku, Tokyo
+                                                <br> Japan<br> (171-0021)</h3>
+                                            <p> Home </p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-list-item class="md-2-line">
+                                        <div class="md-list-item-text" ng-class="{'md-offset': true }">
+                                            <h3>Nishi-Ikebukuro, 3-12-11 <br> Beverly Homes, 301 <br> Toshima-ku, Tokyo
+                                                <br> Japan<br> (171-0021)</h3>
+                                            <p> Office </p>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
                             </md-content>
                         </md-tab>
-                        <md-tab label="two">
+                        <md-tab label="Contacts">
                             <md-content class="md-padding">
-                                <h1 class="md-display-2">Tab Two</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-                                    Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In
-                                    sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-                                    feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices
-                                    porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis
-                                    sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a
-                                    nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna
-                                    dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar
-                                    at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu,
-                                    bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur
-                                    faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci
-                                    posuere, nec luctus mauris semper.</p>
-                            </md-content>
-                        </md-tab>
-                        <md-tab label="three">
-                            <md-content class="md-padding">
-                                <h1 class="md-display-2">Tab Three</h1>
-                                <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur
-                                    posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse
-                                    vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
-                                    commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque,
-                                    finibus commodo lectus.</p>
+                                <md-list flex>
+                                    <md-subheader class="md-no-sticky">Contact Numbers</md-subheader>
+                                    <md-list-item class="md-2-line">
+                                        <md-icon class="mdi-maps-local-phone i-24"></md-icon>
+                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                                            <h3> (555) 251-1234 </h3>
+                                            <p> Home </p>
+                                        </div>
+                                        <md-button class="md-secondary md-icon-button"
+                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
+                                                   aria-label="call">
+                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
+                                        </md-button>
+                                    </md-list-item>
+                                    <md-list-item class="md-2-line">
+                                        <div class="md-list-item-text" ng-class="{'md-offset': true }">
+                                            <h3> (555) 251-1234 </h3>
+                                            <p> Mobile </p>
+                                        </div>
+                                        <md-button class="md-secondary md-icon-button"
+                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
+                                                   aria-label="call">
+                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
+                                        </md-button>
+                                    </md-list-item>
+                                    <md-list-item class="md-2-line">
+                                        <md-icon class="mdi-hardware-phone-iphone i-24"></md-icon>
+                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                                            <h3> (555) 251-1234 </h3>
+                                            <p> office </p>
+                                        </div>
+                                        <md-button class="md-secondary md-icon-button"
+                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
+                                                   aria-label="call">
+                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
+                                        </md-button>
+                                    </md-list-item>
+                                </md-list>
+                                <md-divider></md-divider>
+                                <md-subheader class="md-no-sticky">Email Addresses</md-subheader>
+                                <md-list flex>
+                                    <md-list-item class="md-2-line">
+                                        <md-icon class="mdi-communication-email i-24"></md-icon>
+                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                                            <h3> summmmit44@gmail.com </h3>
+                                            <p> Home </p>
+                                        </div>
+                                        <md-button class="md-secondary md-icon-button"
+                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
+                                                   aria-label="call">
+                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
+                                        </md-button>
+                                    </md-list-item>
+                                    <md-list-item class="md-2-line">
+                                        <div class="md-list-item-text" ng-class="{'md-offset': true }">
+                                            <h3> shiivisingh@gmail.com </h3>
+                                            <p>Office</p>
+                                        </div>
+                                        <md-button class="md-secondary md-icon-button"
+                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
+                                                   aria-label="call">
+                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
+                                        </md-button>
+                                    </md-list-item>
+                                </md-list>
                             </md-content>
                         </md-tab>
                     </md-tabs>
@@ -57,106 +128,52 @@
         </div>
     </div>
     <div class="col-sm-9">
-        <h4>Your Activities</h4>
+        <h4>Your Call History</h4>
         <div class="panel panel-card clearfix">
             <div class="p-h-lg m-b-lg">
                 <div class="streamline b-l p-v m-l-xs">
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <img src="images/a2.jpg" class="img-responsive rounded" alt="...">
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <a href>James</a> said
-                <span class="text-muted block text-xs">
-                  Just now
-                </span>
-                            </div>
-                            <div class="m-b">
-                                <div>Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh
-                                    euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id
-                                    neque quam. Aliquam sollicitudin
-                                </div>
-                                <div class="m-t-sm">
-                                    <a href class="text-muted m-xs">Like</a>
-                                    <a href class="text-muted m-xs">Comment</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div>
                         <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <img src="images/a3.jpg" class="img-responsive rounded" alt="...">
+                            <i class="icon mdi-communication-call-made i-24"></i>
                         </a>
                         <div class="clear">
                             <div class="m-b-xs">
-                                <a href>Oscar</a> upload a file
-                <span class="text-muted block text-xs">
-                  3 minutes ago
-                </span>
-                            </div>
-                            <div class="m-b">
-                                <div class="w-xl w-auto-xs">
-                                    <div class="box bg-light">
-                                        <div class="box-col w-xs text-center dk p-md v-m">
-                                            <i class="fa fa-file-text-o text-3x text-muted-lt"></i>
-                                        </div>
-                                        <div class="box-col p">
-                                            <a href>Geuismod tincidunt</a>
-                                            <div>Diam nonummy nibh euismod tincidunt ut laoreet.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-t-sm">
-                                    <a href class="text-muted m-xs">Like</a>
-                                    <a href class="text-muted m-xs">Comment</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <img src="images/a4.jpg" class="img-responsive rounded" alt="...">
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <a href>Anny</a> post a photo
-                <span class="text-muted block text-xs">
-                  6 minutes ago
-                </span>
+                                <span>Outgoing Call to</span> Sapna Awasthi
+                                <span class="text-muted block text-xs">Just Now</span>
                             </div>
                             <div class="m-b">
                                 <div><img src="images/a10.jpg" class="b p-xs"></div>
-                                <div class="m-t-sm">
-                                    <a href class="text-muted m-xs">Like</a>
-                                    <a href class="text-muted m-xs">Comment</a>
-                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div>
                         <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <img src="images/a5.jpg" class="img-responsive rounded" alt="...">
+                            <i class="icon mdi-communication-call-received i-24"></i>
                         </a>
                         <div class="clear">
                             <div class="m-b-xs">
-                                <a href>Michel</a> post a comment
-                <span class="text-muted block text-xs">
-                  10 minutes ago
-                </span>
+                                <span>Incoming Call from</span> Sapna Awasthi
+                                <span class="text-muted block text-xs">6 minutes ago </span>
                             </div>
-                            <div class="m-b bg-light">
-                                <div class="p-sm b-b b-white">
-                                    <img src="images/a4.jpg" class="rounded w-20 pull-left m-r-sm" alt="...">
-                                    <a href>Tony</a> liked it
-                                </div>
-                                <div class="p-sm">
-                                    <img src="images/a6.jpg" class="rounded w-20 pull-left m-r-sm" alt="...">
-                                    <a href>Anney</a> Commented it
-                                </div>
+                            <div class="m-b">
+                                <div><img src="images/a10.jpg" class="b p-xs"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
+                            <i class="icon mdi-communication-call-missed i-24"></i>
+                        </a>
+                        <div class="clear">
+                            <div class="m-b-xs">
+                                <span>Missed Call from</span> Meenu Singh
+                                <span class="text-muted block text-xs">1 Hour ago </span>
+                            </div>
+                            <div class="m-b">
+                                <div><img src="images/a3.jpg" class="b p-xs"></div>
                             </div>
                         </div>
                     </div>
@@ -166,6 +183,6 @@
         </div>
     </div>
 </div>
-<script>
-
-</script>
+<div class="row">
+    <md-button class="md-fab md-primary mdi-editor-mode-edit i-24 md-fab-bottom-right"></md-button>
+</div>

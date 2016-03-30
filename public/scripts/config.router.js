@@ -173,6 +173,16 @@ angular.module('app')
                             restricted: true
                         }
                     })
+                    .state('app.contactslist', {
+                        url: '/contacts/list',
+                        controller: 'contactsController',
+                        templateUrl: 'views/application/contacts/list.html',
+                        resolve: load(['scripts/controllers/contactsController.js']),
+                        data: {
+                            title: 'Contact List',
+                            restricted: true
+                        }
+                    })
                 ;
 
                 function load(srcs, callback) {

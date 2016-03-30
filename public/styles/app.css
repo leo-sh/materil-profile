@@ -1747,6 +1747,10 @@ a.list-group-item.hover {
   border-radius: 0;
 }
 
+md-content.md-default-theme, md-content{
+  background-color: transparent;
+}
+
 .md-btn.md-icon {
   padding: 0;
   background: none;

@@ -26,44 +26,61 @@
     }
 </style>
 <div class="row">
-    <div class="col-md-3 col-sm-6">
-        <md-content layout-fill layout-xs="column" layout="row">
-            <div flex-xs flex-gt-xs="100" layout="column">
-                <md-card md-ink-ripple>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Sumit Singh</span>
-                            <span class="md-subhead">summmmit44@gmail.com</span>
-                        </md-card-title-text>
-                        <md-card-title-media>
-                            <div class="md-media-sm card-media">
-                                <img src="./../../../images/a1.jpg" class="img-responsive rounded">
-                            </div>
-                        </md-card-title-media>
-                    </md-card-title>
-                </md-card>
-            </div>
-        </md-content>
+    <div class="col-md-2 col-sm-6">
+        <md-card>
+            <img src="./../../../images/c1.jpg" class="md-card-image" height="250px">
+            <md-card-actions class="no-margin" layout="row" layout-align="start center">
+                <md-button class="md-icon-button" aria-label="Favorite">
+                    <md-icon class="mdi-action-favorite i-20"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Favorite">
+                    <md-icon class="mdi-editor-mode-edit i-20"></md-icon>
+                </md-button>
+                <md-card-icon-actions>
+                    <md-menu>
+                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button">
+                            <md-icon md-menu-origin class="mdi-navigation-more-vert i-20"></md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="">
+                                    <md-icon class="mdi-social-share i-20"></md-icon>
+                                    Share
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="">
+                                    <md-icon class="mdi-editor-mode-edit i-20"></md-icon>
+                                    Delete
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </md-card-icon-actions>
+            </md-card-actions>
+        </md-card>
     </div>
     <div class="col-md-3 col-sm-6">
-        <md-content layout-fill layout-xs="column" layout="row">
-            <div flex-xs flex-gt-xs="100" layout="column">
-                <md-card md-ink-ripple>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Sumit Singh</span>
-                            <span class="md-subhead">+81-8034677003</span>
-                            <span class="md-subhead">summmmit44@gmail.com</span>
-                        </md-card-title-text>
-                        <md-card-title-media>
-                            <div class="md-media-sm card-media">
-                                <img src="./../../../images/a1.jpg" class="img-responsive rounded">
-                            </div>
-                        </md-card-title-media>
-                    </md-card-title>
-                </md-card>
-            </div>
-        </md-content>
+        <div>
+            <md-content layout-fill layout-xs="column" layout="row">
+                <div flex-xs flex-gt-xs="100" layout="column">
+                    <md-card md-ink-ripple>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Sumit Singh</span>
+                                <span class="md-subhead">+81-8034677003</span>
+                                <span class="md-subhead">summmmit44@gmail.com</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                                <div class="md-media-sm card-media">
+                                    <img src="./../../../images/a1.jpg" class="img-responsive rounded">
+                                </div>
+                            </md-card-title-media>
+                        </md-card-title>
+                    </md-card>
+                </div>
+            </md-content>
+        </div>
     </div>
     <div class="col-md-3 col-sm-6">
         <div>
@@ -117,29 +134,6 @@
         </div>
     </div>
 </div>
-
-<div ng-controller="AppCtrl" ng-cloak layout-gt-sm="row" layout="column">
-    <div flex-gt-sm="50" flex>
-        <md-content>
-            <md-list flex>
-                <md-divider ></md-divider>
-                <md-subheader class="md-no-sticky">Classes</md-subheader>
-                <md-list-item class="md-2-line">
-                    <md-icon class="mdi-action-favorite i-20"></md-icon>
-                    <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                        <h3> (555) 251-1234 </h3>
-                        <p> Home  </p>
-                    </div>
-                    <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                        <md-icon class="mdi-action-favorite i-20"></md-icon>
-                    </md-button>
-                </md-list-item>
-            </md-list>
-        </md-content>
-    </div>
-</div>
-
-
 <div class="row">
     <md-button class="md-fab md-primary mdi-editor-mode-edit i-24 md-fab-bottom-right"></md-button>
 </div>

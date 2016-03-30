@@ -1,0 +1,75 @@
+<style>
+    @media (min-width: 768px) {
+        .md-button.md-fab.md-fab-bottom-right {
+            top: auto;
+            right: 20px;
+            bottom: 20px;
+            left: auto;
+            position: fixed;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .md-button.md-fab.md-fab-bottom-right {
+            top: auto;
+            right: 3px;
+            bottom: 0px;
+            left: auto;
+            position: fixed;
+        }
+    }
+
+    md-card > img {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+    }
+
+
+    .listdemoListControls {
+        /* Add some right padding so that the text doesn't overlap the buttons */ }
+    .listdemoListControls md-divider {
+        margin-top: 0;
+        margin-bottom: 0; }
+    .listdemoListControls md-list {
+        padding-top: 0; }
+    .listdemoListControls md-list-item > p,
+    .listdemoListControls md-list-item > ._md-list-item-inner > p,
+    .listdemoListControls md-list-item ._md-list-item-inner > p,
+    .listdemoListControls md-list-item ._md-list-item-inner > ._md-list-item-inner > p {
+        -webkit-user-select: none;
+        /* Chrome all / Safari all */
+        -moz-user-select: none;
+        /* Firefox all */
+        -ms-user-select: none;
+        /* IE 10+ */
+        user-select: none;
+        /* Likely future */ }
+    .listdemoListControls .secondary-button-padding p {
+        padding-right: 100px; }
+
+
+</style>
+<div class="row">
+    <div class="col-md-9">
+        <md-content>
+            <md-list ng-controller="contactsController" ng-cloak>
+                <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)" class="md-2-line">
+                    <img alt="{{ person.name }}" src="./../../../images/c1.jpg" class="md-avatar" />
+                    <div class="md-list-item-text compact">
+                        <h3>{{person.name}}</h3>
+                        <p>summmmit44gmail.com</p>
+                    </div>
+                    <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
+                    <md-icon class="mdi-editor-mode-edit i-20 md-secondary md-hue-3" ng-click="doSecondaryAction($event)" aria-label="Send Email"></md-icon>
+                    <md-icon class="mdi-communication-call-received i-20 md-secondary md-hue-2" ng-click="doSecondaryAction($event)" aria-label="Send Email"></md-icon>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+</div>
+
+
+<div class="row">
+    <md-button class="md-fab md-primary mdi-editor-mode-edit i-24 md-fab-bottom-right"></md-button>
+</div>
