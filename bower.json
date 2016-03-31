@@ -63,7 +63,8 @@
     "flot-spline": "*",
     "waves": "~0.7.2",
     "angular-http-api": "*",
-    "ng-device-detector": "^3.0.1"
+    "ng-device-detector": "^3.0.1",
+    "angular-environment": "^1.0.3"
   },
   "resolutions": {
     "angular-touch": "1.4.x",

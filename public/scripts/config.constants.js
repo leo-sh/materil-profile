@@ -1,6 +1,6 @@
 angular.module('app')
     .constant('SERVER', {
-        'URL': 'http://localhost:8080'
+        'URL': 'http://162.243.57.151:8080'
     })
     .constant('API_TYPE', {
         _MEMBERSHIP_: {
