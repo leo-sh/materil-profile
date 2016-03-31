@@ -1,6 +1,6 @@
 angular.module('app')
     .constant('SERVER', {
-        'URL': 'http://162.243.57.151:8080'
+        'URL': 'http://localhost:8080'
     })
     .constant('API_TYPE', {
         _MEMBERSHIP_: {
@@ -20,19 +20,19 @@ angular.module('app')
         'FAILED': 'failed',
     })
     .constant('OS_TYPE', {
-        'WEB_BROWSER': 1,
-        'ANDROID': 2,
-        'IOS': 3,
-        'UNKNOWN': 9,
+        WEB_BROWSER: 1,
+        ANDROID: 2,
+        IOS: 3,
+        UNKNOWN: 9,
     })
     .constant('HTTP_CODES', {
-        'SUCCESS': {
-            'OK': 200,
-            'NON_AUTHORITATIVE_INFORMATION': 203,
-            'NO_CONSENT': 204,
-            'ALREADY_REPORTED': 208
+        SUCCESS: {
+            OK: 200,
+            NON_AUTHORITATIVE_INFORMATION: 203,
+            NO_CONSENT: 204,
+            ALREADY_REPORTED: 208
         },
-        'CLIENT_ERROR': {
+        CLIENT_ERROR: {
             BAD_REQUEST: 400,
             UNAUTHORISED: 401,
             FORBIDDEN: 403,
@@ -40,8 +40,8 @@ angular.module('app')
             NOT_ACCEPTABLE: 406,
             CONFLICT: 409,
         },
-        'SERVER_ERROR': {
-            'INTERNAL_SERVER_ERROR': 500
+        SERVER_ERROR: {
+            INTERNAL_SERVER_ERROR: 500
         }
     })
 ;

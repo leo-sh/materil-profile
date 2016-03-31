@@ -1,7 +1,8 @@
 'use strict';
 
-app.controller('contactsController', ['$scope', 'authenticationService', '$state', '$stateParams', 'HTTP_CODES',
-    function ($scope, authenticationService, $state, $stateParams, HTTP_CODES) {
+app.controller('contactsController', ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService',
+    function ($scope, $state, $stateParams, HTTP_CODES, envService) {
+        console.log(envService.read('all'));
         $scope.toppings = [
             {name: 'Pepperoni', wanted: true},
             {name: 'Sausage', wanted: false},

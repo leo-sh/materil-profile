@@ -54,15 +54,16 @@
     <div class="col-md-9">
         <md-content>
             <md-list ng-controller="contactsController" ng-cloak>
-                <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)" class="md-2-line">
+                <md-list-item ng-repeat="person in people" class="md-2-line">
                     <img alt="{{ person.name }}" src="./../../../images/c1.jpg" class="md-avatar" />
                     <div class="md-list-item-text compact">
                         <h3>{{person.name}}</h3>
                         <p>summmmit44gmail.com</p>
                     </div>
                     <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
-                    <md-icon class="mdi-editor-mode-edit i-20 md-secondary md-hue-3" ng-click="doSecondaryAction($event)" aria-label="Send Email"></md-icon>
-                    <md-icon class="mdi-communication-call-received i-20 md-secondary md-hue-2" ng-click="doSecondaryAction($event)" aria-label="Send Email"></md-icon>
+                    <md-button ng-click="">
+                        <md-icon class="mdi-editor-mode-edit i-20"></md-icon>
+                    </md-button>
                 </md-list-item>
             </md-list>
         </md-content>
