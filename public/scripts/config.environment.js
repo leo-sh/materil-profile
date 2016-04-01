@@ -46,9 +46,6 @@ var app =
                             }
                         }
                     });
-
-                    // run the environment check, so the comprobation is made
-                    // before controllers and services are built
                     envServiceProvider.check();
                 })
             .service('environmentService', ['envService',
@@ -56,9 +53,8 @@ var app =
 
                     return {
                         'setEnvironment': function (host) {
-                            if (host == "localhost") {
-                                envService.set('development');
-                            } else if (host == "162.243.57.151") {
+
+                            if (host == "162.243.57.151") {
                                 envService.set('staging');
                             }
                         }

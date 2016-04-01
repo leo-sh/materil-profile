@@ -1,8 +1,9 @@
 'use strict';
 
-app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceService', 'deviceDetector', 'detectUtils', 'OS_TYPE', 'HTTP_CODES', 'API_TYPE',
-    function ($http, $q, SERVER, userPersistenceService, deviceDetector, detectUtils, OS_TYPE, HTTP_CODES, API_TYPE) {
+app.service('authenticationService', ['$http', '$q', 'userPersistenceService', 'deviceDetector', 'detectUtils', 'OS_TYPE', 'HTTP_CODES', 'API_TYPE', 'envService',
+    function ($http, $q, userPersistenceService, deviceDetector, detectUtils, OS_TYPE, HTTP_CODES, API_TYPE, envService) {
 
+        var API_URL = envService.read('API_URL');
         var _user = null;
 
         function checkDeviceType() {
@@ -22,7 +23,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             'changePassword': function (new_password, change_password) {
 
                 var defer = $q.defer();
-                $http.post(SERVER.URL + API_TYPE._MEMBERSHIP_.CHANGE_PASSWORD, new_password, change_password)
+                $http.post(API_URL + API_TYPE._MEMBERSHIP_.CHANGE_PASSWORD, new_password, change_password)
                     .then(function (response) {
                         defer.resolve(response.data.result);
                     }, function (response) {
@@ -34,7 +35,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             'resetPassword': function (user_id, reset_code) {
 
                 var defer = $q.defer();
-                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.RESET_PASSWORD + user_id + '/' + reset_code)
+                $http.get(API_URL + API_TYPE._MEMBERSHIP_.RESET_PASSWORD + user_id + '/' + reset_code)
                     .then(function (response) {
                         defer.resolve(response.data.result);
                     }, function (response) {
@@ -46,7 +47,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             'registration': function (user) {
 
                 var defer = $q.defer();
-                $http.post(SERVER.URL + API_TYPE._MEMBERSHIP_.SIGN_UP, user)
+                $http.post(API_URL + API_TYPE._MEMBERSHIP_.SIGN_UP, user)
                     .then(function (response) {
                         defer.resolve(response.data.result[0]);
                     }, function (response) {
@@ -60,7 +61,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
                 user.os_type = checkDeviceType();
 
                 var defer = $q.defer();
-                $http.post(SERVER.URL + API_TYPE._MEMBERSHIP_.LOG_IN, user)
+                $http.post(API_URL + API_TYPE._MEMBERSHIP_.LOG_IN, user)
                     .then(function (response) {
                         // set cookies for user
                         if (response.data.result[0].statusCode == HTTP_CODES.SUCCESS.OK) {
@@ -87,7 +88,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             },
             // ----------------------------------get current user status------------------------------------------
             'getUserStatus': function () {
-                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.USER_STATUS)
+                $http.get(API_URL + API_TYPE._MEMBERSHIP_.USER_STATUS)
                     // handle success
                     .success(function (data) {
                         if (data.status) {
@@ -107,7 +108,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             'forgotPassword': function (email) {
 
                 var defer = $q.defer();
-                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.CHECK_IF_USER_EXISTS + email)
+                $http.get(API_URL + API_TYPE._MEMBERSHIP_.CHECK_IF_USER_EXISTS + email)
                     .then(function (response) {
                         console.log(response);
                         defer.resolve(response.data.result);
@@ -120,7 +121,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             'userActivation': function (user_id, activation_code) {
 
                 var defer = $q.defer();
-                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.USER_ACTIVATION + user_id + '/' + activation_code)
+                $http.get(API_URL + API_TYPE._MEMBERSHIP_.USER_ACTIVATION + user_id + '/' + activation_code)
                     .then(function (response) {
                         defer.resolve(response.data.result);
                     }, function (response) {
@@ -132,7 +133,7 @@ app.service('authenticationService', ['$http', '$q', 'SERVER', 'userPersistenceS
             'logout': function () {
 
                 var deferred = $q.defer();
-                $http.get(SERVER.URL + API_TYPE._MEMBERSHIP_.LOG_OUT)
+                $http.get(API_URL + API_TYPE._MEMBERSHIP_.LOG_OUT)
                     .success(function (data) {
                         //user = false;
                         userPersistenceService.clearCookieData();

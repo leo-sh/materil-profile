@@ -142,14 +142,6 @@ angular.module('app')
                             restricted: true
                         }
                     })
-                    .state('page.profile-settings', {
-                        url: '/profile-settings',
-                        templateUrl: 'views/pages/profile-settings.html',
-                        data: {
-                            title: 'Profile',
-                            restricted: true
-                        }
-                    })
                     .state('app', {
                         url: '/app',
                         abstract: true,
@@ -163,6 +155,24 @@ angular.module('app')
                             'content': {
                                 templateUrl: content
                             }
+                        }
+                    })
+                    .state('app.profile', {
+                        url: '/profile',
+                        templateUrl: 'views/pages/profile.html',
+                        data: {
+                            title: 'Profile',
+                            restricted: true
+                        }
+                    })
+                    .state('app.settings', {
+                        url: '/settings',
+                        controller: 'settingsController',
+                        templateUrl: 'views/pages/settings.html',
+                        resolve: load(['scripts/controllers/material.js', 'scripts/controllers/settingsController.js']),
+                        data: {
+                            title: 'Profile',
+                            restricted: true
                         }
                     })
                     .state('app.contacts', {

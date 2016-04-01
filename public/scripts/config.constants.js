@@ -1,7 +1,4 @@
 angular.module('app')
-    .constant('SERVER', {
-        'URL': 'http://localhost:8080'
-    })
     .constant('API_TYPE', {
         _MEMBERSHIP_: {
             SIGN_UP: '/authentication/signup',
@@ -15,9 +12,9 @@ angular.module('app')
         }
     })
     .constant('RESULT_RESPONSE_TYPE', {
-        'SUCCESS': 'success',
-        'INVALID': 'invalid',
-        'FAILED': 'failed',
+        SUCCESS: 'success',
+        INVALID: 'invalid',
+        FAILED: 'failed',
     })
     .constant('OS_TYPE', {
         WEB_BROWSER: 1,

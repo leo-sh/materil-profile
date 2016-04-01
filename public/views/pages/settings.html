@@ -1,0 +1,145 @@
+<div class="padding-out">
+    <div class="box">
+        <div class="col-md-3">
+            <div style="background:url(images/a1.jpg) center center; background-size:cover">
+                <div class="p-lg bg-white-overlay text-center">
+                    <a href class="w-xs inline">
+                        <img src="images/a1.jpg" class="img-circle img-responsive">
+                    </a>
+                    <div class="m-b m-t-sm h2">
+                        <span class="text-black">Mike</span>
+                    </div>
+                    <p>
+                        Great day, Great life
+                    </p>
+                </div>
+            </div>
+            <ul class="nav nav-lists b-t" ui-nav>
+                <li class="active">
+                    <a href>Profile</a>
+                </li>
+                <li>
+                    <a href>Account Settings</a>
+                </li>
+                <li>
+                    <a href>Contacts</a>
+                </li>
+                <li>
+                    <a href>Notifications</a>
+                </li>
+                <li>
+                    <a href>Security</a>
+                </li>
+                <li>
+                    <a href>Organizations</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9 b-l bg-white bg-auto">
+            <div class="p-md bg-light lt b-b font-bold">Public profile</div>
+            <div ng-controller="settingsController" layout="column" ng-cloak class="md-inline-form">
+                <md-content layout-padding layout-gt-sm="row">
+                    <div>
+                        <form name="userForm">
+                            <md-input-container>
+                                <label>First Name</label>
+                                <input ng-model="user.first_name">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Last Name</label>
+                                <input ng-model="user.last_name" type="text">
+                            </md-input-container>
+                            <div layout-xs="row">
+                                <md-radio-group class="md-block" flex-gt-xs ng-model="user.sex">
+                                    <md-radio-button value="0">
+                                        Female
+                                    </md-radio-button>
+                                    <md-radio-button value="1">
+                                        Male
+                                    </md-radio-button>
+                                </md-radio-group>
+                                <md-datepicker ng-model="user.dob" md-placeholder="Birthday">
+                                </md-datepicker>
+                            </div>
+                            <md-input-container class="md-block">
+                                <label>Address 1</label>
+                                <input ng-model="user.add1">
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <input ng-model="user.add2" placeholder="Address 2">
+                            </md-input-container>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>City</label>
+                                    <input ng-model="user.city">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>State</label>
+                                    <input ng-model="user.state">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Postal Code</label>
+                                    <input name="postalCode" ng-model="user.pin_code" placeholder="12345"
+                                           required ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
+                                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must supply a postal
+                                            code.
+                                        </div>
+                                        <div ng-message="pattern" class="my-message">That doesn't look like a valid
+                                            postal
+                                            code.
+                                        </div>
+                                        <div ng-message="md-maxlength" class="my-message">
+                                            Don't use the long version silly...we don't need to be that specific...
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="md-block">
+                                <label>Country</label>
+                                <md-select ng-model="user.country">
+                                    <md-option ng-repeat="country in countrys" value="{{country.abbrev}}">
+                                        {{country.abbrev}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <button type="submit" class="btn btn-info">Save</button>
+                        </form>
+                    </div>
+                </md-content>
+            </div>
+            <div class="p-md bg-light lt b-b font-bold">Contact Details</div>
+            <div ng-controller="settingsController" layout="column" layout-padding ng-cloak class="md-inline-form">
+                <form role="form" name="userForm" class="col-md-6">
+                    <md-content class="md-no-momentum">
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Phone Number</label>
+                            <md-icon class="mdi-maps-local-phone i-24"></md-icon>
+                            <input ng-model="user.phone" type="text" placeholder="Phone Number">
+                        </md-input-container>
+                        <div layout="row">
+                            <md-input-container class="md-offset" style="margin-right: 10px;">
+                                <label>Type</label>
+                                <md-icon class="mdi-maps-local i-24"></md-icon>
+                                <md-select ng-model="size">
+                                    <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Number</label>
+                                <input ng-model="user.phone" type="text">
+                            </md-input-container>
+                        </div>
+                        <md-input-container class="md-block">
+                            <!-- Use floating placeholder instead of label -->
+                            <md-icon class="mdi-maps-place i-24"></md-icon>
+                            <input ng-model="user.email" type="email" placeholder="Email (required)"
+                                   ng-required="true">
+                        </md-input-container>
+                    </md-content>
+                    <button type="submit" class="btn btn-info">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
