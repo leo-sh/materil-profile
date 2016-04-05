@@ -1,7 +1,17 @@
 angular.module('app')
+
+    .constant('AUTH_EVENTS', {
+        notAuthenticated: 'auth-not-authenticated'
+    })
+    .constant('LOCAL_STORAGE', {
+        _TOKEN_KEY_: 'user_id'
+    })
     .constant('API_TYPE', {
+        _TOKEN_: {
+          GET_TOKEN: '/api/x/token'
+        },
         _MEMBERSHIP_: {
-            SIGN_UP: '/authentication/signup',
+            SIGN_UP: '/api/membership/signup',
             LOG_IN: '/authentication/login',
             LOG_OUT: '/authentication/logout',
             USER_STATUS: '/authentication/user/status',

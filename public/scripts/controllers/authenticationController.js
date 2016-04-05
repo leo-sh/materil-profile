@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('authenticationController', ['$scope', 'authenticationService', '$state', '$stateParams', 'HTTP_CODES',
-    function ($scope, authenticationService, $state, $stateParams, HTTP_CODES) {
+app.controller('authenticationController', ['$scope', 'AuthService', '$state', '$stateParams', 'HTTP_CODES',
+    function ($scope, AuthService, $state, $stateParams, HTTP_CODES) {
 
         $scope.alerts = [];
 
@@ -10,7 +10,6 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
         }
 
         $scope.closeAlert = function (index) {
-            console.log(index);
             $scope.alerts.splice(index, 1);
         };
 
@@ -20,7 +19,7 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
 
         // function to run when signup button is clicked
         $scope.submitSignUp = function () {
-            authenticationService.registration($scope.user)
+            AuthService.register($scope.user)
                 .then(function (response) {
                     closeEarlierAlert();
                     if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR) {
@@ -37,7 +36,7 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
         // function to run when signup button is clicked
         $scope.submitSignIn = function () {
 
-            authenticationService.login($scope.user)
+            AuthService.login($scope.user)
                 .then(function (response) {
                     closeEarlierAlert();
                     if (response.statusCode == HTTP_CODES.CLIENT_ERROR.CONFLICT || response.statusCode == HTTP_CODES.CLIENT_ERROR.UNAUTHORISED ||
@@ -53,11 +52,9 @@ app.controller('authenticationController', ['$scope', 'authenticationService', '
 
         // function to run when logout is clicked
         $scope.logOut = function () {
-            authenticationService.logout()
-                .then(function () {
-                    closeEarlierAlert();
-                    $state.transitionTo('authentication.signin', {alertParam: {'statusText': 'Logged Out!!'}});
-                })
+            AuthService.logout()
+            closeEarlierAlert();
+            $state.transitionTo('authentication.signin', {alertParam: {'statusText': 'Logged Out!!'}});
         }
 
         // check email is valid or not

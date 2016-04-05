@@ -14,12 +14,23 @@ var config = require('./config');
 
 module.exports = function () {
 
+    //-------------------------------------DEBUG-------------------------------------------
+    console.log("Starting Application---------------------------------------------------------------");
+
     var app = express();
 
     require('./passport')(passport); // pass passport for configuration
 
-    // configuration ===============================================================
+    //Mongoose configuration ===============================================================
+    mongoose.set('debug', true);
     mongoose.connect(config.DATABASE); // connect to our database
+    mongoose.connection.on('error', function () {
+        console.log('Mongoose connection error');
+    });
+    mongoose.connection.once('open', function callback() {
+        console.log("Mongoose connected to the database");
+    });
+
 
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
@@ -35,6 +46,17 @@ module.exports = function () {
     app.use(bodyParser.urlencoded({
         extended: true
     })); // get information in urlEncodedForm
+
+    // HTTP Request handling configurations--------------------------------------------------------------------------------
+    app.use(function (req, res, next) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+        next();
+    });
+
+    // Set Session variables
+    app.set('SESSION_SECRET', config.ENV.SESSION_.SECRET); // secret variable
 
     // Express Validator-------------------------------for parameters validations--------------------
     app.use(validator());
@@ -60,18 +82,32 @@ module.exports = function () {
 
     // Routes ======================================================================
 
+    var api_routes = express.Router();
     var route_user = express.Router();
     var route_authentication = express.Router();
+    var membership_route = express.Router();
     //require('./../app/routes.js')(app, passport, express); // load our routes and pass in our app and fully configured passport
     require('./../app/routes/sample')(app);
 
-    // routes for authentication of users
-    require('./../app/routes/authentication')(route_authentication, passport);
-    app.use('/authentication', route_authentication);
+    // token route for api
+    require('./../app/routes/token')(api_routes);
+
+    // membership api routes
+    require('./../app/routes/membership')(passport, membership_route);
+    api_routes.use('/membership', membership_route);   // adding '/api/membership ' prefix to all the routes
 
     // routes for authentication of users
-    require('./../app/routes/user')(route_user);
-    app.use('/api', route_user);
+    var authenticated_urls = require('./../app/middlewares/authenticated_urls');
+    route_authentication.use(authenticated_urls);
+
+    require('./../app/routes/authentication')(route_authentication, passport, api_routes);
+    app.use('/authentication', route_authentication);
+
+    app.use('/api', api_routes);   // adding '/api ' prefix to all the routes
+
+    // routes for authentication of users
+    //require('./../app/routes/user')(route_user);
+    //app.use('/api', route_user);
 
     return app;
 }

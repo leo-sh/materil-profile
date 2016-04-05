@@ -147,6 +147,7 @@ app.service('authenticationService', ['$http', '$q', 'userPersistenceService', '
 
                 // return promise object
                 return deferred.promise;
-            }
+            },
+            // -
         }
     }]);

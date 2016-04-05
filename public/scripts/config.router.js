@@ -9,19 +9,18 @@
  */
 angular.module('app')
     .run(
-        ['$rootScope', '$state', '$stateParams', 'authenticationService',
-            function ($rootScope, $state, $stateParams, authenticationService) {
+        ['$rootScope', '$state', '$stateParams', 'AuthService',
+            function ($rootScope, $state, $stateParams, AuthService) {
 
                 // check if the user is logged in and page is restricted without login
                 $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
-                    authenticationService.getUserStatus();
-                    if (toState.data.restricted && authenticationService.isLoggedIn() == false) {
+                    if (toState.data.restricted && AuthService.isAuthenticated() == false) {
                         e.preventDefault();
                         var alert = {
                             'statusText': 'You are not Logged In!!'
                         };
                         $state.go('authentication.signin', {alertParam: alert});
-                    } else if (!toState.data.restricted && authenticationService.isLoggedIn() == true) {
+                    } else if (!toState.data.restricted && AuthService.isAuthenticated() == true) {
                         e.preventDefault();
                         $state.go('page.home');
                     }
@@ -54,7 +53,7 @@ angular.module('app')
                         params: {alertParam: null},
                         templateUrl: 'views/authentication/signin.html',
                         controller: 'authenticationController',
-                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
+                        resolve: load(['scripts/controllers/authenticationController.js']),
                         data: {
                             restricted: false
                         }
@@ -84,7 +83,7 @@ angular.module('app')
                         params: {alertParam: null},
                         templateUrl: 'views/authentication/signup.html',
                         controller: 'authenticationController',
-                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/authenticationService.js']),
+                        resolve: load(['scripts/controllers/authenticationController.js', 'scripts/services/AuthService.js']),
                         data: {
                             restricted: false
                         }

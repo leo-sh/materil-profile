@@ -1,29 +1,32 @@
 // persisting email as _user in the cookies for the user to identify in the sessions.
-app.service('userPersistenceService', ['$cookies', function ($cookies) {
+app.service('UserPersistenceService', ['$http', 'LOCAL_STORAGE', function ($http, LOCAL_STORAGE) {
 
-    var _user = "";
+    var isAuthenticated = false;
+    var authToken;
 
     return {
-        setCookieData: function (user_email, remember_me) {
-            _user = user_email;
-            var now = new Date();
-            now.setDate(now.getDate() + 7);
-
-            if(remember_me){
-                $cookies.put("_user", _user, {
-                    expires: now
-                });
-            }else{
-                $cookies.put("_user", _user);
+        loadUserCredentials: function () {
+            var token = window.localStorage.getItem(LOCAL_STORAGE._TOKEN_KEY_);
+            if (token) {
+                useCredentials(token);
             }
         },
-        getCookieData: function () {
-            _user = $cookies.get("_user");
-            return _user;
+        storeUserCredentials: function (token) {
+            window.localStorage.setItem(LOCAL_STORAGE._TOKEN_KEY_, token);
+            useCredentials(token);
         },
-        clearCookieData: function () {
-            _user = "";
-            $cookies.remove("_user");
+        useCredentials: function (token) {
+            isAuthenticated = true;
+            authToken = token;
+
+            // Set the token as header for your requests!
+            $http.defaults.headers.common.Authorization = authToken;
+        },
+        destroyUserCredentials: function () {
+            authToken = undefined;
+            isAuthenticated = false;
+            $http.defaults.headers.common.Authorization = undefined;
+            window.localStorage.removeItem(LOCAL_STORAGE._TOKEN_KEY_);
         }
     }
 }])
