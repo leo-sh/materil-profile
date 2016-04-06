@@ -8,12 +8,12 @@ app.service('UserPersistenceService', ['$http', 'LOCAL_STORAGE', function ($http
         loadUserCredentials: function () {
             var token = window.localStorage.getItem(LOCAL_STORAGE._TOKEN_KEY_);
             if (token) {
-                useCredentials(token);
+                this.useCredentials(token);
             }
         },
         storeUserCredentials: function (token) {
             window.localStorage.setItem(LOCAL_STORAGE._TOKEN_KEY_, token);
-            useCredentials(token);
+            this.useCredentials(token);
         },
         useCredentials: function (token) {
             isAuthenticated = true;
@@ -27,6 +27,9 @@ app.service('UserPersistenceService', ['$http', 'LOCAL_STORAGE', function ($http
             isAuthenticated = false;
             $http.defaults.headers.common.Authorization = undefined;
             window.localStorage.removeItem(LOCAL_STORAGE._TOKEN_KEY_);
+        },
+        isAuthenticated: function () {
+            return isAuthenticated;
         }
     }
 }])

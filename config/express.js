@@ -100,8 +100,8 @@ module.exports = function () {
     var authenticated_urls = require('./../app/middlewares/authenticated_urls');
     route_authentication.use(authenticated_urls);
 
-    require('./../app/routes/authentication')(route_authentication, passport, api_routes);
-    app.use('/authentication', route_authentication);
+    require('./../app/routes/authentication')(route_authentication, passport);
+    api_routes.use('/authentication', route_authentication);
 
     app.use('/api', api_routes);   // adding '/api ' prefix to all the routes
 

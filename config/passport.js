@@ -5,6 +5,8 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user access model
+var CONFIG = require('./config');
+var jwt = require("jsonwebtoken");
 var User = require('../app/models/user_access');
 var UserDetails = require('../app/models/user_details');
 var UserAccessDetails = require('../app/models/user_access_details');
@@ -15,6 +17,7 @@ var configAuth = require('./auth'); // use this one for testing
 
 // loading user constants
 var CONSTANTS = require('./../app/helpers/constants');
+var CheckUserType = require('./../app/helpers/checkUserType');
 var ResultResponses = require('./../app/helpers/resultResponses');
 
 module.exports = function (passport) {
@@ -123,8 +126,14 @@ module.exports = function (passport) {
                         // log the device type which was used to login
                         userDeviceUsed(user._id, os_type);
 
+                        var data = {
+                            'user': user,
+                            'token': 'JWT ' + jwt.sign({member: user}, CONFIG.ENV.SESSION_.SECRET),
+                        }
+
                         result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                            'Successfully Authenticated!!', user);
+                            'Successfully Authenticated!!', data);
+
                         return done(null, user, req.flash('result', result));
                     }
                 });
@@ -172,8 +181,17 @@ module.exports = function (passport) {
                         var newUser = new User();
                         newUser.email = email;
                         newUser.password = newUser.generateHash(password);
-                        newUser.activated = false;
-                        newUser.activation_code = newUser.generateActivationCode(new Date());
+
+                        if (CheckUserType.checkIfTestEmail(email)) {
+
+                            newUser.activated = true;
+                            newUser.activated_at = new Date();
+                            newUser.activation_code = null;
+                        } else {
+
+                            newUser.activated = false;
+                            newUser.activation_code = newUser.generateActivationCode(new Date());
+                        }
 
                         newUser.save(function (err) {
                             if (err)

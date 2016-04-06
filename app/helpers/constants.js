@@ -1,5 +1,9 @@
 var define = require("node-constants")(exports);
 
+// User Type
+define('USER_TYPE', {
+    TEST_USER: 'test',
+})
 // OS types for user devices
 define('OS_TYPE', {
     WEB_BROWSER: 1,

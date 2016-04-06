@@ -110,6 +110,8 @@ angular.module('app')
                     })
                     .state('page', {
                         url: '/page',
+                        controller: 'HomeController',
+                        resolve: load(['scripts/controllers/HomeController.js', 'scripts/services/HomeService.js']),
                         views: {
                             '': {
                                 templateUrl: layout
@@ -144,6 +146,8 @@ angular.module('app')
                     .state('app', {
                         url: '/app',
                         abstract: true,
+                        controller: 'HomeController',
+                        resolve: load(['scripts/controllers/HomeController.js', 'scripts/services/HomeService.js']),
                         views: {
                             '': {
                                 templateUrl: layout

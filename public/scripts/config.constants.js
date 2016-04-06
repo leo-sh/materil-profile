@@ -10,9 +10,12 @@ angular.module('app')
         _TOKEN_: {
           GET_TOKEN: '/api/x/token'
         },
+        _AUTHENTICATION_:{
+          MEMBER_INFO: '/api/authentication/member_info'
+        },
         _MEMBERSHIP_: {
             SIGN_UP: '/api/membership/signup',
-            LOG_IN: '/authentication/login',
+            LOG_IN: '/api/membership/login',
             LOG_OUT: '/authentication/logout',
             USER_STATUS: '/authentication/user/status',
             USER_ACTIVATION: '/authentication/activate/',

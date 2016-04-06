@@ -14,9 +14,9 @@ module.exports = function (passport, app) {
 
     // process the login form
     app.post('/login', userAccessValidator.loginValidator, passport.authenticate('local-login', {
-        successRedirect: '/authentication/success', // redirect to the secure profile section
-        failureRedirect: '/authentication/failure', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
+        successRedirect: '/api/membership/success',
+        failureRedirect: '/api/membership/failure',
+        failureFlash: true
     }));
 
     //registration success

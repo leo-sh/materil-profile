@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var randomstring = require("randomstring");
+var CheckUserType = require('./../helpers/checkUserType');
 
 // define the schema for our user model
 var userAccessSchema = mongoose.Schema({
@@ -64,7 +65,12 @@ userAccessSchema.pre('save', function (next) {
 
     if (!this.created_at) {
         this.created_at = currentDate;
-        this.activated = false;
+
+        if (CheckUserType.checkIfTestEmail(this.email)) {
+            this.activated = true;
+        } else {
+            this.activated = false;
+        }
     }
 
     next();

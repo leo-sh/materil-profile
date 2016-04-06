@@ -1,4 +1,5 @@
 var User = require('./../models/user_access');
+var UserDetails = require('./../models/user_details');
 // loading user constants
 var CONSTANTS = require('./../helpers/constants');
 var ResultResponses = require('./../helpers/resultResponses');
@@ -12,10 +13,37 @@ module.exports = {
 
         var result = {};
 
-        result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-            'Successfully Authenticated!!', req.member);
+        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+            'Some Error Occurred.');
 
-        res.json({'result': result})
+        UserDetails.findOne({_user_access_id: req.member._id}, {
+            _id: 0,
+            _user_access_id: 0,
+            created_at: 0,
+            updated_at: 0,
+            deleted_at: 0
+        }, function (err, userDetails) {
+
+            if (err)
+                throw err;
+
+            if (!userDetails) {
+
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
+                    'Authentication failed. User not found.!!');
+            } else {
+
+                var data = {
+                    member_access_info: req.member,
+                    member_details_info: userDetails
+                }
+
+                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                    'Successfully Authenticated!!', data);
+            }
+
+            res.json({'result': result})
+        })
     },
 
     getToken: function (req, res, next) {
@@ -25,9 +53,7 @@ module.exports = {
         result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
             'Some Error Occurred.');
 
-        User.findOne({
-            email: req.body.email
-        }, function (err, user) {
+        User.findOne({email: req.body.email}, function (err, user) {
             if (err) throw err;
 
             if (!user) {

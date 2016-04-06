@@ -21,9 +21,9 @@
         <a md-ink-ripple data-toggle="dropdown">
           <i class="mdi-social-person-outline i-24"></i>
         </a>
-        <ul class="dropdown-menu dropdown-menu-scale pull-right text-color">
+        <ul class="dropdown-menu dropdown-menu-scale pull-right text-color" ng-controller="authenticationController">
           <span class="arrow top pull-right b-white"></span>
-          <li><a href>Log Out</a></li>
+          <li><a href ng-click="logOut()">Log Out</a></li>
         </ul>
       </li>
     </ul>

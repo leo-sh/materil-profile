@@ -2,7 +2,6 @@
 
 app.controller('settingsController', ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService',
     function ($scope, $state, $stateParams, HTTP_CODES, envService) {
-        console.log(envService.read('all'));
 
         $scope.user = {
             sex: '1',
@@ -21,8 +20,6 @@ app.controller('settingsController', ['$scope', '$state', '$stateParams', 'HTTP_
         'WY').split(' ').map(function(country) {
             return {abbrev: country};
         });
-
-
 
         $scope.sizes = [
             "Home",

@@ -14,7 +14,7 @@ module.exports = function (req, res, next) {
         // verifies secret and checks exp
         jwt.verify(token, CONFIG.ENV.SESSION_.SECRET, function (err, decoded) {
             if (err) {
-                return res.json({result: ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST, 'Failed to authenticate token!!')})
+                return res.status(404).json({result: ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST, 'Failed to authenticate token!!')})
             } else {
                 // if everything is good, save to request for use in other routes
                 req.member = decoded.member;
@@ -26,9 +26,9 @@ module.exports = function (req, res, next) {
 
         // if there is no token
         // return an error
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided.'
-        });
+        return res
+            .status(CONSTANTS.HTTP_CODES.CLIENT_ERROR.FORBIDDEN)
+            .json(
+                {result: ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.FORBIDDEN, 'No token provided.!!')})
     }
 }
