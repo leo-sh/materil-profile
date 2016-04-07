@@ -1,0 +1,75 @@
+<!------- Contact Details ------------------------------------------------------------>
+<div class="p-md bg-light lt b-b font-bold">Contact Details</div>
+<div ng-controller="settingsController" layout="column" layout-padding ng-cloak class="md-inline-form">
+    <form role="form" name="userForm" class="col-md-9">
+        <md-content class="md-no-momentum">
+            <md-subheader class="md-no-sticky">Phone Numbers</md-subheader>
+            <div layout="row">
+                <md-input-container class="md-offset" style="margin-right: 10px;">
+                    <label>Type</label>
+                    <md-icon class="mdi-maps-local-phone i-24"></md-icon>
+                    <md-select ng-model="phone_type">
+                        <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Phone Number</label>
+                    <input ng-model="user.phone" type="text">
+                </md-input-container>
+                <md-button class="add-tab md-primary" type="submit"
+                           style="max-height: 32px; margin-top:24px">Delete
+                </md-button>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-offset" style="margin-right: 10px;">
+                    <label>Type</label>
+                    <md-icon class="mdi-maps-local i-24"></md-icon>
+                    <md-select ng-model="phone_type">
+                        <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Phone Number</label>
+                    <input ng-model="user.phone" type="text">
+                </md-input-container>
+                <md-button class="add-tab md-primary" type="submit"
+                           style="max-height: 32px; margin-top:24px">Add
+                </md-button>
+            </div>
+            <md-subheader class="md-no-sticky m-b">Email Addresses</md-subheader>
+            <div layout="row">
+                <md-input-container class="md-offset" style="margin-right: 10px;">
+                    <label>Type</label>
+                    <md-icon class="mdi-communication-email i-24"></md-icon>
+                    <md-select ng-model="email_type">
+                        <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Email Address</label>
+                    <input ng-model="user.email" type="email">
+                </md-input-container>
+                <md-button class="add-tab md-primary" type="submit"
+                           style="max-height: 32px; margin-top:24px">Delete
+                </md-button>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-offset" style="margin-right: 10px;">
+                    <label>Type</label>
+                    <md-icon class="mdi-communication i-24"></md-icon>
+                    <md-select ng-model="email_type">
+                        <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Email Address</label>
+                    <input ng-model="user.email" type="email">
+                </md-input-container>
+                <md-button class="add-tab md-primary" type="submit"
+                           style="max-height: 32px; margin-top:24px">Add
+                </md-button>
+            </div>
+        </md-content>
+        <button type="submit" class="btn btn-info pull-right">Save</button>
+    </form>
+</div>

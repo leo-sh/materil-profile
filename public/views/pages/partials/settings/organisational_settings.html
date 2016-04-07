@@ -1,0 +1,68 @@
+
+<!------- Organisational Details ------------------------------------------------------------>
+<div class="p-md bg-light lt b-b font-bold">Organisation Details</div>
+<div ng-controller="settingsController" layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding layout-gt-sm="row">
+        <div>
+            <form name="userForm">
+                <div class="md-inline-form" style="margin:38px -14px 43px;">
+                    <md-datepicker ng-model="from" md-placeholder="From"></md-datepicker>
+                </div>
+                <div class="md-inline-form" style="margin-bottom: 43px; margin-left: -14px">
+                    <md-datepicker ng-model="from" md-placeholder="Till"></md-datepicker>
+                </div>
+                <md-input-container class="md-block">
+                    <label>Company Name</label>
+                    <input ng-model="user.company_name">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Position</label>
+                    <input ng-model="user.position" type="text">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Address 1</label>
+                    <input ng-model="user.add1">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input ng-model="user.add2" placeholder="Address 2">
+                </md-input-container>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>City</label>
+                        <input ng-model="user.city">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>State</label>
+                        <input ng-model="user.state">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Postal Code</label>
+                        <input name="postalCode" ng-model="user.pin_code" placeholder="123456"
+                               required ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
+                        <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">You must supply a postal
+                                code.
+                            </div>
+                            <div ng-message="pattern" class="my-message">That doesn't look like a valid
+                                postal
+                                code.
+                            </div>
+                            <div ng-message="md-maxlength" class="my-message">
+                                Don't use the long version silly...we don't need to be that specific...
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                    <label>Country</label>
+                    <md-select ng-model="user.country">
+                        <md-option ng-repeat="country in countrys" value="{{country.abbrev}}">
+                            {{country.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <button type="submit" class="btn btn-info pull-right">Save</button>
+            </form>
+        </div>
+    </md-content>
+</div>

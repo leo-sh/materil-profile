@@ -143,6 +143,47 @@ angular.module('app')
                             restricted: true
                         }
                     })
+                    .state('settings', {
+                        url: '/settings',
+                        abstract: true,
+                        controller: 'SettingsController',
+                        resolve: load(['scripts/controllers/HomeController.js', 'scripts/services/HomeService.js']),
+                        views: {
+                            '': {
+                                templateUrl: layout
+                            },
+                            'aside': {
+                                templateUrl: aside
+                            },
+                            'content': {
+                                templateUrl: content
+                            }
+                        }
+                    })
+                    .state('settings.public', {
+                        url: '/public',
+                        templateUrl: 'views/pages/partials/public_settings.html',
+                        data: {
+                            title: 'Public Settings',
+                            restricted: true
+                        }
+                    })
+                    .state('settings.contacts', {
+                        url: '/contacts',
+                        templateUrl: 'views/pages/partials/contacts_settings.html',
+                        data: {
+                            title: 'Contacts Settings',
+                            restricted: true
+                        }
+                    })
+                    .state('settings.notifications', {
+                        url: '/notifications',
+                        templateUrl: 'views/pages/partials/notifications_settings.html',
+                        data: {
+                            title: 'Notifications Settings',
+                            restricted: true
+                        }
+                    })
                     .state('app', {
                         url: '/app',
                         abstract: true,

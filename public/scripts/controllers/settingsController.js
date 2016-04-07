@@ -3,6 +3,12 @@
 app.controller('settingsController', ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService',
     function ($scope, $state, $stateParams, HTTP_CODES, envService) {
 
+
+        $scope.settings = [
+            { name: 'Wi-Fi', extraScreen: 'Wi-fi menu', icon: 'device:network-wifi', enabled: true },
+            { name: 'Bluetooth', extraScreen: 'Bluetooth menu', icon: 'device:bluetooth', enabled: false },
+        ];
+
         $scope.user = {
             sex: '1',
             email: 'summmmit44@gmail.com',
