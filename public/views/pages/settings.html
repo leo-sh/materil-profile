@@ -1,6 +1,6 @@
 <div class="padding-out">
     <div class="box">
-        <div class="col-md-3">
+        <div class="col-md-3" ng-show="settings_navigation">
             <div style="background:url(images/a1.jpg) center center; background-size:cover">
                 <div class="p-lg bg-white-overlay text-center">
                     <a href class="w-xs inline">
@@ -9,28 +9,28 @@
                     <div class="m-b m-t-sm h2">
                         <span class="text-black">Mike</span>
                     </div>
-                    <a md-ink-ripple="" class="md-btn md-raised md-fab m-r pull-right bg-white">23</a>
+                    <a md-ink-ripple="" class="md-btn md-raised md-fab m-r pull-right bg-white"><md-icon class="mdi-image-edit i-24"></md-icon></a>
                 </div>
             </div>
             <ul class="nav nav-lists b-t" ui-nav>
                 <li class="active">
-                    <a ui-sref="settings.public">Profile</a>
+                    <a md-ink-ripple ui-sref="app.settings.public" ng-click="showSettingsPanel('public')">Profile</a>
                 </li>
                 <li>
-                    <a href>Account</a>
+                    <a md-ink-ripple ui-sref="app.settings.account" ng-click="showSettingsPanel('account')">Account</a>
                 </li>
                 <li>
-                    <a ui-sref="settings.contacts">Contacts</a>
+                    <a md-ink-ripple ui-sref="app.settings.contacts" ng-click="showSettingsPanel('contacts')">Contacts</a>
                 </li>
                 <li>
-                    <a href>Organizational</a>
+                    <a md-ink-ripple ui-sref="app.settings.organisational" ng-click="showSettingsPanel('organisational')">Organizational</a>
                 </li>
                 <li>
-                    <a ui-sref="settings.notifications">Notifications</a>
+                    <a md-ink-ripple ui-sref="app.settings.notifications" ng-click="showSettingsPanel('notifications')">Notifications</a>
                 </li>
             </ul>
         </div>
-        <div class="col-md-9 b-l bg-white bg-auto" ui-view>
+        <div class="col-md-9 b-l bg-white bg-auto" ng-show="settings_panel" ui-view>
         </div>
     </div>
 </div>

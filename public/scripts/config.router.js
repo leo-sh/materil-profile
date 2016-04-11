@@ -143,47 +143,6 @@ angular.module('app')
                             restricted: true
                         }
                     })
-                    .state('settings', {
-                        url: '/settings',
-                        abstract: true,
-                        controller: 'SettingsController',
-                        resolve: load(['scripts/controllers/HomeController.js', 'scripts/services/HomeService.js']),
-                        views: {
-                            '': {
-                                templateUrl: layout
-                            },
-                            'aside': {
-                                templateUrl: aside
-                            },
-                            'content': {
-                                templateUrl: content
-                            }
-                        }
-                    })
-                    .state('settings.public', {
-                        url: '/public',
-                        templateUrl: 'views/pages/partials/public_settings.html',
-                        data: {
-                            title: 'Public Settings',
-                            restricted: true
-                        }
-                    })
-                    .state('settings.contacts', {
-                        url: '/contacts',
-                        templateUrl: 'views/pages/partials/contacts_settings.html',
-                        data: {
-                            title: 'Contacts Settings',
-                            restricted: true
-                        }
-                    })
-                    .state('settings.notifications', {
-                        url: '/notifications',
-                        templateUrl: 'views/pages/partials/notifications_settings.html',
-                        data: {
-                            title: 'Notifications Settings',
-                            restricted: true
-                        }
-                    })
                     .state('app', {
                         url: '/app',
                         abstract: true,
@@ -201,6 +160,7 @@ angular.module('app')
                             }
                         }
                     })
+                    // Profile Page ------------------------------------------------------------------------------------Start
                     .state('app.profile', {
                         url: '/profile',
                         templateUrl: 'views/pages/profile.html',
@@ -209,16 +169,59 @@ angular.module('app')
                             restricted: true
                         }
                     })
+                    // Settings Page ------------------------------------------------------------------------------------Start
                     .state('app.settings', {
                         url: '/settings',
                         controller: 'settingsController',
                         templateUrl: 'views/pages/settings.html',
                         resolve: load(['scripts/controllers/material.js', 'scripts/controllers/settingsController.js']),
                         data: {
-                            title: 'Profile',
+                            title: 'Settings',
+                            restricted: true,
+                            folded: true
+                        }
+                    })
+                    .state('app.settings.public', {
+                        url: '/public',
+                        templateUrl: 'views/pages/partials/settings/public_settings.html',
+                        data: {
+                            title: 'Public Settings',
                             restricted: true
                         }
                     })
+                    .state('app.settings.contacts', {
+                        url: '/contacts',
+                        templateUrl: 'views/pages/partials/settings/contacts_settings.html',
+                        data: {
+                            title: 'Contacts Settings',
+                            restricted: true
+                        }
+                    })
+                    .state('app.settings.notifications', {
+                        url: '/notifications',
+                        templateUrl: 'views/pages/partials/settings/notifications_settings.html',
+                        data: {
+                            title: 'Notifications Settings',
+                            restricted: true
+                        }
+                    })
+                    .state('app.settings.account', {
+                        url: '/account',
+                        templateUrl: 'views/pages/partials/settings/account_settings.html',
+                        data: {
+                            title: 'Account Settings',
+                            restricted: true
+                        }
+                    })
+                    .state('app.settings.organisational', {
+                        url: '/organisational',
+                        templateUrl: 'views/pages/partials/settings/organisational_settings.html',
+                        data: {
+                            title: 'Work Settings',
+                            restricted: true
+                        }
+                    })
+                    // settings ------------------------------------------------------------------------------------Finish
                     .state('app.contacts', {
                         url: '/contacts',
                         templateUrl: 'views/application/contacts/index.html',
