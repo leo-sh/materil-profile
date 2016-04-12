@@ -64,7 +64,8 @@
     "waves": "~0.7.2",
     "angular-http-api": "*",
     "ng-device-detector": "^3.0.1",
-    "angular-environment": "^1.0.3"
+    "angular-environment": "^1.0.3",
+    "international-phone-number": "^0.0.16"
   },
   "resolutions": {
     "angular-touch": "1.4.x",
