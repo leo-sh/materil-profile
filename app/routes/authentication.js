@@ -6,6 +6,8 @@ module.exports = function (authentication, passport) {
 
     authentication.get('/member_info', AuthenticationTokenAPI.getMemberInfo);
 
+    authentication.get('/custom_labels', AuthenticationTokenAPI.getCustomLabels);
+
     //get user status
     authentication.get('/user/status', userAccessController.userStatus);
 

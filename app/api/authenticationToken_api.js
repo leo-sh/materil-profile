@@ -1,5 +1,6 @@
 var User = require('./../models/user_access');
 var UserDetails = require('./../models/user_details');
+var CustomLabels = require('./../models/custom_labels');
 // loading user constants
 var CONSTANTS = require('./../helpers/constants');
 var ResultResponses = require('./../helpers/resultResponses');
@@ -8,6 +9,36 @@ var CONFIG = require('./../../config/config');
 var jwt = require("jsonwebtoken");
 
 module.exports = {
+
+    getCustomLabels: function (req, res, next) {
+
+        var result = {};
+
+        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+            'Some Error Occurred.');
+
+        CustomLabels.find({_user_access_id: req.member._id}, {
+            _user_access_id: 0,
+            created_at: 0,
+            updated_at: 0
+        }, function (err, customLabels) {
+
+            if (err)
+                throw err;
+
+            if (!customLabels) {
+
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
+                    'Authentication failed. User not found.!!');
+            } else {
+
+                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                    'Successfully Fetched!!', customLabels);
+            }
+
+            res.json({'result': result})
+        })
+    },
 
     getMemberInfo: function (req, res, next) {
 

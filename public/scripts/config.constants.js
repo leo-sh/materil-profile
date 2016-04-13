@@ -8,10 +8,11 @@ angular.module('app')
     })
     .constant('API_TYPE', {
         _TOKEN_: {
-          GET_TOKEN: '/api/x/token'
+            GET_TOKEN: '/api/x/token'
         },
-        _AUTHENTICATION_:{
-          MEMBER_INFO: '/api/authentication/member_info'
+        _AUTHENTICATION_: {
+            MEMBER_INFO: '/api/authentication/member_info',
+            GET_ALL_LABELS: '/api/authentication/custom_labels',
         },
         _MEMBERSHIP_: {
             SIGN_UP: '/api/membership/signup',

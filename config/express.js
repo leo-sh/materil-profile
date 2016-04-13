@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var validator = require('express-validator');
 var config = require('./config');
+var favicon = require('serve-favicon');
 
 
 module.exports = function () {
@@ -77,6 +78,9 @@ module.exports = function () {
 
     app.use(express.static(__dirname + './../public'));
     app.use('/bower_components', express.static(__dirname + './../bower_components'));
+
+
+    app.use(favicon(__dirname + './../public/favicon.ico'));
 
     var throwjs = require('throw.js');
 

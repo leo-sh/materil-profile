@@ -11,6 +11,7 @@ var User = require('../app/models/user_access');
 var UserDetails = require('../app/models/user_details');
 var UserAccessDetails = require('../app/models/user_access_details');
 var UserAccessDevices = require('../app/models/user_devices');
+var CustomLabels = require('../app/models/custom_labels');
 
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
@@ -118,6 +119,24 @@ module.exports = function (passport) {
                         userAccessDetails.os_type = os_type;
                         userAccessDetails._user_access_id = user._id;
                         userAccessDetails.save(function (err) {
+
+                            if (err)
+                                return done(err, req.flash('result', result));
+                        });
+
+                        var custom_labels = new CustomLabels();
+                        custom_labels.label_name = 'Home';
+                        custom_labels._user_access_id = user._id;
+                        custom_labels.save(function (err) {
+
+                            if (err)
+                                return done(err, req.flash('result', result));
+                        });
+
+                        var custom_labels = new CustomLabels();
+                        custom_labels.label_name = 'Work';
+                        custom_labels._user_access_id = user._id;
+                        custom_labels.save(function (err) {
 
                             if (err)
                                 return done(err, req.flash('result', result));

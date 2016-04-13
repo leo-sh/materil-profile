@@ -11,25 +11,13 @@ var userDetailsSchema = mongoose.Schema({
     show_dob: Boolean,
     sex: Boolean,
     contact_numbers: {
-        type: String,
-        number: String
+        id: mongoose.Schema.Types.ObjectId,
     },
-    contact_number_type: {
-        type_name: String,
-        show_others: Boolean
+    email_addresses: {
+        id: mongoose.Schema.Types.ObjectId,
     },
     addresses: {
-        type: String,
-        add1: String,
-        add2: String,
-        city: String,
-        state: String,
-        country: String,
-        pin_code: String,
-    },
-    address_type: {
-        type_name: String,
-        show_others: Boolean
+        id: mongoose.Schema.Types.ObjectId,
     },
     pic: String,
     pic_updated_at: Date,

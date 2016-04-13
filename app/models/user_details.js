@@ -4,34 +4,39 @@ var mongoose = require('mongoose');
 // define the schema for our user model
 var userDetailsSchema = mongoose.Schema({
 
-    _user_access_id: mongoose.Schema.Types.ObjectId,
-    first_name: String,
-    last_name: String,
-    dob: Date,
-    show_dob: Boolean,
-    sex: Boolean,
-    mobile_number: String,
-    mobile_updated_at: Date,
-    show_mobile_number: Boolean,
-    phone_number: String,
-    phone_updated_at: Date,
-    show_phone_number: Boolean,
-    add1: String,
-    add2: String,
-    city: String,
-    state: String,
-    country: String,
-    pin_code: String,
-    show_address: Boolean,
-    address_updated_at: Date,
-    pic: String,
-    pic_updated_at: Date,
-    cover_pic: String,
-    cover_pic_updated_at: Date,
-    created_at: Date,
-    updated_at: Date,
-    deleted_at: Date
-});
+        _user_access_id: mongoose.Schema.Types.ObjectId,
+        first_name: String,
+        last_name: String,
+        dob: Date,
+        show_dob: Boolean,
+        sex: Boolean,
+        contact_numbers: {
+            id: mongoose.Schema.Types.ObjectId,
+        },
+        email_addresses: {
+            id: mongoose.Schema.Types.ObjectId,
+        },
+        addresses: {
+            id: mongoose.Schema.Types.ObjectId,
+        },
+        pic: String,
+        pic_updated_at: Date,
+        cover_pic: String,
+        cover_pic_updated_at: Date,
+        created_at: Date,
+        updated_at: Date,
+        deleted_at: Date
+    },
+    {
+        timestamps: {
+            createdAt: 'created_at',
+            updatedAt: 'updated_at'
+        }
+    },
+    {
+        versionKey: false
+    }
+);
 
 // add and update the date on Every save
 

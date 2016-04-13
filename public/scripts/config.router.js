@@ -174,7 +174,7 @@ angular.module('app')
                         url: '/settings',
                         controller: 'settingsController',
                         templateUrl: 'views/pages/settings.html',
-                        resolve: load(['scripts/controllers/material.js', 'scripts/controllers/settingsController.js']),
+                        resolve: load(['scripts/controllers/material.js', 'scripts/controllers/settingsController.js', 'scripts/services/SettingsService.js']),
                         data: {
                             title: 'Settings',
                             restricted: true,
@@ -192,6 +192,7 @@ angular.module('app')
                     .state('app.settings.contacts', {
                         url: '/contacts',
                         templateUrl: 'views/pages/partials/settings/contacts_settings.html',
+                        resolve: load(['scripts/controllers/ContactsSettingsController.js']),
                         data: {
                             title: 'Contacts Settings',
                             restricted: true

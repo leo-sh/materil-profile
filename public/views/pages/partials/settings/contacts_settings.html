@@ -1,73 +1,87 @@
 <!------- Contact Details ------------------------------------------------------------>
 <div class="p-md bg-light lt b-b font-bold">Contact Details</div>
-<div ng-controller="settingsController" layout="column" layout-padding ng-cloak class="md-inline-form">
-    <form role="form" name="userForm" class="col-md-9">
+<div ng-controller="ContactsSettingsController" layout="column" layout-padding ng-cloak class="md-inline-form">
+    <form role="form" name="userForm" class="col-sm-12">
         <md-content class="md-no-momentum">
             <md-subheader class="md-no-sticky">Phone Numbers</md-subheader>
-            <div layout="row">
-                <md-input-container class="md-offset" style="margin-right: 10px;">
+            <div layout-gt-xs="row" flex-gt-xs ng-repeat="phone_number in phone_numbers">
+                <md-input-container class="md-block" style="margin-right: 10px;">
                     <label>Type</label>
                     <md-icon class="mdi-maps-local-phone i-24"></md-icon>
-                    <md-select ng-model="phone_type">
-                        <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                    <md-select ng-model="type">
+                        <md-option ng-repeat="(index, contact_lable_type) in contact_lable_types"
+                                   ng-value="contact_lable_type"
+                                   ng-selected="(contact_lable_type._id == phone_number._type_id) ? true : false">
+                            {{ contact_lable_type.label_name }}
+                        </md-option>
                     </md-select>
                 </md-input-container>
-                <md-input-container class="md-icon-float md-block">
-                    <label>Phone Number</label>
-                    <input ng-model="user.phone" type="text">
-                </md-input-container>
-                <md-button class="add-tab md-primary" type="submit"
-                           style="max-height: 32px; margin-top:24px">Delete
-                </md-button>
+                <div layout-xs="row">
+                    <md-input-container class="md-icon-float">
+                        <label>Phone Number</label>
+                        <input ng-model="phone_number.number" type="text">
+                    </md-input-container>
+                    <md-button class="md-primary" type="submit" ng-click="DeletePhoneNumber(phone_number._id)"
+                               style="max-height: 32px; margin-top:24px">Delete
+                    </md-button>
+                </div>
             </div>
-            <div layout="row">
-                <md-input-container class="md-offset" style="margin-right: 10px;">
+            <div layout-gt-xs="row" flex-gt-xs>
+                <md-input-container class="md-block" style="margin-right: 10px;">
                     <label>Type</label>
-                    <md-icon class="mdi-maps-local i-24"></md-icon>
-                    <md-select ng-model="phone_type">
-                        <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
+                    <md-icon class="mdi-maps-local-phone i-24"></md-icon>
+                    <md-select ng-model="new_phone_number.type">
+                        <md-option ng-repeat="contact_lable_type in contact_lable_types" ng-value="contact_lable_type">
+                            {{ contact_lable_type.label_name }}
+                        </md-option>
                     </md-select>
                 </md-input-container>
-                <md-input-container class="md-icon-float md-block">
-                    <label>Phone Number</label>
-                    <input ng-model="user.phone" type="text">
-                </md-input-container>
-                <md-button class="add-tab md-primary" type="submit"
-                           style="max-height: 32px; margin-top:24px">Add
-                </md-button>
+                <div layout-xs="row">
+                    <md-input-container class="md-icon-float">
+                        <label>Phone Number</label>
+                        <input ng-model="new_phone_number.number" type="text">
+                    </md-input-container>
+                    <md-button class="md-primary" type="submit" ng-click="AddPhoneNumber(new_phone_number)"
+                               style="max-height: 32px; margin-top:24px">Add
+                    </md-button>
+                </div>
             </div>
             <md-subheader class="md-no-sticky m-b">Email Addresses</md-subheader>
-            <div layout="row">
-                <md-input-container class="md-offset" style="margin-right: 10px;">
+            <div layout-gt-xs="row" flex-gt-xs>
+                <md-input-container class="md-block" style="margin-right: 10px;">
                     <label>Type</label>
                     <md-icon class="mdi-communication-email i-24"></md-icon>
-                    <md-select ng-model="email_type">
+                    <md-select ng-model="phone_type[0]">
                         <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
                     </md-select>
                 </md-input-container>
-                <md-input-container class="md-icon-float md-block">
-                    <label>Email Address</label>
-                    <input ng-model="user.email" type="email">
-                </md-input-container>
-                <md-button class="add-tab md-primary" type="submit"
-                           style="max-height: 32px; margin-top:24px">Delete
-                </md-button>
+                <div layout-xs="row">
+                    <md-input-container class="md-icon-float">
+                        <label>Phone Number</label>
+                        <input ng-model="user.phone[0]" type="text">
+                    </md-input-container>
+                    <md-button class="md-primary" type="submit"
+                               style="max-height: 32px; margin-top:24px">Delete
+                    </md-button>
+                </div>
             </div>
-            <div layout="row">
-                <md-input-container class="md-offset" style="margin-right: 10px;">
+            <div layout-gt-xs="row" flex-gt-xs>
+                <md-input-container class="md-block" style="margin-right: 10px;">
                     <label>Type</label>
-                    <md-icon class="mdi-communication i-24"></md-icon>
-                    <md-select ng-model="email_type">
+                    <md-icon class="mdi-communication-email i-24"></md-icon>
+                    <md-select ng-model="email_type[0]">
                         <md-option ng-repeat="size in sizes" value="{{size}}">{{size}}</md-option>
                     </md-select>
                 </md-input-container>
-                <md-input-container class="md-icon-float md-block">
-                    <label>Email Address</label>
-                    <input ng-model="user.email" type="email">
-                </md-input-container>
-                <md-button class="add-tab md-primary" type="submit"
-                           style="max-height: 32px; margin-top:24px">Add
-                </md-button>
+                <div layout-xs="row">
+                    <md-input-container class="md-icon-float">
+                        <label>Phone Number</label>
+                        <input ng-model="user.phone[0]" type="text">
+                    </md-input-container>
+                    <md-button class="md-primary" type="submit"
+                               style="max-height: 32px; margin-top:24px">Add
+                    </md-button>
+                </div>
             </div>
         </md-content>
         <button type="submit" class="btn btn-info pull-right">Save</button>
