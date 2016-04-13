@@ -1,6 +1,9 @@
 var define = require("node-constants")(exports);
 
 // User Type
+define('TOKEN', {
+    EXPIRATION_TIME_IN_MINUTES: 60,
+})// User Type
 define('USER_TYPE', {
     TEST_USER: 'test',
 })

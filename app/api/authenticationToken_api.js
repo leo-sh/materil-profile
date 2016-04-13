@@ -67,7 +67,7 @@ module.exports = {
                     if (user.activated) {
 
                         var data = {
-                            'token': 'JWT ' + jwt.sign({member: user}, CONFIG.ENV.SESSION_.SECRET, {expiresInMinutes: 60}),
+                            'token': 'JWT ' + jwt.sign({member: user}, CONFIG.ENV.SESSION_.SECRET, {expiresInMinutes: CONSTANTS.TOKEN.EXPIRATION_TIME_IN_MINUTES}),
                         }
 
                         result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
