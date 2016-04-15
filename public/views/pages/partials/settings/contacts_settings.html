@@ -4,7 +4,7 @@
     <form role="form" name="userForm" class="col-sm-12">
         <md-content class="md-no-momentum">
             <md-subheader class="md-no-sticky">Phone Numbers</md-subheader>
-            <div layout-gt-xs="row" flex-gt-xs ng-repeat="phone_number in phone_numbers">
+            <div layout-gt-xs="row" flex-gt-xs ng-repeat="(index, phone_number) in phone_numbers">
                 <md-input-container class="md-block" style="margin-right: 10px;">
                     <label>Type</label>
                     <md-icon class="mdi-maps-local-phone i-24"></md-icon>
@@ -21,7 +21,7 @@
                         <label>Phone Number</label>
                         <input ng-model="phone_number.number" type="text">
                     </md-input-container>
-                    <md-button class="md-primary" type="submit" ng-click="DeletePhoneNumber(phone_number._id)"
+                    <md-button class="md-primary" type="submit" ng-click="DeletePhoneNumber(index, phone_number._id)"
                                style="max-height: 32px; margin-top:24px">Delete
                     </md-button>
                 </div>

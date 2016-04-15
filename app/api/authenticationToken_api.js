@@ -10,71 +10,12 @@ var jwt = require("jsonwebtoken");
 
 module.exports = {
 
-    getCustomLabels: function (req, res, next) {
-
-        var result = {};
-
-        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
-            'Some Error Occurred.');
-
-        CustomLabels.find({_user_access_id: req.member._id}, {
-            _user_access_id: 0,
-            created_at: 0,
-            updated_at: 0
-        }, function (err, customLabels) {
-
-            if (err)
-                throw err;
-
-            if (!customLabels) {
-
-                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
-                    'Authentication failed. User not found.!!');
-            } else {
-
-                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                    'Successfully Fetched!!', customLabels);
-            }
-
-            res.json({'result': result})
-        })
-    },
-
     getMemberInfo: function (req, res, next) {
 
-        var result = {};
+        var result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+            'Successfully Authenticated!!', req.member);
 
-        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
-            'Some Error Occurred.');
-
-        UserDetails.findOne({_user_access_id: req.member._id}, {
-            _id: 0,
-            _user_access_id: 0,
-            created_at: 0,
-            updated_at: 0,
-            deleted_at: 0
-        }, function (err, userDetails) {
-
-            if (err)
-                throw err;
-
-            if (!userDetails) {
-
-                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
-                    'Authentication failed. User not found.!!');
-            } else {
-
-                var data = {
-                    member_access_info: req.member,
-                    member_details_info: userDetails
-                }
-
-                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                    'Successfully Authenticated!!', data);
-            }
-
-            res.json({'result': result})
-        })
+        res.json({'result': result})
     },
 
     getToken: function (req, res, next) {
@@ -98,7 +39,9 @@ module.exports = {
                     if (user.activated) {
 
                         var data = {
-                            'token': 'JWT ' + jwt.sign({member: user}, CONFIG.ENV.SESSION_.SECRET, {expiresInMinutes: CONSTANTS.TOKEN.EXPIRATION_TIME_IN_MINUTES}),
+                            'token': 'JWT ' + jwt.sign({member: user}, CONFIG.ENV.SESSION_.SECRET, {expiresIn: CONSTANTS.TOKEN.EXPIRATION_TIME_IN_MINUTES}),
+                            expiresIn: CONSTANTS.TOKEN.EXPIRATION_TIME_IN_MINUTES,
+                            'token_type': 'JWT'
                         }
 
                         result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,

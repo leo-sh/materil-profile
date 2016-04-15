@@ -1,11 +1,19 @@
 // load the things we need
 var mongoose = require('mongoose');
+var customLabels = require('./custom_labels');
 
 // define the schema for our user model
 var PhoneNumbersSchema = mongoose.Schema({
 
-        _type_id: mongoose.Schema.Types.ObjectId,
-        number: String
+        _type_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+        },
+        number: {
+            type: String,
+            required: true,
+            index: true
+        }
     },
     {
         timestamps: {
@@ -32,6 +40,19 @@ PhoneNumbersSchema.pre('save', function (next) {
 
     next();
 });
+
+var typeIdValidator = function (_type_id) {
+
+    customLabels.findOne({_id: _type_id}, function (err, label) {
+
+        if (err)
+            throw err;
+
+        if (!label) {
+            return false;
+        }
+    });
+}
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('phone_numbers', PhoneNumbersSchema);

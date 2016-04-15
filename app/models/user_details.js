@@ -10,15 +10,32 @@ var userDetailsSchema = mongoose.Schema({
         dob: Date,
         show_dob: Boolean,
         sex: Boolean,
-        contact_numbers: {
-            id: mongoose.Schema.Types.ObjectId,
-        },
-        email_addresses: {
-            id: mongoose.Schema.Types.ObjectId,
-        },
-        addresses: {
-            id: mongoose.Schema.Types.ObjectId,
-        },
+        contact_numbers: [
+            {
+                phone_number_id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true,
+                    index: true
+                },
+                _id: false
+            }
+        ],
+        email_addresses: [
+            {
+                email_id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true,
+                }
+            }
+        ],
+        addresses: [
+            {
+                address_id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true,
+                }
+            }
+        ],
         pic: String,
         pic_updated_at: Date,
         cover_pic: String,

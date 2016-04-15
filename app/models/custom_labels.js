@@ -4,8 +4,11 @@ var mongoose = require('mongoose');
 // define the schema for our user model
 var CustomLabelsSchema = mongoose.Schema({
 
-        _user_details_id: mongoose.Schema.Types.ObjectId,
-        label_name: String
+        _user_access_id: mongoose.Schema.Types.ObjectId,
+        label_name: {
+            type: String,
+            index: true
+        }
     },
     {
         timestamps: {

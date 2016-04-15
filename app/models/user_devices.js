@@ -9,8 +9,20 @@ const OS_TYPE_UNKNOWN = 9;
 // define the schema for our user model
 var userDevicesSchema = mongoose.Schema({
 
-    _user_access_id: mongoose.Schema.Types.ObjectId,
-    os_type: Number,
+    _user_access_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    os_type: {
+        type: Number,
+        required: true,
+        enum: [
+            OS_TYPE_ANDROID,
+            OS_TYPE_IOS,
+            OS_TYPE_WEB_BROWSER,
+            OS_TYPE_UNKNOWN
+        ]
+    },
     created_at: Date,
     updated_at: Date,
     deleted_at: Date

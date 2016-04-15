@@ -4,6 +4,9 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+//middlewares
+var AfterLogin = require('./../app/middlewares/after_login');
+
 // load up the user access model
 var CONFIG = require('./config');
 var jwt = require("jsonwebtoken");
@@ -22,28 +25,6 @@ var CheckUserType = require('./../app/helpers/checkUserType');
 var ResultResponses = require('./../app/helpers/resultResponses');
 
 module.exports = function (passport) {
-
-    function userDeviceUsed(_user_id, os_type) {
-
-        UserAccessDevices.findOne({_user_access_id: _user_id, os_type: os_type}, function (err, userAccessDevice) {
-
-            if (err) {
-                next(err);
-            }
-
-            if (!userAccessDevice) {
-
-                var userAccessDevice = new UserAccessDevices();
-                userAccessDevice._user_access_id = _user_id;
-                userAccessDevice.os_type = os_type;
-                userAccessDevice.save(function (err) {
-
-                    if (err)
-                        return next(err);
-                });
-            }
-        })
-    }
 
     // passport session setup ==================================================
     // =========================================================================
@@ -113,37 +94,11 @@ module.exports = function (passport) {
                             return done(null, false, req.flash('result', result));
                         }
 
-                        // Insert login time and os_type in the database
-                        var userAccessDetails = new UserAccessDetails();
-                        userAccessDetails.login_at = new Date();
-                        userAccessDetails.os_type = os_type;
-                        userAccessDetails._user_access_id = user._id;
-                        userAccessDetails.save(function (err) {
-
-                            if (err)
-                                return done(err, req.flash('result', result));
-                        });
-
-                        var custom_labels = new CustomLabels();
-                        custom_labels.label_name = 'Home';
-                        custom_labels._user_access_id = user._id;
-                        custom_labels.save(function (err) {
-
-                            if (err)
-                                return done(err, req.flash('result', result));
-                        });
-
-                        var custom_labels = new CustomLabels();
-                        custom_labels.label_name = 'Work';
-                        custom_labels._user_access_id = user._id;
-                        custom_labels.save(function (err) {
-
-                            if (err)
-                                return done(err, req.flash('result', result));
-                        });
+                        AfterLogin.UserAccessDetails(os_type, user._id);
+                        AfterLogin.CreateDefaultLabels(user._id);
 
                         // log the device type which was used to login
-                        userDeviceUsed(user._id, os_type);
+                        AfterLogin.userDeviceUsed(os_type, user._id);
 
                         var data = {
                             'user': user,
