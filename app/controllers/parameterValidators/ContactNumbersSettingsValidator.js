@@ -4,7 +4,7 @@ var ResultResponses = require('./../../helpers/resultResponses');
 var CONSTANTS = require('./../../helpers/constants');
 module.exports = {
 
-    postAddNewPhoneNumberValidator: function (req, res, next) {
+    postNumbersValidator: function (req, res, next) {
 
         var result = {};
 

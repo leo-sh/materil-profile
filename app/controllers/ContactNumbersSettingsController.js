@@ -12,13 +12,22 @@ var getTokenFromHeader = require('./../helpers/getTokenFromHeader');
 
 module.exports = {
 
-    postAddNewPhoneNumber: function (req, res, next) {
+    getNumbers: function (req, res, next) {
+
+        var member_id = req.member.member_details_id;
+
+        PhoneNumbers.find({});
+
+        var result;
+    },
+
+    postNumbers: function (req, res, next) {
 
         var number = req.body.number;
         var _type_id = req.body._type_id;
         var member_id = req.member.member_details_id;
 
-        var result = {};
+        var result;
 
         var phone_number = new PhoneNumbers();
         phone_number._type_id = _type_id;
@@ -29,7 +38,6 @@ module.exports = {
                 console.log('Error in Saving Phone Number');
                 throw err;
             }
-
         });
 
         // insert the record in user access collection
@@ -56,35 +64,5 @@ module.exports = {
             'Successfully saved new Phone Number.', phone_number);
 
         res.json({'result': result})
-    },
-    getCustomLabels: function (req, res, next) {
-
-        var result = {};
-
-        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
-            'Some Error Occurred.');
-
-        CustomLabels.find({_user_access_id: req.member._id}, {
-            __v: 0,
-            _user_access_id: 0,
-            created_at: 0,
-            updated_at: 0
-        }, function (err, customLabels) {
-
-            if (err)
-                throw err;
-
-            if (!customLabels) {
-
-                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
-                    'Authentication failed. User not found.!!');
-            } else {
-
-                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                    'Successfully Fetched!!', customLabels);
-            }
-
-            res.json({'result': result})
-        })
     }
 }

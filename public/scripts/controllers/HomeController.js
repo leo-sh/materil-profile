@@ -7,15 +7,12 @@ app.controller('HomeController', ['$scope', 'HomeService', '$state', '$statePara
 
         HomeService.getUserInfo()
             .then(function (response) {
-                var member_details_info = response.member_details_info;
-                var member_access_info = response.member_access_info;
 
-                user.full_name = member_details_info.first_name + ' ' + member_details_info.last_name;
-                user.email = member_access_info.email;
+                user.full_name = response.first_name + ' ' + response.last_name;
+                user.email = response.primary_email;
 
             });
 
         $scope.user = user;
-
     }
 ]);

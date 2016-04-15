@@ -1,18 +1,26 @@
 var userAccessController = require('./../controllers/userAccessController');
 var AuthenticationTokenAPI = require('./../api/authenticationToken_api');
 var userAccessValidator = require('./../controllers/parameterValidators/userAccessValidator');
-var settingsValidator = require('./../controllers/parameterValidators/settingsValidator');
-var settingsController = require('./../controllers/settingsController');
+var ContactNumbersSettingsValidator = require('./../controllers/parameterValidators/ContactNumbersSettingsValidator');
+var LabelsSettingsValidator = require('./../controllers/parameterValidators/LabelsSettingsValidator');
+var LabelsSettingsController = require('./../controllers/labelsSettingsController');
+var ContactNumbersSettingsController = require('./../controllers/ContactNumbersSettingsController');
 
 module.exports = function (authentication, passport) {
 
     authentication.get('/member_info', AuthenticationTokenAPI.getMemberInfo);
 
-    // get all the user labels: Defaults and Customs
-    authentication.get('/custom_labels', settingsController.getCustomLabels);
+    //-----------------------------------Defaults and Customs ----------------------------------------------------------------
+    authentication.get('/labels', LabelsSettingsController.getLabels);
+    authentication.post('/labels', LabelsSettingsValidator.postLabelsValidator, LabelsSettingsController.postLabels);
+    authentication.patch('/labels/:label_id/:new_label_name', LabelsSettingsValidator.patchLabelsValidator, LabelsSettingsController.patchLabels);
+    authentication.delete('/labels/:label_id', LabelsSettingsValidator.deleteLabelsValidator, LabelsSettingsController.deleteLabels);
 
     // -------------------------------------- Phone Numbers ----------------------------------------------------------------
-    authentication.post('/phone_number', settingsValidator.postAddNewPhoneNumberValidator, settingsController.postAddNewPhoneNumber);
+    authentication.get('/numbers', ContactNumbersSettingsController.getNumbers);
+    authentication.post('/numbers', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
+    authentication.put('/numbers', ContactNumbersSettingsValidator.putNumbersValidator, ContactNumbersSettingsController.putNumbers);
+    authentication.delete('/numbers/:number_id', ContactNumbersSettingsValidator.deleteNumbersValidator, ContactNumbersSettingsController.deleteNumbers);
 
     //get user status
     authentication.get('/user/status', userAccessController.userStatus);
