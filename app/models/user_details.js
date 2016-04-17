@@ -1,15 +1,34 @@
 // load the things we need
 var mongoose = require('mongoose');
-
+var CONSTANT = require('./../helpers/constants');
 // define the schema for our user model
 var userDetailsSchema = mongoose.Schema({
 
         _user_access_id: mongoose.Schema.Types.ObjectId,
-        first_name: String,
-        last_name: String,
+        first_name: {
+            type: String,
+            index: true
+        },
+        last_name: {
+            type: String,
+            index: true
+        },
+        nick_name: {
+            type: String,
+            index: true
+        },
         dob: Date,
-        show_dob: Boolean,
-        sex: Boolean,
+        show_dob: {
+            type: Boolean,
+            default: CONSTANT.USER_SHOW_OTHERS.DONT_SHOW_TO_OTHERS, //0: Don't show to others
+        },
+        sex: {
+            type: Number,
+            enum: [
+                CONSTANT.USER_SEX.SEX_FEMALE, //0: female
+                CONSTANT.USER_SEX.SEX_MALE,   //1: male
+            ]
+        },
         contact_numbers: [
             {
                 phone_number_id: {

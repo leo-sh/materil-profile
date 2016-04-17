@@ -3,9 +3,20 @@ var define = require("node-constants")(exports);
 // User Type
 define('TOKEN', {
     EXPIRATION_TIME_IN_MINUTES: 3600,
-})// User Type
+})
+// User Type
 define('USER_TYPE', {
     TEST_USER: 'test',
+})
+// User Sex
+define('USER_SEX', {
+    SEX_MALE: 1,
+    SEX_FEMALE: 0
+})
+// User Show Value To Others
+define('USER_SHOW_OTHERS', {
+    SHOW_TO_OTHERS: 1,
+    DONT_SHOW_TO_OTHERS: 0
 })
 // OS types for user devices
 define('OS_TYPE', {
