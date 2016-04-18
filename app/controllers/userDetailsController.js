@@ -7,6 +7,14 @@ var ResultResponses = require('./../helpers/resultResponses');
 
 module.exports = {
 
+    getMemberInfo: function (req, res, next) {
+
+        var result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+            'Successfully Authenticated!!', req.member);
+
+        res.json({'result': result})
+    },
+
     putMemberInfo: function (req, res) {
 
         var result = {};
@@ -23,11 +31,12 @@ module.exports = {
 
             if (user) {
 
-                user.first_name = req.params.first_name;
-                user.last_name = req.params.last_name;
-                user.nick_name = req.params.nick_name;
-                user.sex = req.params.sex;
-                user.dob = new Date(req.params.dob);
+                user.first_name = req.body.first_name;
+                user.last_name = req.body.last_name;
+                user.nick_name = req.body.nick_name;
+                user.sex = req.body.sex;
+                user.show_dob = req.body.show_dob;
+                user.dob = new Date(req.body.dob);
 
                 user.save(function (err) {
 

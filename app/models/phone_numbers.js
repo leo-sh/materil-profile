@@ -22,7 +22,7 @@ var PhoneNumbersSchema = mongoose.Schema({
         }
     },
     {
-        versionKey: false
+        versionKey: 0
     }
 );
 

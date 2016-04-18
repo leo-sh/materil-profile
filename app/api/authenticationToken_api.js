@@ -10,14 +10,6 @@ var jwt = require("jsonwebtoken");
 
 module.exports = {
 
-    getMemberInfo: function (req, res, next) {
-
-        var result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-            'Successfully Authenticated!!', req.member);
-
-        res.json({'result': result})
-    },
-
     getToken: function (req, res, next) {
 
         var result = {};

@@ -15,12 +15,65 @@ module.exports = {
     getNumbers: function (req, res, next) {
 
         var member_id = req.member.member_details_id;
+        var limit = req.query.limit;
+        var offset = req.query.offset;
+        var data, result;
 
-        PhoneNumbers.find({});
+        userDetailsSchema.findOne({_id: member_id}, function (err, userDetails) {
 
-        var result;
+            if (err) {
+                console.log('Error while Fetching contact numbers: ContactNumbersSettingsController');
+                throw err;
+            }
+            if (!userDetails) {
+                console.log('User Not found while Fetching contact number: ContactNumbersSettingsController');
+            }
+
+            var phoneNumberIds = [];
+
+            for (var i = 0; i < userDetails.contact_numbers.length; i++) {
+                phoneNumberIds[i] = userDetails.contact_numbers[i].phone_number_id;
+            }
+
+            PhoneNumbers.find({_id: {$in: phoneNumberIds}}, {__v: 0}, {
+                skip: offset,
+                limit: limit
+            }, function (err, phoneNumbers) {
+
+                if (err) {
+                    console.log('Error while Fetching contact numbers: ContactNumbersSettingsController');
+                    throw err;
+                }
+                if (!phoneNumbers) {
+                    console.log('User Not found while Fetching contact number: ContactNumbersSettingsController');
+                }
+
+                data = {
+                    limit: limit,
+                    offset: offset,
+                }
+
+                PhoneNumbers.count({_id: {$in: phoneNumberIds}}, function (err, TotalCount) {
+
+                    if (err) {
+                        console.log('Error while Fetching contact numbers count: ContactNumbersSettingsController');
+                        throw err;
+                    }
+                    if (!TotalCount) {
+                        console.log('User Not found while Fetching contact numbers count: ContactNumbersSettingsController');
+                    }
+
+                    data.count = TotalCount;
+                    data.phoneNumbers = phoneNumbers;
+
+                    result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                        'Successfully fetched all Phone Numbers.', data);
+
+                    res.json({'result': result})
+                })
+            });
+        });
     },
-
     postNumbers: function (req, res, next) {
 
         var number = req.body.number;
@@ -44,7 +97,7 @@ module.exports = {
         userDetailsSchema.findOne(member_id, function (err, user) {
 
             if (err) {
-                console.log('Error while saving contact number');
+                console.log('Error while Saving contact number');
                 throw err;
             }
             if (!user) {
@@ -64,5 +117,46 @@ module.exports = {
             'Successfully saved new Phone Number.', phone_number);
 
         res.json({'result': result})
+    },
+    deleteNumbers: function (req, res, next) {
+
+        var result;
+        var number_id = req.params.number_id;
+
+        PhoneNumbers.findByIdAndRemove(number_id, function (err, phone_number) {
+
+            if (err) {
+                console.log('Error while Deleting contact number');
+                throw err;
+            }
+            if (!phone_number) {
+
+                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                    'Phone Number Not found', phone_number);
+
+            } else {
+
+                userDetailsSchema.findByIdAndUpdate(req.member.member_details_id,
+                    {$pull: {contact_numbers: {phone_number_id: number_id}}},
+                    function (err, user) {
+
+                        if (err) {
+                            console.log('Error while Saving contact number');
+                            throw err;
+                        }
+                        if (!user) {
+                            console.log('User Not found while saving contact number');
+                        } else {
+
+                            result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                                'Successfully Deleted the Phone Number.', phone_number);
+                        }
+
+                        res.json({'result': result})
+                    })
+            }
+
+            res.json({'result': result})
+        })
     }
 }

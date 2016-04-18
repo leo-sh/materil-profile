@@ -10,8 +10,8 @@ var ContactNumbersSettingsController = require('./../controllers/ContactNumbersS
 module.exports = function (authentication, passport) {
 
     //----------------------------------Member Info-----------------------------------
-    authentication.get('/member_info', AuthenticationTokenAPI.getMemberInfo);
-    authentication.put('/member_info/:first_name/:last_name/:nick_name/:sex/:dob', userDetailsController.putMemberInfo);
+    authentication.get('/member_info', userDetailsController.getMemberInfo);
+    authentication.put('/member_info', userDetailsController.putMemberInfo);
 
     //-----------------------------------Defaults and Customs ----------------------------------------------------------------
     authentication.get('/labels', LabelsSettingsController.getLabels);
@@ -23,7 +23,7 @@ module.exports = function (authentication, passport) {
     authentication.get('/numbers', ContactNumbersSettingsController.getNumbers);
     authentication.post('/numbers', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
     authentication.put('/numbers', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
-    authentication.delete('/numbers/:number_id', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
+    authentication.delete('/numbers/:number_id', ContactNumbersSettingsValidator.deleteNumbersValidator, ContactNumbersSettingsController.deleteNumbers);
 
     //get user status
     authentication.get('/user/status', userAccessController.userStatus);

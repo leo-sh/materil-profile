@@ -12,7 +12,7 @@ angular.module('app')
         },
         _AUTHENTICATION_: {
             MEMBER_INFO: '/api/authentication/member_info',
-            GET_ALL_LABELS: '/api/authentication/custom_labels',
+            GET_ALL_LABELS: '/api/authentication/labels',
         },
         _MEMBERSHIP_: {
             SIGN_UP: '/api/membership/signup',

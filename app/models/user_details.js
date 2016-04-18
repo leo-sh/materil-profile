@@ -17,7 +17,10 @@ var userDetailsSchema = mongoose.Schema({
             type: String,
             index: true
         },
-        dob: Date,
+        dob: {
+            type: Date,
+            default: '1991-01-01',
+        },
         show_dob: {
             type: Boolean,
             default: CONSTANT.USER_SHOW_OTHERS.DONT_SHOW_TO_OTHERS, //0: Don't show to others
