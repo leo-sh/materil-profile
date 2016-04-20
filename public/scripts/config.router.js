@@ -184,6 +184,7 @@ angular.module('app')
                     .state('app.settings.public', {
                         url: '/public',
                         templateUrl: 'views/pages/partials/settings/public_settings.html',
+                        resolve: load(['scripts/controllers/PublicSettingsController.js']),
                         data: {
                             title: 'Public Settings',
                             restricted: true
@@ -209,6 +210,7 @@ angular.module('app')
                     .state('app.settings.account', {
                         url: '/account',
                         templateUrl: 'views/pages/partials/settings/account_settings.html',
+                        resolve: load(['scripts/controllers/AccountSettingsController.js']),
                         data: {
                             title: 'Account Settings',
                             restricted: true

@@ -1,8 +1,8 @@
 <!------- Public Details ------------------------------------------------------------>
 <div class="p-md bg-light lt b-b font-bold">Public profile</div>
-<div ng-controller="settingsController" layout="column" ng-cloak class="md-inline-form">
-    <md-content layout-padding layout-gt-sm="row">
-        <div>
+<div ng-controller="PublicSettingsController" layout="column" layout-padding ng-cloak class="md-inline-form">
+    <md-content layout-full>
+        <div class="col-md-9 col-sm-12">
             <form name="userForm">
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>First Name</label>
@@ -16,11 +16,11 @@
                     <label>Nick Name</label>
                     <input ng-model="user.nick_name" type="text">
                 </md-input-container>
-                <md-radio-group class="md-block" ng-model="user.sex">
-                    <md-radio-button value="0">
+                <md-radio-group class="md-block" ng-model="user.sex" ng-value="user.sex">
+                    <md-radio-button value="1">
                         Male
                     </md-radio-button>
-                    <md-radio-button value="1" style="margin-left: 25px">
+                    <md-radio-button value="0" style="margin-left: 25px">
                         Female
                     </md-radio-button>
                 </md-radio-group>
@@ -28,48 +28,6 @@
                      style="margin-top: 38px; margin-bottom: 43px; margin-left: -17px">
                     <md-datepicker ng-model="user.dob" md-placeholder="Birthday"></md-datepicker>
                 </div>
-                <md-input-container class="md-block">
-                    <label>Address 1</label>
-                    <input ng-model="user.add1">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <input ng-model="user.add2" placeholder="Address 2">
-                </md-input-container>
-                <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label>City</label>
-                        <input ng-model="user.city">
-                    </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label>State</label>
-                        <input ng-model="user.state">
-                    </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label>Postal Code</label>
-                        <input name="postalCode" ng-model="user.pin_code" placeholder="123456"
-                               required ng-pattern="/^[0-9]{6}$/" md-maxlength="6">
-                        <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                            <div ng-message="required" class="my-message">You must supply a postal
-                                code.
-                            </div>
-                            <div ng-message="pattern" class="my-message">That doesn't look like a valid
-                                postal
-                                code.
-                            </div>
-                            <div ng-message="md-maxlength" class="my-message">
-                                Don't use the long version silly...we don't need to be that specific...
-                            </div>
-                        </div>
-                    </md-input-container>
-                </div>
-                <md-input-container class="md-block">
-                    <label>Country</label>
-                    <md-select ng-model="user.country">
-                        <md-option ng-repeat="country in countrys" value="{{country.abbrev}}">
-                            {{country.abbrev}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
                 <button type="submit" class="btn btn-info pull-right">Save</button>
             </form>
         </div>

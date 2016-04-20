@@ -20,7 +20,7 @@ module.exports = {
         User.findOne({email: req.body.email}, function (err, user) {
             if (err) throw err;
 
-            if (!user) {
+            if (!user || user.deleted_at) {
 
                 result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
                     'Authentication failed. User not found.!!');

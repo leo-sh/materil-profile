@@ -1,0 +1,22 @@
+<!------- Organisational Details ------------------------------------------------------------>
+<div class="p-md bg-light lt b-b font-bold">Change Primary Email</div>
+<div layout="column" layout-padding ng-cloak class="md-inline-form">
+    <div class="col-md-12">
+        <form name="changeEmailForm">
+            <md-content layout-full>
+                <md-input-container class="md-block">
+                    <label>New Email Address</label>
+                    <input ng-model="user.new_primary_email" type="email" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input ng-model="user.current_password" type="password" required minlength="6">
+                </md-input-container>
+                <button type="button" class="btn btn-info pull-right" ng-disabled="changeEmailForm.$invalid"
+                        ng-click="changeEmail(user)">Change
+                </button>
+                <button type="button" class="btn btn-info" ng-click="cancel()">Cancel</button>
+            </md-content>
+        </form>
+    </div>
+</div>

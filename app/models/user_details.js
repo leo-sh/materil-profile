@@ -47,7 +47,9 @@ var userDetailsSchema = mongoose.Schema({
                 email_id: {
                     type: mongoose.Schema.Types.ObjectId,
                     required: true,
-                }
+                    index: true
+                },
+                _id: false
             }
         ],
         addresses: [
@@ -55,7 +57,9 @@ var userDetailsSchema = mongoose.Schema({
                 address_id: {
                     type: mongoose.Schema.Types.ObjectId,
                     required: true,
-                }
+                    index: true
+                },
+                _id: false
             }
         ],
         pic: String,
