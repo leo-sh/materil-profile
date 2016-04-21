@@ -1,0 +1,18 @@
+<!------- Organisational Details ------------------------------------------------------------>
+<div class="p-md bg-light lt b-b font-bold">New Custom Label</div>
+<div layout="column" layout-padding ng-cloak class="md-inline-form">
+    <div class="col-md-12">
+        <form name="newLabelForm">
+            <md-content layout-full>
+                <md-input-container class="md-block">
+                    <label>New Label</label>
+                    <input ng-model="user.new_label" type="text" required>
+                </md-input-container>
+                <button type="submit" class="btn btn-info pull-right" ng-click="createLabel(user)"
+                        ng-disabled="newLabelForm.$invalid">Create
+                </button>
+                <button type="button" class="btn btn-info" ng-click="cancel()">Cancel</button>
+            </md-content>
+        </form>
+    </div>
+</div>

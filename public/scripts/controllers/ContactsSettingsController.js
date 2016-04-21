@@ -1,19 +1,13 @@
 'use strict';
 
 app.controller('ContactsSettingsController',
-    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter',
-        function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter) {
+    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', '$mdDialog',
+        function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog) {
 
             var phone_numbers = {
                 _phone_numbers: [
                     {
-                        _type_id: '570db97cfc93958c1887b168', number: '3467702134', _id: '570db97cfc93958c1887b168'
-                    },
-                    {
-                        _type_id: '570db97cfc93958c1887b167', number: '12365478523', _id: '570db97cfc93958c3387b168'
-                    },
-                    {
-                        _type_id: '570db97cfc93958c1887b168', number: '9842576314', _id: '570db97cfc93958c1887b138'
+                        _type_id: '5716ea2b423f3d4411dfc5d2', number: '3467702134', _id: '570db97cfc93958c1887b168'
                     }
                 ],
                 getPhoneNumbers: function () {
@@ -24,17 +18,13 @@ app.controller('ContactsSettingsController',
                 }
             }
 
-            $scope.phone_numbers = phone_numbers;
+            $scope.phone_numbers = phone_numbers.getPhoneNumbers();
 
             SettingsService.getAllLabels()
                 .then(
                     function (response) {
+                        console.log(response.data);
                         $scope.contact_lable_types = response.data;
-                        var custom_label = {
-                            _id: '999999999',
-                            label_name: 'Custom'
-                        };
-                        $scope.contact_lable_types.push(custom_label);
                     }
                 )
 
@@ -57,8 +47,47 @@ app.controller('ContactsSettingsController',
                     number: new_phone_number.number,
                 }
 
-                $scope.phone_numbers.setPhoneNumbers(phone_number);
+                phone_numbers.setPhoneNumbers(phone_number);
                 $scope.new_phone_number = [];
             }
+
+            $scope.createCustomLabel = function(ev) {
+
+                $mdDialog.show({
+                        controller: createLabelController,
+                        templateUrl: 'views/pages/partials/settings/custom_label.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                    })
+                    .then(function (label) {
+
+                        $scope.contact_lable_types.push(label);
+                    }, function () {
+                        //$scope.status = 'You cancelled the dialog.';
+                        console.log('You clicked cancel');
+                    });
+            };
         }
     ]);
+
+function createLabelController($scope, $mdDialog) {
+
+    $scope.hide = function () {
+        $mdDialog.hide();
+    };
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    };
+    $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
+    };
+    $scope.createLabel = function (user) {
+
+        var label = {
+            _id: "",
+            label_name: user.new_label
+        };
+        $mdDialog.hide(label);
+    };
+}

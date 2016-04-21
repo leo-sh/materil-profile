@@ -166,6 +166,7 @@ angular.module('app')
                         templateUrl: 'views/pages/profile.html',
                         data: {
                             title: 'Profile',
+                            folded: true,
                             restricted: true
                         }
                     })
@@ -202,6 +203,7 @@ angular.module('app')
                     .state('app.settings.notifications', {
                         url: '/notifications',
                         templateUrl: 'views/pages/partials/settings/notifications_settings.html',
+                        resolve: load(['scripts/controllers/NotificationsSettingsController.js']),
                         data: {
                             title: 'Notifications Settings',
                             restricted: true

@@ -1,32 +1,32 @@
 <!------- Notification Details ------------------------------------------------------------>
 <div class="p-md bg-light lt b-b font-bold">Notification Settings</div>
-<div ng-controller="settingsController" layout="column" ng-cloak class="md-inline-form">
+<div ng-controller="NotificationsSettingsController" layout="column" ng-cloak class="md-inline-form">
     <md-content layout-full>
         <div>
-            <md-list ng-controller="settingsController" ng-cloak>
+            <md-list ng-cloak>
                 <md-subheader class="md-no-sticky">Mobile Notifications</md-subheader>
                 <md-list-item>
                     <md-icon class="mdi-notification-event-note i-24"></md-icon>
                     <p> News and Updates </p>
-                    <md-switch class="md-secondary" ng-model="notifications.email.enabled"></md-switch>
+                    <md-switch class="md-secondary" ng-model="notifications.email_notifications.news_and_updates"></md-switch>
                 </md-list-item>
                 <md-list-item>
                     <md-icon class="mdi-notification-mms i-24"></md-icon>
                     <p> Offers </p>
-                    <md-switch class="md-secondary" ng-model="notifications.phone.enabled"></md-switch>
+                    <md-switch class="md-secondary" ng-model="notifications.email_notifications.offers"></md-switch>
                 </md-list-item>
             </md-list>
-            <md-list ng-controller="settingsController" ng-cloak>
+            <md-list ng-cloak>
                 <md-subheader class="md-no-sticky">Email Notifications</md-subheader>
                 <md-list-item>
-                    <md-icon class="mdi-maps-local-phone i-24"></md-icon>
+                    <md-icon class="mdi-notification-event-note i-24"></md-icon>
                     <p>News and Updates</p>
-                    <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
+                    <md-switch class="md-secondary" ng-model="notifications.mobile_notifications.news_and_updates"></md-switch>
                 </md-list-item>
                 <md-list-item>
-                    <md-icon class="mdi-maps-local-phone i-24"></md-icon>
+                    <md-icon class="mdi-notification-mms i-24"></md-icon>
                     <p>Offers</p>
-                    <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
+                    <md-switch class="md-secondary" ng-model="notifications.mobile_notifications.offers"></md-switch>
                 </md-list-item>
             </md-list>
         </div>

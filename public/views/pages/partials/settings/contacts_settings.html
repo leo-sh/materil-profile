@@ -14,6 +14,9 @@
                                    ng-selected="(contact_lable_type._id == phone_number._type_id) ? true : false">
                             {{ contact_lable_type.label_name }}
                         </md-option>
+                        <md-option >
+                            Custom
+                        </md-option>
                     </md-select>
                 </md-input-container>
                 <div layout-xs="row">
@@ -31,8 +34,13 @@
                     <label>Type</label>
                     <md-icon class="mdi-maps-local-phone i-24"></md-icon>
                     <md-select ng-model="new_phone_number.type">
-                        <md-option ng-repeat="contact_lable_type in contact_lable_types" ng-value="contact_lable_type">
+                        <md-option ng-repeat="contact_lable_type in contact_lable_types" ng-value="contact_lable_type"
+                                   ng-selected="(contact_lable_type._id == '') ? true : false" >
                             {{ contact_lable_type.label_name }}
+                        </md-option>
+                        <md-divider></md-divider>
+                        <md-option ng-click="createCustomLabel()">
+                            Custom
                         </md-option>
                     </md-select>
                 </md-input-container>

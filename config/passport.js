@@ -15,6 +15,7 @@ var UserDetails = require('../app/models/user_details');
 var UserAccessDetails = require('../app/models/user_access_details');
 var UserAccessDevices = require('../app/models/user_devices');
 var CustomLabels = require('../app/models/custom_labels');
+var Activities = require('../app/models/activities');
 
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
@@ -178,6 +179,25 @@ module.exports = function (passport) {
                         userDetails._user_access_id = newUser._id;
 
                         userDetails.save(function (err) {
+                            if (err)
+                                return done(err, req.flash('result', flash));
+                        });
+
+                        // save activity
+                        var signUpActivity = {
+                            user_id: newUser._id,
+                            activity_type: CONSTANTS.ACTIVITY_TYPES.SIGN_UP_ACTIVITY,
+                            activity_text: 'Thank You for Signing UP',
+
+                        }
+
+                        var newActivity = new Activities();
+                        newActivity._user_access_id = newUser._id;
+                        newActivity.activity_type = CONSTANTS.ACTIVITY_TYPES.SIGN_UP_ACTIVITY;
+                        newActivity.activity_text = 'Thank You for Signing UP';
+                        newActivity.icon = 'mdi-action-face-unlock';
+
+                        newActivity.save(function(err){
                             if (err)
                                 return done(err, req.flash('result', flash));
                         });

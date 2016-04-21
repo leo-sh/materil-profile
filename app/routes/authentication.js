@@ -1,6 +1,6 @@
 var userAccessController = require('./../controllers/userAccessController');
 var userDetailsController = require('./../controllers/userDetailsController');
-var AuthenticationTokenAPI = require('./../api/authenticationToken_api');
+var ActivitiesAPI = require('./../api/activities');
 var userAccessValidator = require('./../controllers/parameterValidators/userAccessValidator');
 var ContactNumbersSettingsValidator = require('./../controllers/parameterValidators/ContactNumbersSettingsValidator');
 var LabelsSettingsValidator = require('./../controllers/parameterValidators/LabelsSettingsValidator');
@@ -24,6 +24,9 @@ module.exports = function (authentication, passport) {
     authentication.post('/numbers', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
     authentication.put('/numbers', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
     authentication.delete('/numbers/:number_id', ContactNumbersSettingsValidator.deleteNumbersValidator, ContactNumbersSettingsController.deleteNumbers);
+
+    // -------------------------------------- Activities ----------------------------------------------------------------
+    authentication.get('/activities', ActivitiesAPI.getActivities);
 
     //get user status
     authentication.get('/user/status', userAccessController.userStatus);

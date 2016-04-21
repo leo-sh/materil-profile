@@ -1,6 +1,7 @@
 // load the things we need
 var mongoose = require('mongoose');
 var CONSTANT = require('./../helpers/constants');
+var Activities = require('./activities');
 // define the schema for our user model
 var userDetailsSchema = mongoose.Schema({
 
@@ -89,12 +90,67 @@ userDetailsSchema.pre('save', function (next) {
 
     this.updated_at = currentDate;
 
+    if (this.isModified('first_name') || this.isModified('last_name')) {
+
+        console.log('Name Changed');
+        var activity = new Activities();
+        activity._user_access_id = this._user_access_id;
+        activity.activity_type = CONSTANT.ACTIVITY_TYPE.DETAILS_UPDATING_ACTIVITY;
+        activity.activity_time = currentDate;
+        activity.activity_text = 'You updated your Name';
+        activity.icon = 'mdi-action-face-unlock';
+        activity.image = null;
+
+        activity.save(function (err) {
+
+            if (err) {
+                console.log('Error in saving Phone Number: UserDetailsModel');
+                throw err;
+            }
+
+        });
+    }
+
     if (this.isModified('mobile_number')) {
         this.mobile_updated_at = currentDate;
+
+        var activity = new Activities();
+        activity._user_access_id = this._user_access_id;
+        activity.activity_type = CONSTANT.ACTIVITY_TYPE.DETAILS_UPDATING_ACTIVITY;
+        activity.activity_time = currentDate;
+        activity.activity_text = 'You updated your mobile phone book';
+        activity.icon = 'mdi-action-face-unlock';
+        activity.image = null;
+
+        activity.save(function (err) {
+
+            if (err) {
+                console.log('Error in saving Phone Number: UserDetailsModel');
+                throw err;
+            }
+
+        });
     }
 
     if (this.isModified('phone_number')) {
         this.phone_updated_at = currentDate;
+
+        var activity = new Activities();
+        activity._user_access_id = this._user_access_id;
+        activity.activity_type = CONSTANT.ACTIVITY_TYPE.DETAILS_UPDATING_ACTIVITY;
+        activity.activity_time = currentDate;
+        activity.activity_text = 'You updated your phone book';
+        activity.icon = 'mdi-action-face-unlock';
+        activity.image = null;
+
+        activity.save(function (err) {
+
+            if (err) {
+                console.log('Error in saving Phone Number: UserDetailsModel');
+                throw err;
+            }
+
+        });
     }
 
     if (this.isModified('add1') || this.isModified('add2') ||

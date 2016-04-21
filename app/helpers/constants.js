@@ -18,6 +18,16 @@ define('USER_SHOW_OTHERS', {
     SHOW_TO_OTHERS: 1,
     DONT_SHOW_TO_OTHERS: 0
 })
+// Notifications
+define('NOTIFICATIONS', {
+    NOTIFICATION_YES: 1,
+    NOTIFICATION_NO: 0
+})
+// Activity Types
+define('ACTIVITY_TYPES', {
+    SIGN_UP_ACTIVITY: 1,
+    DETAILS_UPDATING_ACTIVITY: 2,
+})
 // OS types for user devices
 define('OS_TYPE', {
     WEB_BROWSER: 1,
