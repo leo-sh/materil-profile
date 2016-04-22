@@ -23,6 +23,9 @@ angular.module('app')
             CHECK_IF_USER_EXISTS: '/authentication/user/',
             RESET_PASSWORD: '/authentication/reset/',
             CHANGE_PASSWORD: '/authentication/change/password',
+        },
+        _ACTIVITIES_: {
+            FETCH: '/api/authentication/activities',
         }
     })
     .constant('RESULT_RESPONSE_TYPE', {

@@ -128,61 +128,86 @@
         </div>
     </div>
     <div class="col-sm-9">
-        <h4>Your Call History</h4>
-        <div class="panel panel-card clearfix">
-            <div class="p-h-lg m-b-lg">
-                <div class="streamline b-l p-v m-l-xs">
-
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <i class="icon mdi-communication-call-made i-24"></i>
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <span>Outgoing Call to</span> Sapna Awasthi
-                                <span class="text-muted block text-xs">Just Now</span>
-                            </div>
-                            <div class="m-b">
-                                <div><img src="images/a10.jpg" class="b p-xs"></div>
-                            </div>
+        <div class="card">
+            <div class="card-heading">
+                <h2>You activities</h2>
+                <small>Activities performed by you</small>
+            </div>
+            <div class="card-body" ng-controller="ProfileController">
+                <div class="streamline b-l b-accent m-b m-l">
+                    <div class="sl-item sl-item-md b-default" ng-repeat="(index, activity) in activities">
+                        <div class="sl-icon">
+                            <i class="{{ activity.icon }} text-info"></i>
+                        </div>
+                        <div class="sl-content">
+                            <div class="text-muted-dk">{{ activity.activity_time | date:'mediumDate' }}</div>
+                            <p>{{ activity.activity_text }} <a href class="text-info">{{ activity.activity_item }} </a></p>
                         </div>
                     </div>
-
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <i class="icon mdi-communication-call-received i-24"></i>
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <span>Incoming Call from</span> Sapna Awasthi
-                                <span class="text-muted block text-xs">6 minutes ago </span>
-                            </div>
-                            <div class="m-b">
-                                <div><img src="images/a10.jpg" class="b p-xs"></div>
-                            </div>
+                    <div class="sl-item sl-item-md">
+                        <div class="sl-icon">
+                            <i class="fa fa-check text-muted-dk"></i>
+                        </div>
+                        <div class="sl-content">
+                            <div class="text-muted-dk">Just now</div>
+                            <p>Finished task <a href class="text-info">#features 4</a>.</p>
                         </div>
                     </div>
-
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <i class="icon mdi-communication-call-missed i-24"></i>
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <span>Missed Call from</span> Meenu Singh
-                                <span class="text-muted block text-xs">1 Hour ago </span>
-                            </div>
-                            <div class="m-b">
-                                <div><img src="images/a3.jpg" class="b p-xs"></div>
-                            </div>
+                    <div class="sl-item sl-item-md b-info">
+                        <div class="sl-icon">
+                            <i class="fa fa-twitter text-info"></i>
+                        </div>
+                        <div class="sl-content">
+                            <div class="text-muted-dk">11:30</div>
+                            <p><a href>@Jessi</a> retwit your post</p>
                         </div>
                     </div>
-
+                    <div class="sl-item b-primary b-l">
+                        <div class="sl-content">
+                            <div class="text-muted-dk">10:30</div>
+                            <p>Call to customer <a href class="text-info">Jacob</a> and discuss the detail.</p>
+                        </div>
+                    </div>
+                    <div class="sl-item sl-item-md b-warning">
+                        <div class="sl-icon">
+                            <i class="fa fa-bolt text-warning"></i>
+                        </div>
+                        <div class="sl-content">
+                            <div class="text-muted-dk">3 days ago</div>
+                            <p><a href class="text-info">Jessi</a> commented your post.</p>
+                        </div>
+                    </div>
+                    <div class="sl-item b-info">
+                        <div class="sl-content">
+                            <div class="text-muted-dk">Thu, 10 Mar</div>
+                            <p>Trip to the moon</p>
+                        </div>
+                    </div>
+                    <div class="sl-item b-info">
+                        <div class="sl-content">
+                            <div class="text-muted-dk">Sat, 5 Mar</div>
+                            <p>Prepare for presentation</p>
+                        </div>
+                    </div>
+                    <div class="sl-item">
+                        <div class="sl-content">
+                            <div class="text-muted-dk">Sun, 11 Feb</div>
+                            <p><a href class="text-info">Jessi</a> assign you a task <a href class="text-info">Mockup
+                                Design</a>.</p>
+                        </div>
+                    </div>
+                    <div class="sl-item">
+                        <div class="sl-content">
+                            <div class="text-muted-dk">Thu, 17 Jan</div>
+                            <p>Follow up to close deal</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <md-button class="md-fab md-primary mdi-editor-mode-edit i-24 md-fab-bottom-right"></md-button>
+    <md-button class="md-fab md-primary mdi-editor-mode-edit i-24 md-fab-bottom-right"
+               aria-label="Fab Button"></md-button>
 </div>

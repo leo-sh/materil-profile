@@ -153,7 +153,7 @@ angular.module('app')
                 name: 'moment',
                 module: false,
                 files: [
-                    '../libs/jquery/moment/moment.js'
+                    'bower_components/moment/moment.js'
                 ]
             }
         ]

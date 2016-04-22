@@ -49,6 +49,21 @@ app.service('AuthService', ['$http', '$q', 'UserPersistenceService', 'IdentifyDe
             logout: function () {
                 UserPersistenceService.destroyUserCredentials();
             },
+            getMemberInfo: function () {
+
+                var defer = $q.defer();
+                $http.get(API_URL + API_TYPE._AUTHENTICATION_.MEMBER_INFO)
+                    .then(
+                        function (response) {
+                            console.log(response);
+                            defer.resolve(response.data.result);
+                        },
+                        function (response) {
+                            reject(response.data.result);
+                        }
+                    );
+                return defer.promise;
+            },
             isAuthenticated: function () {
                 return UserPersistenceService.isAuthenticated();
             }

@@ -28,5 +28,6 @@ angular
         'oc.lazyLoad',
         'angular-loading-bar',
         'environment',
+        'infinite-scroll',
         'ng.deviceDetector'
     ]);
