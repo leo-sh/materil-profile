@@ -22,7 +22,10 @@ module.exports = {
 
         Activities.find({_user_access_id: member_id}, {__v: 0}, {
             skip: offset,
-            limit: limit
+            limit: limit,
+            sort:{
+                activity_time: -1 //Sort by activity_time Added DESC
+            }
         }, function (err, activities) {
 
             if (err) {
@@ -32,13 +35,13 @@ module.exports = {
 
             data = {
                 limit: limit,
-                offset: offset,
-                activities: activities
+                offset: offset
             }
 
             Activities.count({_user_access_id: member_id}, function (err, TotalCount) {
 
                 data.count = TotalCount;
+                data.activities = activities;
 
                 result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
                     'Successfully fetched all Activities.', data);

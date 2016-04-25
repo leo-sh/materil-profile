@@ -18,7 +18,13 @@ var ActivitiesSchema = mongoose.Schema({
             type: Date,
             default: Date.now,
         },
+        activity_title: {
+            type: String
+        },
         activity_text: {
+            type: String
+        },
+        activity_item: {
             type: String
         },
         icon: {
