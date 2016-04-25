@@ -1,5 +1,5 @@
 <div class="row row-sm">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class="panel panel-card">
             <div class="r-t pos-rlt" md-ink-ripple
                  style="background:url(images/a0.jpg) center center; background-size:cover">
@@ -127,108 +127,31 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-8">
         <h4>Your Activities</h4>
-        <div class="panel panel-card clearfix" ng-controller="ProfileController">
-            <div class="p-h-lg m-b-lg">
-                <div class="streamline b-l p-v m-l-xs">
-                    <div infinite-scroll="getMoreData()">
-                        <div ng-repeat="(index, activity) in data">
-                            <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                                <img src="images/a2.jpg" class="img-responsive rounded" alt="user pic">
-                            </a>
-                            <div class="clear">
-                                <div class="m-b-xs">
-                                    <a href>{{ member_info.first_name + ' ' + member_info.last_name }}</a>
-                                    <span class="text-muted block text-xs">{{ activity.activity_time | fromNow }}</span>
-                                </div>
-                                <div class="m-b">
-                                    <div>{{ activity.activity_text}}
-                                        <span class="text-info">{{ activity.activity_item }}</span></div>
-                                </div>
-                            </div>
+        <md-content ng-cloak layout-xs="column" layout="row" ng-controller="ProfileController">
+            <div flex-xs flex-gt-xs layout="column">
+                <md-card ng-repeat="(index, activity) in activities">
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" src="images/a2.jpg"/>
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">{{ member_info.first_name + ' ' + member_info.last_name }}</span>
+                            <span class="md-subhead">{{ activity.activity_time | FromNowFilter }}</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content class="text-center">
+                        <div class="m-b-lg">
+                            <md-icon class="{{ activity.icon }}" style="font-size: 48px;"></md-icon>
                         </div>
-                    </div>
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <img src="images/a3.jpg" class="img-responsive rounded" alt="...">
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <a href>Oscar</a> upload a file
-                                <span class="text-muted block text-xs">3 minutes ago</span>
-                            </div>
-                            <div class="m-b">
-                                <div class="w-xl w-auto-xs">
-                                    <div class="box bg-light">
-                                        <div class="box-col w-xs text-center dk p-md v-m">
-                                            <i class="fa fa-file-text-o text-3x text-muted-lt"></i>
-                                        </div>
-                                        <div class="box-col p">
-                                            <a href>Geuismod tincidunt</a>
-                                            <div>Diam nonummy nibh euismod tincidunt ut laoreet.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-t-sm">
-                                    <a href class="text-muted m-xs">Like</a>
-                                    <a href class="text-muted m-xs">Comment</a>
-                                </div>
-                            </div>
+                        <div class="text-md">
+                            {{ activity.activity_text}}
+                            <span class="text-info">{{ activity.activity_item | CheckDateAndFormatFilter }}</span>
                         </div>
-                    </div>
-
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <img src="images/a4.jpg" class="img-responsive rounded" alt="...">
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <a href>Anny</a> post a photo
-                <span class="text-muted block text-xs">
-                  6 minutes ago
-                </span>
-                            </div>
-                            <div class="m-b">
-                                <div><img src="images/a10.jpg" class="b p-xs"></div>
-                                <div class="m-t-sm">
-                                    <a href class="text-muted m-xs">Like</a>
-                                    <a href class="text-muted m-xs">Comment</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <a class="pull-left w-32 m-l-n m-t-xs m-r">
-                            <img src="images/a5.jpg" class="img-responsive rounded" alt="...">
-                        </a>
-                        <div class="clear">
-                            <div class="m-b-xs">
-                                <a href>Michel</a> post a comment
-                <span class="text-muted block text-xs">
-                  10 minutes ago
-                </span>
-                            </div>
-                            <div class="m-b bg-light">
-                                <div class="p-sm b-b b-white">
-                                    <img src="images/a4.jpg" class="rounded w-20 pull-left m-r-sm" alt="...">
-                                    <a href>Tony</a> liked it
-                                </div>
-                                <div class="p-sm">
-                                    <img src="images/a6.jpg" class="rounded w-20 pull-left m-r-sm" alt="...">
-                                    <a href>Anney</a> Commented it
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                    </md-card-content>
+                </md-card>
             </div>
-        </div>
+        </md-content>
     </div>
-</div>
-<div class="row">
-    <md-button class="md-fab md-primary mdi-editor-mode-edit i-24 md-fab-bottom-right"
-               aria-label="Fab Button"></md-button>
 </div>

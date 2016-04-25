@@ -1,10 +1,6 @@
 // load the things we need
 var mongoose = require('mongoose');
-
-const OS_TYPE_WEB_BROWSER = 1;
-const OS_TYPE_ANDROID = 2;
-const OS_TYPE_IOS = 3;
-const OS_TYPE_UNKNOWN = 9;
+var CONSTANT = require('./../helpers/constants');
 
 // define the schema for our user model
 var userDevicesSchema = mongoose.Schema({
@@ -16,11 +12,12 @@ var userDevicesSchema = mongoose.Schema({
     os_type: {
         type: Number,
         required: true,
+        index: true,
         enum: [
-            OS_TYPE_ANDROID,
-            OS_TYPE_IOS,
-            OS_TYPE_WEB_BROWSER,
-            OS_TYPE_UNKNOWN
+            CONSTANT.OS_TYPE.WEB_BROWSER,
+            CONSTANT.OS_TYPE.ANDROID,
+            CONSTANT.OS_TYPE.IOS,
+            CONSTANT.OS_TYPE.UNKNOWN,
         ]
     },
     created_at: Date,

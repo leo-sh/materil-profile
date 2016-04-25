@@ -11,7 +11,9 @@ define('USER_TYPE', {
 // User Sex
 define('USER_SEX', {
     SEX_MALE: 1,
-    SEX_FEMALE: 0
+    SEX_FEMALE: 0,
+    MALE: 'Male',
+    FEMALE: 'Female',
 })
 // User Show Value To Others
 define('USER_SHOW_OTHERS', {

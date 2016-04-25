@@ -14,15 +14,10 @@ app.controller('ProfileController',
             ProfileService.getActivities()
                 .then(
                     function (response) {
+                        console.log(response);
                         $scope.activities = response.data.activities;
                     }
                 );
-
-
-            $scope.data = $scope.activities.slice(0, 5);
-            $scope.getMoreData = function () {
-                $scope.data = $scope.activities.slice(0, $scope.data.length + 5);
-            }
 
         }
     ]);

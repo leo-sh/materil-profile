@@ -40,6 +40,7 @@ module.exports = function (req, res, next) {
                             first_name: userDetails.first_name,
                             last_name: userDetails.last_name,
                             nick_name: userDetails.nick_name,
+                            sex: userDetails.sex,
                             dob: userDetails.dob,
                             show_dob: userDetails.show_dob,
                             addresses: userDetails.addresses,

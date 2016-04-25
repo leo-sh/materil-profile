@@ -49,6 +49,24 @@ userDetailsSchema.pre('save', function (next) {
 
     var currentDate = new Date();
 
+    var activity = new Activities();
+    activity._user_access_id = this._user_access_id;
+    activity.activity_type = CONSTANT.ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY;
+    activity.activity_time = currentDate;
+    activity.activity_text = 'Notification Settings are updated';
+    activity.activity_item = '';
+    activity.icon = 'mdi-action-settings';
+    activity.image = null;
+
+    activity.save(function (err) {
+
+        if (err) {
+            console.log('Error in saving Nick Name to activities: UserDetailsModel');
+            throw err;
+        }
+
+    });
+
     this.updated_at = currentDate;
 
     if (!this.created_at) {

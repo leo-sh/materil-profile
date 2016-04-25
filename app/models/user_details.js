@@ -1,5 +1,6 @@
 // load the things we need
 var mongoose = require('mongoose');
+var moment = require('moment');
 var CONSTANT = require('./../helpers/constants');
 var Activities = require('./activities');
 // define the schema for our user model
@@ -8,23 +9,31 @@ var userDetailsSchema = mongoose.Schema({
         _user_access_id: mongoose.Schema.Types.ObjectId,
         first_name: {
             type: String,
-            index: true
+            index: true,
+            set: setAndGetFormatNames,
+            get: setAndGetFormatNames
         },
         last_name: {
             type: String,
-            index: true
+            index: true,
+            set: setAndGetFormatNames,
+            get: setAndGetFormatNames
         },
         nick_name: {
             type: String,
-            index: true
+            index: true,
+            set: setAndGetFormatNames,
+            get: setAndGetFormatNames
         },
         dob: {
             type: Date,
             default: '1991-01-01',
+            get: setAndGetFormatDateOfBirth,
+            set: setAndGetFormatDateOfBirth
         },
         show_dob: {
             type: Boolean,
-            default: CONSTANT.USER_SHOW_OTHERS.DONT_SHOW_TO_OTHERS, //0: Don't show to others
+            default: CONSTANT.USER_SHOW_OTHERS.DONT_SHOW_TO_OTHERS, //false: Don't show to others
         },
         sex: {
             type: Number,
@@ -191,8 +200,8 @@ userDetailsSchema.pre('save', function (next) {
         activity.activity_type = CONSTANT.ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY;
         activity.activity_time = currentDate;
         activity.activity_text = 'Updated Mobile phone book';
-        activity.activity_item = this.contact_numbers;
-        activity.icon = 'mdi-editor-border-color';
+        activity.activity_item = '';
+        activity.icon = 'mdi-hardware-phone-iphone';
         activity.image = null;
 
         activity.save(function (err) {
@@ -212,7 +221,7 @@ userDetailsSchema.pre('save', function (next) {
         activity.activity_type = CONSTANT.ACTIVITY_TYPE.DETAILS_UPDATING_ACTIVITY;
         activity.activity_time = currentDate;
         activity.activity_text = 'Updated Email Address book';
-        activity.activity_item = this.email_addresses;
+        activity.activity_item = '';
         activity.icon = 'mdi-action-face-unlock';
         activity.image = null;
 
@@ -233,7 +242,7 @@ userDetailsSchema.pre('save', function (next) {
         activity.activity_type = CONSTANT.ACTIVITY_TYPE.DETAILS_UPDATING_ACTIVITY;
         activity.activity_time = currentDate;
         activity.activity_text = 'Updated Address book';
-        activity.activity_item = this.addresses;
+        activity.activity_item = '';
         activity.icon = 'mdi-action-face-unlock';
         activity.image = null;
 
@@ -297,6 +306,22 @@ userDetailsSchema.pre('save', function (next) {
 
     next();
 });
+
+// getters
+function setAndGetFormatDateOfBirth(dob) {
+
+    return moment(dob);
+}
+
+//----------------------Setters-------------------------------
+// making first letter capital of names
+function setAndGetFormatNames(name) {
+    var string = name.split("");
+    string[0] = string[0].toUpperCase();
+    string = string.join('');
+
+    return string;
+}
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('user_details', userDetailsSchema);
