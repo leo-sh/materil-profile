@@ -26,6 +26,12 @@ angular.module('app')
         },
         _ACTIVITIES_: {
             FETCH: '/api/authentication/activities',
+        },
+        _LABELS_: {
+            FETCH: '/api/authentication/labels',
+        },
+        _CONTACTS_: {
+            PHONE_NUMBERS: '/api/authentication/numbers',
         }
     })
     .constant('RESULT_RESPONSE_TYPE', {

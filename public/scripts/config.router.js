@@ -164,7 +164,13 @@ angular.module('app')
                     .state('app.profile', {
                         url: '/profile',
                         templateUrl: 'views/pages/profile.html',
-                        resolve: load(['scripts/controllers/material.js', 'scripts/controllers/ProfileController.js', 'scripts/services/ProfileService.js', 'moment']),
+                        controller: 'ProfileController',
+                        resolve: load(['scripts/controllers/material.js',
+                            'scripts/controllers/ProfileController.js',
+                            'scripts/services/ProfileService.js',
+                            'scripts/services/LabelsService.js',
+                            'scripts/services/ContactsService.js',
+                            'moment']),
                         data: {
                             title: 'Profile',
                             folded: true,

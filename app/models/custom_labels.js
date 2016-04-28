@@ -12,6 +12,10 @@ var CustomLabelsSchema = mongoose.Schema({
             type: String,
             required: true,
             index: true
+        },
+        label_icon: {
+            type: String,
+            required: true
         }
     },
     {
@@ -33,18 +37,18 @@ CustomLabelsSchema.virtual('label_id').get(
 
 // add and update the date on Every save
 
-//CustomLabelsSchema.pre('save', function (next) {
-//
-//    var currentDate = new Date();
-//
-//    this.updated_at = currentDate;
-//
-//    if (!this.created_at) {
-//        this.created_at = currentDate;
-//    }
-//
-//    next();
-//});
+CustomLabelsSchema.pre('save', function (next) {
+
+    var currentDate = new Date();
+
+    this.updated_at = currentDate;
+
+    if (!this.created_at) {
+        this.created_at = currentDate;
+    }
+
+    next();
+});
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('custom_labels', CustomLabelsSchema);

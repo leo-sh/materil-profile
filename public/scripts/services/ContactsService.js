@@ -1,13 +1,13 @@
 // persisting email as _user in the cookies for the user to identify in the sessions.
-app.service('ProfileService',
+app.service('ContactsService',
     ['$http', '$q', 'API_TYPE', 'GetURLFactory',
         function ($http, $q, API_TYPE, GetURLFactory) {
 
             return {
-                getActivities: function (limit, offset) {
+                getContactNumbers: function (limit, offset) {
                     var defer = $q.defer();
 
-                    $http.get(GetURLFactory.getURL() + API_TYPE._ACTIVITIES_.FETCH,
+                    $http.get(GetURLFactory.getURL() + API_TYPE._CONTACTS_.PHONE_NUMBERS,
                         {
                             params: {limit: limit, offset: offset}
                         })

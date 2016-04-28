@@ -34,8 +34,8 @@ module.exports = {
             }
 
             data = {
-                limit: limit,
-                offset: offset
+                limit: parseInt(limit),
+                offset: parseInt(offset)
             }
 
             Activities.count({_user_access_id: member_id}, function (err, TotalCount) {

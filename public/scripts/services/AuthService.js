@@ -55,7 +55,6 @@ app.service('AuthService', ['$http', '$q', 'UserPersistenceService', 'IdentifyDe
                 $http.get(API_URL + API_TYPE._AUTHENTICATION_.MEMBER_INFO)
                     .then(
                         function (response) {
-                            console.log(response);
                             defer.resolve(response.data.result);
                         },
                         function (response) {

@@ -64,7 +64,7 @@ module.exports = {
                     }
 
                     data.count = TotalCount;
-                    data.phoneNumbers = phoneNumbers;
+                    data.phone_numbers = phoneNumbers;
 
                     result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
                         'Successfully fetched all Phone Numbers.', data);
