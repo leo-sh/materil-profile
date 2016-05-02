@@ -150,12 +150,19 @@ angular.module('app')
                 ]
             },
             {
+                name: 'showToastService',
+                module: false,
+                files: [
+                    'scripts/services/ShowToastService.js'
+                ]
+            },
+            {
                 name: 'moment',
                 module: false,
                 files: [
                     'bower_components/moment/moment.js'
                 ]
-            }
+            },
         ]
     )
     .config(['$ocLazyLoadProvider', 'MODULE_CONFIG', function ($ocLazyLoadProvider, MODULE_CONFIG) {

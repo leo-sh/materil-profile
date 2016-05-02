@@ -209,8 +209,9 @@ angular.module('app')
                     })
                     .state('app.settings.notifications', {
                         url: '/notifications',
+                        controller: 'NotificationsSettingsController',
                         templateUrl: 'views/pages/partials/settings/notifications_settings.html',
-                        resolve: load(['scripts/controllers/NotificationsSettingsController.js']),
+                        resolve: load(['scripts/controllers/NotificationsSettingsController.js', 'showToastService']),
                         data: {
                             title: 'Notifications Settings',
                             restricted: true
@@ -219,7 +220,7 @@ angular.module('app')
                     .state('app.settings.account', {
                         url: '/account',
                         templateUrl: 'views/pages/partials/settings/account_settings.html',
-                        resolve: load(['scripts/controllers/AccountSettingsController.js']),
+                        resolve: load(['scripts/controllers/AccountSettingsController.js', 'showToastService']),
                         data: {
                             title: 'Account Settings',
                             restricted: true
