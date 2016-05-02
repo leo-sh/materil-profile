@@ -4,7 +4,7 @@ app.controller('AccountSettingsController',
     ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', '$mdDialog', '$mdMedia', 'ShowToast',
         function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog, $mdMedia, ShowToast) {
 
-            $scope.user.primary_email = 'Summmmit44@gmail.com';
+            $scope.primary_email = 'Summmmit44@gmail.com';
 
             $scope.setNewPrimaryEmail = function (ev) {
 

@@ -45,8 +45,8 @@ angular.module('app')
                 name: 'ngImgCrop',
                 module: true,
                 files: [
-                    '../libs/angular/ngImgCrop/compile/minified/ng-img-crop.js',
-                    '../libs/angular/ngImgCrop/compile/minified/ng-img-crop.css'
+                    'bower_components/ngImgCrop/compile/minified/ng-img-crop.js',
+                    'bower_components/ngImgCrop/compile/minified/ng-img-crop.css'
                 ]
             },
             {

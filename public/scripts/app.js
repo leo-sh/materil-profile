@@ -21,6 +21,7 @@ angular
         'ngStore',
         'ui.router',
         'ui.utils',
+        'ngFileUpload',
         'ui.bootstrap',
         'ui.load',
         'ui.jp',

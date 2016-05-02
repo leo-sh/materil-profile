@@ -174,9 +174,14 @@ angular.module('app')
                     // Settings Page ------------------------------------------------------------------------------------Start
                     .state('app.settings', {
                         url: '/settings',
-                        controller: 'settingsController',
+                        controller: 'SettingsController',
                         templateUrl: 'views/pages/settings.html',
-                        resolve: load(['scripts/controllers/material.js', 'scripts/controllers/settingsController.js', 'scripts/services/SettingsService.js']),
+                        resolve: load([
+                            'scripts/controllers/material.js',
+                            'scripts/services/HomeService.js',
+                            'ngImgCrop',
+                            'scripts/controllers/SettingsController.js',
+                            'scripts/services/SettingsService.js']),
                         data: {
                             title: 'Settings',
                             restricted: true,
