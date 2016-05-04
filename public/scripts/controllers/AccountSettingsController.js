@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('AccountSettingsController',
-    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', '$mdDialog', '$mdMedia', 'ShowToast',
-        function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog, $mdMedia, ShowToast) {
+    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', '$mdDialog', '$mdMedia', 'showToastService',
+        function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog, $mdMedia, showToastService) {
 
             $scope.user.primary_email = 'Summmmit44@gmail.com';
             $scope.user.country_code = '81';
@@ -37,7 +37,7 @@ app.controller('AccountSettingsController',
                     })
                     .then(function (user) {
                         $scope.user.primary_email = user.new_primary_email;
-                        ShowToast.showSimpleToast('Primary Email is changed!!');
+                        showToastService.showSimpleToast('Primary Email is changed!!');
                     }, function () {
                         //$scope.status = 'You cancelled the dialog.';
                         console.log('Sorry cant update your email right now');
@@ -54,7 +54,7 @@ app.controller('AccountSettingsController',
                         clickOutsideToClose: true,
                     })
                     .then(function () {
-                        ShowToast.showSimpleToast('Your Password is changed!!');
+                        showToastService.showSimpleToast('Your Password is changed!!');
                     }, function () {
                         //$scope.status = 'You cancelled the dialog.';
                         console.log('Sorry cant update your Password right now');
@@ -130,52 +130,7 @@ function changePassword($scope, $mdDialog) {
         $mdDialog.hide(answer);
     };
     $scope.changeUserPassword = function (user) {
-        console.log(user);
         $mdDialog.hide(user);
     };
 
 }
-app.service('ShowToast',
-    ['$mdToast', function ($mdToast) {
-
-        var last = {
-            bottom: false,
-            top: true,
-            left: false,
-            right: true
-        };
-
-        var toastPosition = angular.extend({}, last);
-        var getToastPosition = function () {
-            sanitizePosition();
-            return Object.keys(toastPosition)
-                .filter(function (pos) {
-                    return toastPosition[pos];
-                })
-                .join(' ');
-        };
-
-        function sanitizePosition() {
-            var current = toastPosition;
-            if (current.bottom && last.top) current.top = false;
-            if (current.top && last.bottom) current.bottom = false;
-            if (current.right && last.left) current.left = false;
-            if (current.left && last.right) current.right = false;
-            last = angular.extend({}, current);
-        }
-
-        return {
-            showSimpleToast: function (message) {
-
-                var pinTo = getToastPosition();
-                $mdToast.show(
-                    $mdToast.simple()
-                        .textContent(message)
-                        .position(pinTo)
-                        .hideDelay(3000)
-                );
-            }
-        }
-
-    }]
-);

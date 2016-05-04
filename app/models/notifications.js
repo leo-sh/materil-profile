@@ -1,5 +1,6 @@
 // load the things we need
 var mongoose = require('mongoose');
+var Activities = require('./activities');
 var CONSTANT = require('./../helpers/constants');
 // define the schema for our user model
 var notificationsSchema = mongoose.Schema({
@@ -8,29 +9,24 @@ var notificationsSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
-        email_notifications: {
-            news_and_updates: {
-                type: Boolean,
-                default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
-            },
-            offers: {
-                type: Boolean,
-                default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
-            }
+        email_news: {
+            type: Boolean,
+            default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
         },
-        mobile_notifications: {
-            news_and_updates: {
-                type: Boolean,
-                default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
-            },
-            offers: {
-                type: Boolean,
-                default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
-            }
+        email_offers: {
+            type: Boolean,
+            default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
+        },
+        mobile_news: {
+            type: Boolean,
+            default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
+        },
+        mobile_offers: {
+            type: Boolean,
+            default: CONSTANT.NOTIFICATIONS.NOTIFICATION_YES, //1: show notifications
         },
         created_at: Date,
-        updated_at: Date,
-        deleted_at: Date
+        updated_at: Date
     },
     {
         timestamps: {
@@ -45,7 +41,7 @@ var notificationsSchema = mongoose.Schema({
 
 // add and update the date on Every save
 
-userDetailsSchema.pre('save', function (next) {
+notificationsSchema.pre('save', function (next) {
 
     var currentDate = new Date();
 

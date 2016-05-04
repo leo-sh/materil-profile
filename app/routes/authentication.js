@@ -6,6 +6,7 @@ var ContactNumbersSettingsValidator = require('./../controllers/parameterValidat
 var LabelsSettingsValidator = require('./../controllers/parameterValidators/LabelsSettingsValidator');
 var LabelsSettingsController = require('./../controllers/labelsSettingsController');
 var ContactNumbersSettingsController = require('./../controllers/ContactNumbersSettingsController');
+var SettingsController = require('./../controllers/SettingsController');
 
 module.exports = function (authentication, passport) {
 
@@ -27,6 +28,10 @@ module.exports = function (authentication, passport) {
 
     // -------------------------------------- Activities ----------------------------------------------------------------
     authentication.get('/activities', ActivitiesAPI.getActivities);
+
+    // -------------------------------------- Notifications ----------------------------------------------------------------
+    authentication.get('/notifications', SettingsController.getNotifications);
+    authentication.put('/notifications', SettingsController.putNotifications);
 
     //get user status
     authentication.get('/user/status', userAccessController.userStatus);

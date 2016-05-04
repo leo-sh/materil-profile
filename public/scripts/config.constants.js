@@ -30,6 +30,9 @@ angular.module('app')
         _LABELS_: {
             FETCH: '/api/authentication/labels',
         },
+        _NOTIFICATIONS_: {
+            FETCH: '/api/authentication/notifications',
+        },
         _CONTACTS_: {
             PHONE_NUMBERS: '/api/authentication/numbers',
         }
