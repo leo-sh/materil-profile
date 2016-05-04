@@ -66,7 +66,9 @@
     "ng-device-detector": "^3.0.1",
     "angular-environment": "^1.0.3",
     "international-phone-number": "^0.0.16",
-    "ngInfiniteScroll": "^1.2.2"
+    "ngInfiniteScroll": "^1.2.2",
+    "ngMask": "angular-mask#^3.0.16",
+    "ng-intl-tel-input": "^1.4.0"
   },
   "resolutions": {
     "angular-touch": "1.4.x",

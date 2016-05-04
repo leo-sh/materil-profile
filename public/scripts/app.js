@@ -19,6 +19,7 @@ angular
         'ngMaterial',
         'ngStorage',
         'ngStore',
+        'ngMask',
         'ui.router',
         'ui.utils',
         'ui.bootstrap',

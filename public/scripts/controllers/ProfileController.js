@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('ProfileController',
-    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'AuthService', 'ProfileService', 'LabelsService', 'ContactsService',
-        function ($scope, $state, $stateParams, HTTP_CODES, AuthService, ProfileService, LabelsService, ContactsService) {
+    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'AuthService', 'ProfileService', 'LabelsService',
+        function ($scope, $state, $stateParams, HTTP_CODES, AuthService, ProfileService, LabelsService) {
 
             AuthService.getMemberInfo()
                 .then(
@@ -15,14 +15,6 @@ app.controller('ProfileController',
                 .then(
                     function(response){
                         $scope.labels = response.data;
-                    }
-                )
-
-            ContactsService.getContactNumbers()
-                .then(
-                    function(response){
-
-                        $scope.phone_numbers = response.data.phone_numbers;
                     }
                 )
 
@@ -39,20 +31,20 @@ app.controller('ProfileController',
 
                 var increment = 10;
 
-                ProfileService.getActivities(limit, offset)
-                    .then(
-                        function (response) {
-                            console.log(response.data);
-                            console.log(response.data.activities);
-                            var items = response.data.activities;
-                            offset = offset + increment;
-                            for(var i = 0; i < items.length; i++ ){
-                                $scope.activities.push(items[i]);
-
-                                count = count + 1;
-                            }
-                        }
-                    );
+                //ProfileService.getActivities(limit, offset)
+                //    .then(
+                //        function (response) {
+                //            console.log(response.data);
+                //            console.log(response.data.activities);
+                //            var items = response.data.activities;
+                //            offset = offset + increment;
+                //            for(var i = 0; i < items.length; i++ ){
+                //                //$scope.activities.push(items[i]);
+                //
+                //                count = count + 1;
+                //            }
+                //        }
+                //    );
             };
 
             $scope.loadMore();

@@ -9,6 +9,10 @@ var PhoneNumbersSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
+        country_code: {
+            type: String,
+            required: true
+        },
         number: {
             type: String,
             required: true,

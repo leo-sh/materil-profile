@@ -3,18 +3,40 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var randomstring = require("randomstring");
 var CheckUserType = require('./../helpers/checkUserType');
+var CONSTANT = require('./../helpers/constants');
+var Activities = require('./activities');
 
 // define the schema for our user model
 var userAccessSchema = mongoose.Schema({
 
     email: {
-        type: String, required: true, unique: true
+        type: String,
+        required: true,
+        index: true,
+        unique: true
     },
-    email_updated_at: Date,
+    email_updated_at: {
+        type: Date
+    },
     password: {
-        type: String, required: true
+        type: String,
+
+        required: true
     },
-    password_updated_at: Date,
+    password_updated_at: {
+        type: Date
+    },
+    country_code: {
+        type: String,
+    },
+    contact_number: {
+        type: String,
+        index: true,
+        unique: true,
+    },
+    contact_number_updated_at: {
+        type: Date
+    },
     activated: {
         type: Boolean
     },
@@ -57,6 +79,10 @@ userAccessSchema.pre('save', function (next) {
 
     if (!this.email_updated_at || this.isModified('email')) {
         this.email_updated_at = currentDate;
+    }
+
+    if (!this.contact_number_updated_at || this.isModified('contact_number_updated_at')) {
+        this.contact_number_updated_at = currentDate;
     }
 
     if (!this.password_updated_at || this.isModified('password')) {

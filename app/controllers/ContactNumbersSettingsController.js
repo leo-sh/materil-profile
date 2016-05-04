@@ -78,12 +78,14 @@ module.exports = {
 
         var number = req.body.number;
         var _type_id = req.body._type_id;
+        var country_code = req.body.country_code;
         var member_id = req.member.member_details_id;
 
         var result;
 
         var phone_number = new PhoneNumbers();
         phone_number._type_id = _type_id;
+        phone_number.country_code = country_code;
         phone_number.number = number;
         phone_number.save(function (err) {
 

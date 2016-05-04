@@ -1,0 +1,32 @@
+<!------- Organisational Details ------------------------------------------------------------>
+<div class="p-md bg-light lt b-b font-bold">Change Primary Email</div>
+<div layout="column" layout-padding ng-cloak class="md-inline-form">
+    <div class="col-md-12">
+        <form name="changeContactNumberForm">
+            <md-content layout-full>
+                <div layout="row">
+                    <md-input-container>
+                        <label>State</label>
+                        <md-select ng-model="user.country_code">
+                            <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                {{state.abbrev}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>New Phone Number</label>
+                        <input ng-model="user.new_contact_number" mask="99-9999-9999" clean="true" type="text" required>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input ng-model="user.current_password" type="password" required minlength="6">
+                </md-input-container>
+                <button type="button" class="btn btn-info pull-right" ng-disabled="changeContactNumberForm.$invalid"
+                        ng-click="changeNumber(user)">Change
+                </button>
+                <button type="button" class="btn btn-info" ng-click="cancel()">Cancel</button>
+            </md-content>
+        </form>
+    </div>
+</div>

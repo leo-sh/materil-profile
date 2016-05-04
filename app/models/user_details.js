@@ -42,26 +42,6 @@ var userDetailsSchema = mongoose.Schema({
                 CONSTANT.USER_SEX.SEX_MALE,   //1: male
             ]
         },
-        contact_numbers: [
-            {
-                phone_number_id: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    required: true,
-                    index: true
-                },
-                _id: false
-            }
-        ],
-        email_addresses: [
-            {
-                email_id: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    required: true,
-                    index: true
-                },
-                _id: false
-            }
-        ],
         addresses: [
             {
                 address_id: {

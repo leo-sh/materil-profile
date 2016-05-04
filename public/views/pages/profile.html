@@ -8,7 +8,9 @@
                         <img src="images/a0.jpg" class="img-circle img-responsive">
                     </a>
                     <div class="m-b m-t-sm h2">
-                        <span class="">{{ member_info.first_name + ' ' + member_info.last_name }} <small>({{ member_info.nick_name }})</small></span>
+                        <span class="">{{ member_info.first_name + ' ' + member_info.last_name }} <small>({{
+                            member_info.nick_name }})
+                        </small></span>
                     </div>
                 </div>
             </div>
@@ -43,13 +45,6 @@
                                             <p> Home </p>
                                         </div>
                                     </md-list-item>
-                                    <md-list-item class="md-2-line">
-                                        <div class="md-list-item-text" ng-class="{'md-offset': true }">
-                                            <h3>Nishi-Ikebukuro, 3-12-11 <br> Beverly Homes, 301 <br> Toshima-ku, Tokyo
-                                                <br> Japan<br> (171-0021)</h3>
-                                            <p> Office </p>
-                                        </div>
-                                    </md-list-item>
                                 </md-list>
                             </md-content>
                         </md-tab>
@@ -57,36 +52,11 @@
                             <md-content class="md-padding">
                                 <md-list flex>
                                     <md-subheader class="md-no-sticky">Contact Numbers</md-subheader>
-                                    <md-list-item class="md-2-line" ng-repeat="(index, phone_number) in phone_numbers">
-                                        <md-icon class="mdi-maps-local-phone i-24"></md-icon>
-                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> {{ phone_number.number }} </h3>
-                                            <p ng-repeat="(i, label) in labels">
-                                                {{ (phone_number._type_id == label._id) ? label.label_name : ''}}
-                                            </p>
-                                        </div>
-                                        <md-button class="md-secondary md-icon-button"
-                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
-                                                   aria-label="call">
-                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
-                                        </md-button>
-                                    </md-list-item>
-                                    <md-list-item class="md-2-line">
-                                        <div class="md-list-item-text" ng-class="{'md-offset': true }">
-                                            <h3> (555) 251-1234 </h3>
-                                            <p> Mobile </p>
-                                        </div>
-                                        <md-button class="md-secondary md-icon-button"
-                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
-                                                   aria-label="call">
-                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
-                                        </md-button>
-                                    </md-list-item>
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-hardware-phone-iphone i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> (555) 251-1234 </h3>
-                                            <p> office </p>
+                                            <h3> ( + {{ member_info.country_code }}) {{ member_info.contact_number }}</h3>
+                                            <p> ({{ member_info.contact_number_updated_at | FromNowFilter }}) </p>
                                         </div>
                                         <md-button class="md-secondary md-icon-button"
                                                    ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
@@ -101,8 +71,8 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-communication-email i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> summmmit44@gmail.com </h3>
-                                            <p> Home </p>
+                                            <h3> {{ member_info.primary_email }} </h3>
+                                            <p> ({{ member_info.primary_email_updated_at | FromNowFilter }}) </p>
                                         </div>
                                         <md-button class="md-secondary md-icon-button"
                                                    ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
@@ -110,16 +80,17 @@
                                             <md-icon class="mdi-maps-local-phone i-20"></md-icon>
                                         </md-button>
                                     </md-list-item>
+                                </md-list>
+                                <md-divider></md-divider>
+                                <md-subheader class="md-no-sticky">Address</md-subheader>
+                                <md-list flex>
                                     <md-list-item class="md-2-line">
-                                        <div class="md-list-item-text" ng-class="{'md-offset': true }">
-                                            <h3> shiivisingh@gmail.com </h3>
-                                            <p>Office</p>
+                                        <md-icon class="mdi-maps-place i-24"></md-icon>
+                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                                            <h3>Nishi-Ikebukuro, 3-12-11 <br> Beverly Homes, 301 <br> Toshima-ku, Tokyo
+                                                <br> Japan<br> (171-0021)</h3>
+                                            <p> Home </p>
                                         </div>
-                                        <md-button class="md-secondary md-icon-button"
-                                                   ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
-                                                   aria-label="call">
-                                            <md-icon class="mdi-maps-local-phone i-20"></md-icon>
-                                        </md-button>
                                     </md-list-item>
                                 </md-list>
                             </md-content>

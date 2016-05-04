@@ -20,10 +20,10 @@ module.exports = function (authentication, passport) {
     authentication.delete('/labels/:label_id', LabelsSettingsValidator.deleteLabelsValidator, LabelsSettingsController.deleteLabels);
 
     // -------------------------------------- Phone Numbers ----------------------------------------------------------------
-    authentication.get('/numbers', ContactNumbersSettingsController.getNumbers);
-    authentication.post('/numbers', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
-    authentication.put('/numbers', ContactNumbersSettingsValidator.postNumbersValidator, ContactNumbersSettingsController.postNumbers);
-    authentication.delete('/numbers/:number_id', ContactNumbersSettingsValidator.deleteNumbersValidator, ContactNumbersSettingsController.deleteNumbers);
+    authentication.patch('/numbers', userAccessController.patchChangeContactNumber);
+
+    // -------------------------------------- Email Address ----------------------------------------------------------------
+    authentication.patch('/emails', userAccessController.patchEmailAddress);
 
     // -------------------------------------- Activities ----------------------------------------------------------------
     authentication.get('/activities', ActivitiesAPI.getActivities);

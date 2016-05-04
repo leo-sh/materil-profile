@@ -14,7 +14,6 @@ module.exports = {
 
         res.json({'result': result})
     },
-
     putMemberInfo: function (req, res) {
 
         var result = {};

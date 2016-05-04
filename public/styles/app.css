@@ -6231,3 +6231,5 @@ a.text-dark:hover {
     width: 100%;
   }
 }
+
+.iti-flag {background-image: url("bower_components/intl-tel-input/build/img/flags.png");}

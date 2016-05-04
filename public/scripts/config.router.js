@@ -218,6 +218,7 @@ angular.module('app')
                     })
                     .state('app.settings.account', {
                         url: '/account',
+                        controller: 'AccountSettingsController',
                         templateUrl: 'views/pages/partials/settings/account_settings.html',
                         resolve: load(['scripts/controllers/AccountSettingsController.js']),
                         data: {

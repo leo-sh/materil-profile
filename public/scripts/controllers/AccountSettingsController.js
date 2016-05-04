@@ -5,6 +5,26 @@ app.controller('AccountSettingsController',
         function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog, $mdMedia, ShowToast) {
 
             $scope.user.primary_email = 'Summmmit44@gmail.com';
+            $scope.user.country_code = '81';
+            $scope.user.contact_number = '87-6537-7003';
+
+            $scope.setNewContactNumber = function (ev) {
+
+                $mdDialog.show({
+                        controller: changeContactNumber,
+                        templateUrl: 'views/pages/partials/settings/change_contact_number.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                    })
+                    .then(function (user) {
+                        $scope.user.contact_number = user.new_contact_number;
+                        ShowToast.showSimpleToast('Your Contact Number is changed!!');
+                    }, function () {
+                        //$scope.status = 'You cancelled the dialog.';
+                        console.log('Sorry cant update your Number right now');
+                    });
+            };
 
             $scope.setNewPrimaryEmail = function (ev) {
 
@@ -58,6 +78,28 @@ app.controller('AccountSettingsController',
             };
         }
     ]);
+
+function changeContactNumber($scope, $mdDialog) {
+    $scope.userState = '';
+    $scope.states = ('IND ( + 91), JP ( + 81) ').split(',').map(function (state) {
+        return {abbrev: state};
+    });
+
+    $scope.hide = function () {
+        $mdDialog.hide();
+    };
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    };
+    $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
+    };
+    $scope.changeNumber = function (user) {
+        console.log(user);
+        $mdDialog.hide(user);
+    };
+
+}
 
 function changePrimaryEmail($scope, $mdDialog) {
 

@@ -4,6 +4,100 @@ var CONSTANTS = require('./../helpers/constants');
 var ResultResponses = require('./../helpers/resultResponses');
 
 module.exports = {
+    // Change Contact Number
+    patchChangeContactNumber: function (req, res, next) {
+
+        var result = {};
+
+        var country_code = req.body.country_code;
+        var contact_number = req.body.contact_number;
+        var current_password = req.body.current_password;
+        console.log(req.body);
+
+        UserAccess.findOne({_id: req.member._id}, function (err, userAccess) {
+
+            result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+                'Some Error Occurred.');
+
+            if (err)
+                next(err);
+
+            if (userAccess) {
+
+                if (userAccess.validPassword(current_password)) {
+
+                    userAccess.country_code = country_code;
+                    userAccess.contact_number = contact_number;
+                    userAccess.save(function (err) {
+                        if (err)
+                            next(err);
+                    })
+                    var data = {
+                        country_code: country_code,
+                        contact_number_updated_at: userAccess.contact_number_updated_at,
+                        contact_number: contact_number
+                    }
+                    result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK, 'Phone Number Changed!!', data);
+
+                } else {
+
+                    result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                        'Invalid Password');
+                }
+
+            } else {
+
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                    'User Not Found');
+            }
+            res.json({'result': result});
+        })
+    },
+    // Change Email Address
+    patchEmailAddress: function (req, res, next) {
+
+        var result = {};
+
+        var email = req.body.email;
+        var current_password = req.body.current_password;
+
+        UserAccess.findOne({_id: req.member._id}, function (err, userAccess) {
+
+            result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+                'Some Error Occurred.');
+
+            if (err)
+                next(err);
+
+            if (userAccess) {
+
+                if (userAccess.validPassword(current_password)) {
+
+                    userAccess.email = email;
+                    userAccess.save(function (err) {
+                        if (err)
+                            next(err);
+                    })
+                    var data = {
+                        email: email,
+                        email_updated_at: userAccess.email_updated_at
+                    }
+                    result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK, 'Email Address Changed!!', data);
+
+                } else {
+
+                    result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                        'Invalid Password');
+                }
+
+            } else {
+
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                    'User Not Found');
+            }
+            res.json({'result': result});
+        })
+    },
     checkResetCode: function (req, res, next) {
 
         var user_id = req.params.user_id;
