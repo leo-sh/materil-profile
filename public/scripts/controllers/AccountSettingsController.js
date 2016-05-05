@@ -1,12 +1,8 @@
 'use strict';
 
 app.controller('AccountSettingsController',
-    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', '$mdDialog', '$mdMedia', 'showToastService',
-        function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog, $mdMedia, showToastService) {
-
-            $scope.user.primary_email = 'Summmmit44@gmail.com';
-            $scope.user.country_code = '81';
-            $scope.user.contact_number = '87-6537-7003';
+    ['$rootScope', '$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', '$mdDialog', '$mdMedia', 'showToastService',
+        function ($rootScope, $scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog, $mdMedia, showToastService) {
 
             $scope.setNewContactNumber = function (ev) {
 
@@ -20,9 +16,6 @@ app.controller('AccountSettingsController',
                     .then(function (user) {
                         $scope.user.contact_number = user.new_contact_number;
                         ShowToast.showSimpleToast('Your Contact Number is changed!!');
-                    }, function () {
-                        //$scope.status = 'You cancelled the dialog.';
-                        console.log('Sorry cant update your Number right now');
                     });
             };
 
@@ -36,11 +29,24 @@ app.controller('AccountSettingsController',
                         clickOutsideToClose: true,
                     })
                     .then(function (user) {
-                        $scope.user.primary_email = user.new_primary_email;
-                        showToastService.showSimpleToast('Primary Email is changed!!');
-                    }, function () {
-                        //$scope.status = 'You cancelled the dialog.';
-                        console.log('Sorry cant update your email right now');
+
+                        SettingsService.changeEmailAddress(user)
+                            .then(function (response) {
+
+                                console.log(response);
+
+                                if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
+
+                                    $rootScope.user.primary_email = response.data.email;
+                                    $rootScope.user.email = response.data.email;
+                                    showToastService.showSimpleToast(response.statusText);
+                                } else {
+                                    showToastService.showSimpleToast(response.statusText);
+                                }
+
+                            }, function (response) {
+                                showToastService.showSimpleToast(response.statusText);
+                            })
                     });
             };
 
@@ -55,9 +61,6 @@ app.controller('AccountSettingsController',
                     })
                     .then(function () {
                         showToastService.showSimpleToast('Your Password is changed!!');
-                    }, function () {
-                        //$scope.status = 'You cancelled the dialog.';
-                        console.log('Sorry cant update your Password right now');
                     });
             };
 
@@ -70,11 +73,10 @@ app.controller('AccountSettingsController',
                     .targetEvent(ev)
                     .ok('Yes!!')
                     .cancel('Cancel!!');
-                $mdDialog.show(confirm).then(function () {
-                    console.log('You decided to get rid of your debt.');
-                }, function () {
-                    console.log('You decided to keep your debt.');
-                });
+                $mdDialog.show(confirm)
+                    .then(function () {
+                        console.log('You decided to get rid of your debt.');
+                    });
             };
         }
     ]);

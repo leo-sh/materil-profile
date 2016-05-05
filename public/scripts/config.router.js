@@ -180,9 +180,11 @@ angular.module('app')
                     // Settings Page ------------------------------------------------------------------------------------Start
                     .state('app.settings', {
                         url: '/settings',
-                        controller: 'settingsController',
+                        controller: 'SettingsController',
                         templateUrl: 'views/pages/settings.html',
-                        resolve: load(['scripts/controllers/material.js', 'scripts/controllers/settingsController.js', 'scripts/services/SettingsService.js']),
+                        resolve: load(['scripts/controllers/material.js',
+                            'scripts/controllers/SettingsController.js',
+                            'scripts/services/SettingsService.js']),
                         data: {
                             title: 'Settings',
                             restricted: true,
@@ -191,10 +193,31 @@ angular.module('app')
                     })
                     .state('app.settings.public', {
                         url: '/public',
+                        controller: 'PublicSettingsController',
                         templateUrl: 'views/pages/partials/settings/public_settings.html',
                         resolve: load(['scripts/controllers/PublicSettingsController.js']),
                         data: {
                             title: 'Public Settings',
+                            restricted: true
+                        }
+                    })
+                    .state('app.settings.account', {
+                        url: '/account',
+                        controller: 'AccountSettingsController',
+                        templateUrl: 'views/pages/partials/settings/account_settings.html',
+                        resolve: load(['scripts/controllers/AccountSettingsController.js', 'scripts/services/ShowToastService.js']),
+                        data: {
+                            title: 'Account Settings',
+                            restricted: true
+                        }
+                    })
+                    .state('app.settings.notifications', {
+                        url: '/notifications',
+                        controller: 'NotificationsSettingsController',
+                        templateUrl: 'views/pages/partials/settings/notifications_settings.html',
+                        resolve: load(['scripts/controllers/NotificationsSettingsController.js', 'scripts/services/ShowToastService.js']),
+                        data: {
+                            title: 'Notifications Settings',
                             restricted: true
                         }
                     })
@@ -204,26 +227,6 @@ angular.module('app')
                         resolve: load(['scripts/controllers/ContactsSettingsController.js']),
                         data: {
                             title: 'Contacts Settings',
-                            restricted: true
-                        }
-                    })
-                    .state('app.settings.notifications', {
-                        url: '/notifications',
-                        controller: 'NotificationsSettingsController',
-                        templateUrl: 'views/pages/partials/settings/notifications_settings.html',
-                        resolve: load(['scripts/controllers/NotificationsSettingsController.js', 'showToastService']),
-                        data: {
-                            title: 'Notifications Settings',
-                            restricted: true
-                        }
-                    })
-                    .state('app.settings.account', {
-                        url: '/account',
-                        controller: 'AccountSettingsController',
-                        templateUrl: 'views/pages/partials/settings/account_settings.html',
-                        resolve: load(['scripts/controllers/AccountSettingsController.js', 'showToastService']),
-                        data: {
-                            title: 'Account Settings',
                             restricted: true
                         }
                     })

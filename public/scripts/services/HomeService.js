@@ -24,6 +24,24 @@ app.service('HomeService',
                             }
                         );
                     return defer.promise;
+                },
+                userUtility: function (response) {
+
+                    var user = {};
+
+                    user.full_name = response.first_name + ' ' + response.last_name;
+                    user.primary_email = response.primary_email;
+                    user.email = response.primary_email;
+                    user.first_name = response.first_name;
+                    user.last_name = response.last_name;
+                    user.nick_name = response.nick_name;
+                    user.sex = response.sex;
+                    user.country_code = response.country_code;
+                    user.contact_number = response.contact_number;
+                    user.show_dob = response.show_dob;
+                    user.dob = new Date(response.dob);
+
+                    return user;
                 }
             }
         }

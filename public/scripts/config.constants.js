@@ -13,6 +13,7 @@ angular.module('app')
         _AUTHENTICATION_: {
             MEMBER_INFO: '/api/authentication/member_info',
             GET_ALL_LABELS: '/api/authentication/labels',
+            CHANGE_EMAIL_ADDRESS: '/api/authentication/emails',
         },
         _MEMBERSHIP_: {
             SIGN_UP: '/api/membership/signup',

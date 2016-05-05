@@ -1,18 +1,11 @@
 'use strict';
 
-app.controller('HomeController', ['$scope', 'HomeService', '$state', '$stateParams', 'HTTP_CODES',
-    function ($scope, HomeService, $state, $stateParams, HTTP_CODES) {
-
-        var user = {};
+app.controller('HomeController', ['$rootScope', '$scope', 'HomeService', '$state', '$stateParams', 'HTTP_CODES',
+    function ($rootScope, $scope, HomeService, $state, $stateParams, HTTP_CODES) {
 
         HomeService.getUserInfo()
             .then(function (response) {
-
-                user.full_name = response.first_name + ' ' + response.last_name;
-                user.email = response.primary_email;
-
+                $rootScope.user = HomeService.userUtility(response);
             });
-
-        $scope.user = user;
     }
 ]);

@@ -4,13 +4,6 @@ app.controller('ProfileController',
     ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'AuthService', 'ProfileService', 'LabelsService',
         function ($scope, $state, $stateParams, HTTP_CODES, AuthService, ProfileService, LabelsService) {
 
-            AuthService.getMemberInfo()
-                .then(
-                    function (response) {
-                        $scope.member_info = response.data;
-                    }
-                );
-
             LabelsService.getLabels()
                 .then(
                     function(response){

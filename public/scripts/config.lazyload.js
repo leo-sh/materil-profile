@@ -151,7 +151,7 @@ angular.module('app')
             },
             {
                 name: 'showToastService',
-                module: false,
+                module: true,
                 files: [
                     'scripts/services/ShowToastService.js'
                 ]

@@ -8,9 +8,9 @@
                         <img src="images/a0.jpg" class="img-circle img-responsive">
                     </a>
                     <div class="m-b m-t-sm h2">
-                        <span class="">{{ member_info.first_name + ' ' + member_info.last_name }} <small>({{
-                            member_info.nick_name }})
-                        </small></span>
+                        <span class="">{{ user.full_name }}
+                            <small>({{ user.nick_name }})</small>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -24,14 +24,14 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-social-person i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3>{{ member_info.first_name + ' ' + member_info.last_name}}</h3>
+                                            <h3>{{ user.full_name }}</h3>
                                             <p>Full Name</p>
                                         </div>
                                     </md-list-item>
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-social-cake i-24"></md-icon>
                                         <div class="md-list-item-text">
-                                            <h3>{{ member_info.dob | CheckDateAndFormatFilter}}</h3>
+                                            <h3>{{ user.dob | CheckDateAndFormatFilter}}</h3>
                                             <p>Birthday</p>
                                         </div>
                                     </md-list-item>
@@ -55,8 +55,9 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-hardware-phone-iphone i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> ( + {{ member_info.country_code }}) {{ member_info.contact_number }}</h3>
-                                            <p> ({{ member_info.contact_number_updated_at | FromNowFilter }}) </p>
+                                            <h3> ( + {{ user.country_code }}) {{ user.contact_number
+                                                }}</h3>
+                                            <p> ({{ user.contact_number_updated_at | FromNowFilter }}) </p>
                                         </div>
                                         <md-button class="md-secondary md-icon-button"
                                                    ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
@@ -71,8 +72,8 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-communication-email i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> {{ member_info.primary_email }} </h3>
-                                            <p> ({{ member_info.primary_email_updated_at | FromNowFilter }}) </p>
+                                            <h3> {{ user.primary_email }} </h3>
+                                            <p> ({{ user.primary_email_updated_at | FromNowFilter }}) </p>
                                         </div>
                                         <md-button class="md-secondary md-icon-button"
                                                    ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"

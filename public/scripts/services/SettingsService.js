@@ -4,6 +4,40 @@ app.service('SettingsService',
         function ($http, HTTP_CODES, API_TYPE, GetURLFactory, $q) {
 
             return {
+                changeEmailAddress: function (user) {
+
+                    var defer = $q.defer(), reject = $q.reject();
+                    $http.patch(GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.CHANGE_EMAIL_ADDRESS, user)
+                        .then(
+                            // success
+                            function (response) {
+                                defer.resolve(response.data.result);
+                            },
+                            // failed
+                            function (response) {
+                                //user = false;
+                                reject.resolve(response.data.result);
+                            }
+                        );
+                    return defer.promise;
+                },
+                changeMemberInfo: function (user) {
+
+                    var defer = $q.defer(), reject = $q.reject();
+                    $http.put(GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.MEMBER_INFO, user)
+                        .then(
+                            // success
+                            function (response) {
+                                defer.resolve(response.data.result);
+                            },
+                            // failed
+                            function (response) {
+                                //user = false;
+                                reject.resolve(response.data.result);
+                            }
+                        );
+                    return defer.promise;
+                },
                 getNotifications: function () {
 
                     var defer = $q.defer(), reject = $q.reject();

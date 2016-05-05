@@ -1,23 +1,20 @@
 'use strict';
 
 app.controller('PublicSettingsController',
-    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter',
-        function ($scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter) {
+    ['$rootScope', '$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', 'HomeService',
+        function ($rootScope, $scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, HomeService) {
 
+            $scope.changeMemberInfo = function (user) {
 
-            $scope.user = {
-                sex: '0',
-                email: 'summmmit44@gmail.com',
-                first_name: 'Sumit',
-                last_name: 'Singh',
-                nick_name: 'Sumit',
-                company: 'Google',
-                dob: new Date('1991-05-25'),
-                address: '1600 Amphitheatre Pkwy',
-                city: 'Mountain View',
-                state: 'CA',
-                biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-                postalCode: '94043'
-            };
+                SettingsService.changeMemberInfo(user)
+                    .then(function (response) {
+
+                        $rootScope.user = HomeService.userUtility(response.data);
+                    }, function (response) {
+
+                        console.log(response);
+                        console.log('Problem here-PublicSettingsController');
+                    });
+            }
         }
     ]);
