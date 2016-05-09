@@ -14,8 +14,22 @@ app.controller('AccountSettingsController',
                         clickOutsideToClose: true,
                     })
                     .then(function (user) {
-                        $scope.user.contact_number = user.new_contact_number;
-                        ShowToast.showSimpleToast('Your Contact Number is changed!!');
+
+                        SettingsService.changeContactNumber(user)
+                            .then(function (response) {
+
+                                if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
+
+                                    $rootScope.user.contact_number = response.data.contact_number;
+                                    $rootScope.user.country_code = response.data.country_code;
+                                    showToastService.showSimpleToast(response.statusText);
+                                } else {
+                                    showToastService.showSimpleToast(response.statusText);
+                                }
+
+                            }, function (response) {
+                                showToastService.showSimpleToast(response.statusText);
+                            })
                     });
             };
 
@@ -32,8 +46,6 @@ app.controller('AccountSettingsController',
 
                         SettingsService.changeEmailAddress(user)
                             .then(function (response) {
-
-                                console.log(response);
 
                                 if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
 
@@ -97,7 +109,6 @@ function changeContactNumber($scope, $mdDialog) {
         $mdDialog.hide(answer);
     };
     $scope.changeNumber = function (user) {
-        console.log(user);
         $mdDialog.hide(user);
     };
 

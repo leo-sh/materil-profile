@@ -9,7 +9,12 @@ app.controller('PublicSettingsController',
                 SettingsService.changeMemberInfo(user)
                     .then(function (response) {
 
-                        $rootScope.user = HomeService.userUtility(response.data);
+                        HomeService.setFirstName(response.data.first_name);
+                        HomeService.setLastName(response.data.last_name);
+                        HomeService.setNickName(response.data.nick_name);
+                        HomeService.setSex(response.data.sex);
+                        HomeService.setDateOfBirth(response.data.dob);
+                        //$rootScope.user = HomeService.userUtility(response.data);
                     }, function (response) {
 
                         console.log(response);

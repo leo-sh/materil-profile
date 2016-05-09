@@ -44,38 +44,50 @@ var AfterLoginMiddleware = {
     // Creating Default Labels for Every User after first login
     CreateDefaultLabels: function (_user_access_id) {
 
-        CustomLabels.findOne({label_name: 'Home'}, function (err, labelHome) {
+        console.log(_user_access_id);
 
-            if (err)
+        CustomLabels.findOne({label_name: 'Home', _user_access_id: _user_access_id}, function (err, labelHome) {
+
+            if (err){
+                console.log('Error in finding Custom Labels: AfterLogin->CreateDefaultLabels');
                 throw err;
+            }
 
             if (!labelHome) {
 
                 var custom_labels = new CustomLabels();
                 custom_labels.label_name = 'Home';
                 custom_labels._user_access_id = _user_access_id;
+                custom_labels.label_icon = 'Home';
                 custom_labels.save(function (err) {
 
-                    if (err)
+                    if (err){
+                        console.log('Error in creating Custom Labels: AfterLogin->CreateDefaultLabels');
                         throw err;
+                    }
                 });
             }
         });
 
-        CustomLabels.findOne({label_name: 'Work'}, function (err, labelWork) {
+        CustomLabels.findOne({label_name: 'Work', _user_access_id: _user_access_id}, function (err, labelWork) {
 
-            if (err)
+            if (err){
+                console.log('Error in finding Custom Labels: AfterLogin->CreateDefaultLabels');
                 throw err;
+            }
 
             if (!labelWork) {
 
                 var custom_labels = new CustomLabels();
                 custom_labels.label_name = 'Work';
                 custom_labels._user_access_id = _user_access_id;
+                custom_labels.label_icon = 'Work';
                 custom_labels.save(function (err) {
 
-                    if (err)
+                    if (err){
+                        console.log('Error in creating Custom Labels: AfterLogin->CreateDefaultLabels');
                         throw err;
+                    }
                 });
             }
         });

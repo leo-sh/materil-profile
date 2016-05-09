@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('ProfileController',
-    ['$scope', '$state', '$stateParams', 'HTTP_CODES', 'AuthService', 'ProfileService', 'LabelsService',
-        function ($scope, $state, $stateParams, HTTP_CODES, AuthService, ProfileService, LabelsService) {
+    ['$rootScope', '$scope', '$state', '$stateParams', 'HTTP_CODES', 'AuthService', 'ProfileService', 'LabelsService',
+        function ($rootScope, $scope, $state, $stateParams, HTTP_CODES, AuthService, ProfileService, LabelsService) {
 
             LabelsService.getLabels()
                 .then(

@@ -55,9 +55,8 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-hardware-phone-iphone i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> ( + {{ user.country_code }}) {{ user.contact_number
-                                                }}</h3>
-                                            <p> ({{ user.contact_number_updated_at | FromNowFilter }}) </p>
+                                            <h3> {{ user.contact_number | CreatePhoneNumberFilter: user.country_code }}</h3>
+                                            <p> Mobile Number </p>
                                         </div>
                                         <md-button class="md-secondary md-icon-button"
                                                    ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"
@@ -73,7 +72,7 @@
                                         <md-icon class="mdi-communication-email i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
                                             <h3> {{ user.primary_email }} </h3>
-                                            <p> ({{ user.primary_email_updated_at | FromNowFilter }}) </p>
+                                            <p> Email Address </p>
                                         </div>
                                         <md-button class="md-secondary md-icon-button"
                                                    ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon"

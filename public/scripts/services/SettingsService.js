@@ -4,6 +4,23 @@ app.service('SettingsService',
         function ($http, HTTP_CODES, API_TYPE, GetURLFactory, $q) {
 
             return {
+                changeContactNumber: function (user) {
+
+                    var defer = $q.defer(), reject = $q.reject();
+                    $http.patch(GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.CHANGE_CONTACT_NUMBER, user)
+                        .then(
+                            // success
+                            function (response) {
+                                defer.resolve(response.data.result);
+                            },
+                            // failed
+                            function (response) {
+                                //user = false;
+                                reject.resolve(response.data.result);
+                            }
+                        );
+                    return defer.promise;
+                },
                 changeEmailAddress: function (user) {
 
                     var defer = $q.defer(), reject = $q.reject();

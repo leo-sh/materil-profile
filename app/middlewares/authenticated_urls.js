@@ -4,6 +4,7 @@ var jwt = require("jsonwebtoken");
 var CONSTANTS = require('./../helpers/constants');
 var ResultResponses = require('./../helpers/resultResponses');
 var UserDetails = require('./../models/user_details');
+var UserAccess = require('./../models/user_access');
 
 module.exports = function (req, res, next) {
 
@@ -19,47 +20,69 @@ module.exports = function (req, res, next) {
             } else {
                 // if everything is good, save to request for use in other routes
 
-                UserDetails.findOne({_user_access_id: decoded.member._id}, {
+                var member;
+
+                UserAccess.findOne({_id: decoded.member._id}, {
                     __v: 0,
-                    _user_access_id: 0,
                     created_at: 0,
                     updated_at: 0,
                     deleted_at: 0
-                }, function (err, userDetails) {
+                }, function (err, user) {
 
                     if (err) {
-                        console.log('UserNotFound Error : authenticated_urls middleware')
+                        console.log('UserAccess Error : authenticated_urls -> middleware')
                         throw err;
                     }
 
-                    if (userDetails) {
+                    if (user) {
 
-                        var member = {
-                            _id: decoded.member._id,
-                            member_details_id: userDetails._id,
-                            first_name: userDetails.first_name,
-                            last_name: userDetails.last_name,
-                            nick_name: userDetails.nick_name,
-                            sex: userDetails.sex,
-                            dob: userDetails.dob,
-                            show_dob: userDetails.show_dob,
-                            addresses: userDetails.addresses,
-                            country_code: decoded.member.country_code,
-                            contact_number: decoded.member.contact_number,
-                            contact_number_updated_at: decoded.member.contact_number_updated_at,
-                            primary_email: decoded.member.email,
-                            primary_email_updated_at: decoded.member.email_updated_at,
-                            password_updated_at: decoded.member.password_updated_at,
-                            activated_at: decoded.member.activated_at,
-                            created_at: decoded.member.created_at,
-                        }
+                        member = {
+                            _id: user._id,
+                            country_code: user.country_code,
+                            contact_number: user.contact_number,
+                            contact_number_updated_at: user.contact_number_updated_at,
+                            primary_email: user.email,
+                            primary_email_updated_at: user.email_updated_at,
+                            password_updated_at: user.password_updated_at,
+                            activated_at: user.activated_at,
+                            created_at: user.created_at,
+                        };
 
-                        req.member = member;
-                        next();
+                        UserDetails.findOne({_user_access_id: decoded.member._id}, {
+                            __v: 0,
+                            _user_access_id: 0,
+                            created_at: 0,
+                            updated_at: 0,
+                            deleted_at: 0
+                        }, function (err, userDetails) {
 
+                            if (err) {
+                                console.log('UserDetails Error : authenticated_urls -> middleware')
+                                throw err;
+                            }
+
+                            if (userDetails) {
+
+                                member.member_details_id = userDetails._id;
+                                member.first_name = userDetails.first_name;
+                                member.last_name = userDetails.last_name;
+                                member.nick_name = userDetails.nick_name;
+                                member.sex = userDetails.sex;
+                                member.dob = userDetails.dob;
+                                member.show_dob = userDetails.show_dob;
+                                member.addresses = userDetails.addresses;
+
+                                req.member = member;
+                                next();
+
+                            } else {
+                                return res.status(404).json({result: ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST, 'User not Found!!')})
+                            }
+                        })
                     } else {
                         return res.status(404).json({result: ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST, 'User not Found!!')})
                     }
+
                 })
             }
         });

@@ -12,7 +12,6 @@ module.exports = {
         var country_code = req.body.country_code;
         var contact_number = req.body.contact_number;
         var current_password = req.body.current_password;
-        console.log(req.body);
 
         UserAccess.findOne({_id: req.member._id}, function (err, userAccess) {
 
@@ -136,10 +135,11 @@ module.exports = {
 
         var result = {};
 
+        var current_password = req.body.current_password;
         var new_password = req.body.new_password;
         var confirm_password = req.body.confirm_password;
 
-        UserAccess.findOne({_id: req.body.user_id}, function (err, userAccess) {
+        UserAccess.findOne({_id: req.member._id}, function (err, userAccess) {
 
             result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
                 'Some Error Occurred.');

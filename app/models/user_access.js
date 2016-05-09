@@ -11,7 +11,6 @@ var userAccessSchema = mongoose.Schema({
 
     email: {
         type: String,
-        required: true,
         index: true,
         unique: true
     },
@@ -19,9 +18,7 @@ var userAccessSchema = mongoose.Schema({
         type: Date
     },
     password: {
-        type: String,
-
-        required: true
+        type: String
     },
     password_updated_at: {
         type: Date

@@ -170,6 +170,7 @@ angular.module('app')
                             'scripts/services/ProfileService.js',
                             'scripts/services/LabelsService.js',
                             'scripts/services/ContactsService.js',
+                            'scripts/filters/PhoneNumberFilters.js',
                             'moment']),
                         data: {
                             title: 'Profile',
@@ -205,7 +206,9 @@ angular.module('app')
                         url: '/account',
                         controller: 'AccountSettingsController',
                         templateUrl: 'views/pages/partials/settings/account_settings.html',
-                        resolve: load(['scripts/controllers/AccountSettingsController.js', 'scripts/services/ShowToastService.js']),
+                        resolve: load(['scripts/controllers/AccountSettingsController.js',
+                            'scripts/services/ShowToastService.js',
+                            'scripts/filters/PhoneNumberFilters.js',]),
                         data: {
                             title: 'Account Settings',
                             restricted: true

@@ -296,6 +296,9 @@ function setAndGetFormatDateOfBirth(dob) {
 //----------------------Setters-------------------------------
 // making first letter capital of names
 function setAndGetFormatNames(name) {
+    if(name == '' || name == null){
+        return 'Not Set';
+    }
     var string = name.split("");
     string[0] = string[0].toUpperCase();
     string = string.join('');
