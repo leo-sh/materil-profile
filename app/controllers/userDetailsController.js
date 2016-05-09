@@ -14,6 +14,42 @@ module.exports = {
 
         res.json({'result': result})
     },
+    deleteMemberInfo: function (req, res) {
+
+        var result = {};
+
+        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+            'Some Error Occurred.');
+
+        UserAccess.findOne({_id: req.member._id}, function (err, user) {
+
+            if (err) {
+                console.log('User Delete Error: userDetailsController');
+                throw err;
+            }
+
+            if (user) {
+
+                user.deleted_at = new Date();
+                user.save(function (err) {
+
+                    if (err) {
+                        console.log('User Delete Error: userDetailsController');
+                        throw err;
+                    }
+                });
+
+                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                    'Successfully Deleted!!', user);
+            } else {
+
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
+                    'User not found.!!');
+            }
+
+            res.json({'result': result})
+        });
+    },
     putMemberInfo: function (req, res) {
 
         var result = {};

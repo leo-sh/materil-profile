@@ -71,8 +71,21 @@ app.controller('AccountSettingsController',
                         targetEvent: ev,
                         clickOutsideToClose: true,
                     })
-                    .then(function () {
-                        showToastService.showSimpleToast('Your Password is changed!!');
+                    .then(function (user) {
+
+                        SettingsService.changePassword(user)
+                            .then(function (response) {
+
+                                if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
+
+                                    showToastService.showSimpleToast(response.statusText);
+                                } else {
+                                    showToastService.showSimpleToast(response.statusText);
+                                }
+
+                            }, function (response) {
+                                showToastService.showSimpleToast(response.statusText);
+                            })
                     });
             };
 

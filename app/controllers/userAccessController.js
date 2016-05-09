@@ -131,36 +131,48 @@ module.exports = {
             res.json({'result': result});
         })
     },
-    changePassword: function (req, res, next) {
+    // Change Password
+    postChangePassword: function (req, res, next) {
 
         var result = {};
 
         var current_password = req.body.current_password;
         var new_password = req.body.new_password;
-        var confirm_password = req.body.confirm_password;
+        var confirm_new_password = req.body.confirm_new_password;
 
         UserAccess.findOne({_id: req.member._id}, function (err, userAccess) {
 
             result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
                 'Some Error Occurred.');
 
-            if (err)
-                next(err);
+            if (err) {
+                console.log('------------------------');
+                console.log('UserAccess Error: UserAccessController->postChangePassword');
+                throw err;
+            }
 
             if (userAccess) {
 
-                if (new_password != confirm_password) {
+                if (userAccess.validPassword(current_password)) {
 
-                    result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
-                        'Password and confirm password are not same.');
+                    if (new_password != confirm_new_password) {
+
+                        result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                            'New Password and confirm password are not same.');
+                    } else {
+
+                        userAccess.password = userAccess.generateHash(new_password);
+                        userAccess.save(function (err) {
+                            if (err)
+                                next(err);
+                        })
+                        result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK, 'Password Changed!!');
+                    }
+
                 } else {
 
-                    userAccess.password = userAccess.generateHash(new_password);
-                    userAccess.save(function (err) {
-                        if (err)
-                            next(err);
-                    })
-                    result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK, 'Password Changed!!', userAccess);
+                    result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.BAD_REQUEST,
+                        'Invalid Current Password');
                 }
             } else {
 

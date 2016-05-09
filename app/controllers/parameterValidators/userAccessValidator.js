@@ -44,12 +44,15 @@ module.exports = {
     changePasswordValidator: function (req, res, next) {
         var result = {};
         var new_password = req.body.new_password;
-        var confirm_password = req.body.confirm_password;
-        var user_id = req.body.user_id;
+        var confirm_new_password = req.body.confirm_password;
+        var current_password = req.body.current_password;
 
-        req.checkBody('new_password', 'Invalid password').notEmpty();
-        req.checkBody('confirm_password', 'Invalid Confirm Password').isEquals('new_password');
-        req.checkBody('user_id', 'Invalid User Id');
+        console.log(req.body);
+
+        req.checkBody('new_password', 'Invalid password').isLength({
+            min: 6, max: 36
+        });
+        req.checkBody('current_password', 'Invalid Current Password').notEmpty();
 
         var errors = req.validationErrors();
         if (errors) {

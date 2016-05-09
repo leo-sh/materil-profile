@@ -43,8 +43,8 @@ module.exports = function (passport, app) {
         userAccessController.checkResetCode);
 
     //GET: change password
-    app.post('/change/password', userAccessValidator.changePasswordValidator,
-        userAccessController.changePassword);
+    app.post('/changes/password', userAccessValidator.changePasswordValidator,
+        userAccessController.postChangePassword);
 
     //User Activation
     app.get('/activate/:user_id/:activation_code', userAccessValidator.activateValidator,

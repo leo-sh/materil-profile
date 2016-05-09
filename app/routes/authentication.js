@@ -33,15 +33,15 @@ module.exports = function (authentication, passport) {
     authentication.get('/notifications', SettingsController.getNotifications);
     authentication.put('/notifications', SettingsController.putNotifications);
 
+    //GET: change password
+    authentication.post('/change/password', userAccessValidator.changePasswordValidator,
+        userAccessController.postChangePassword);
+
     //get user status
     authentication.get('/user/status', userAccessController.userStatus);
     //GET: check if user exists
     authentication.get('/user/:email', userAccessValidator.checkIfUserExistsValidator,
         userAccessController.checkIfUserExists);
-
-    //GET: change password
-    authentication.post('/change/password', userAccessValidator.changePasswordValidator,
-        userAccessController.changePassword);
 
     //Logout
     authentication.get('/logout', userAccessController.logOut);
