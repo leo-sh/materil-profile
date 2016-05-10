@@ -225,23 +225,6 @@ angular.module('app')
                             restricted: true
                         }
                     })
-                    .state('app.settings.contacts', {
-                        url: '/contacts',
-                        templateUrl: 'views/pages/partials/settings/contacts_settings.html',
-                        resolve: load(['scripts/controllers/ContactsSettingsController.js']),
-                        data: {
-                            title: 'Contacts Settings',
-                            restricted: true
-                        }
-                    })
-                    .state('app.settings.organisational', {
-                        url: '/organisational',
-                        templateUrl: 'views/pages/partials/settings/organisational_settings.html',
-                        data: {
-                            title: 'Work Settings',
-                            restricted: true
-                        }
-                    })
                     // settings ------------------------------------------------------------------------------------Finish
                     .state('app.contacts', {
                         url: '/contacts',

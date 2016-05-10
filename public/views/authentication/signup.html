@@ -28,13 +28,19 @@
                 <input type="text" class="md-input" ng-model="user.last_name" required>
                 <label>Last Name</label>
             </div>
-            <div class="md-form-group">
-                <input type="text" class="md-input" ng-model="user.country_code" required>
-                <label>Country Code</label>
-            </div>
-            <div class="md-form-group">
-                <input type="text" class="md-input" ng-model="user.contact_number" required>
-                <label>Contact Number</label>
+            <div class="row row-sm">
+                <div class="col-md-3 col-xs-4">
+                    <div class="md-form-group">
+                        <input type="text" class="md-input" ng-model="user.country_code" mask="+999" clean="true" required>
+                        <label>Code</label>
+                    </div>
+                </div>
+                <div class="col-md-9 col-xs-8">
+                    <div class="md-form-group">
+                        <input type="text" class="md-input" ng-model="user.contact_number" mask="9999-9999-99" clean="true" required>
+                        <label>Contact Number</label>
+                    </div>
+                </div>
             </div>
             <div class="md-form-group">
                 <input type="email" class="md-input" ng-model="user.email" required>
