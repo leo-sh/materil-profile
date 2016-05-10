@@ -82,7 +82,7 @@ module.exports = {
                 });
 
                 result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                    'Successfully Fetched!!', user);
+                    'Details Successfully Updated!!', user);
             } else {
 
                 result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,

@@ -196,7 +196,8 @@ angular.module('app')
                         url: '/public',
                         controller: 'PublicSettingsController',
                         templateUrl: 'views/pages/partials/settings/public_settings.html',
-                        resolve: load(['scripts/controllers/PublicSettingsController.js']),
+                        resolve: load(['scripts/controllers/PublicSettingsController.js',
+                            'scripts/services/ShowToastService.js',]),
                         data: {
                             title: 'Public Settings',
                             restricted: true
