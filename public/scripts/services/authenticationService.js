@@ -1,7 +1,7 @@
 'use strict';
 
-app.service('authenticationService', ['$http', '$q', 'userPersistenceService', 'deviceDetector', 'detectUtils', 'OS_TYPE', 'HTTP_CODES', 'API_TYPE', 'envService',
-    function ($http, $q, userPersistenceService, deviceDetector, detectUtils, OS_TYPE, HTTP_CODES, API_TYPE, envService) {
+app.service('authenticationService', ['$http', '$q', 'UserPersistenceService', 'deviceDetector', 'detectUtils', 'OS_TYPE', 'HTTP_CODES', 'API_TYPE', 'envService',
+    function ($http, $q, UserPersistenceService, deviceDetector, detectUtils, OS_TYPE, HTTP_CODES, API_TYPE, envService) {
 
         var API_URL = envService.read('API_URL');
         var _user = null;
@@ -66,12 +66,12 @@ app.service('authenticationService', ['$http', '$q', 'userPersistenceService', '
                         // set cookies for user
                         if (response.data.result[0].statusCode == HTTP_CODES.SUCCESS.OK) {
                             _user = response.data.result[0].data.email;
-                            userPersistenceService.setCookieData(_user, user.remember_me);
+                            UserPersistenceService.setCookieData(_user, user.remember_me);
                         }
                         defer.resolve(response.data.result[0]);
                     }, function (response) {
                         //user = false;
-                        userPersistenceService.clearCookieData();
+                        UserPersistenceService.clearCookieData();
                         defer.resolve(response.data.result[0]);
                     });
                 return defer.promise;
@@ -79,7 +79,7 @@ app.service('authenticationService', ['$http', '$q', 'userPersistenceService', '
             //-------------------------------check if user is logged in or not------------------------------------
             'isLoggedIn': function () {
 
-                var isLoggedIn = userPersistenceService.getCookieData();
+                var isLoggedIn = UserPersistenceService.getCookieData();
                 if (isLoggedIn) {
                     return true;
                 } else {
@@ -92,16 +92,16 @@ app.service('authenticationService', ['$http', '$q', 'userPersistenceService', '
                     // handle success
                     .success(function (data) {
                         if (data.status) {
-                            userPersistenceService.setCookieData(_user);
+                            UserPersistenceService.setCookieData(_user);
                         } else {
                             //user = false;
-                            userPersistenceService.clearCookieData();
+                            UserPersistenceService.clearCookieData();
                         }
                     })
                     // handle error
                     .error(function (data) {
                         //user = false;
-                        userPersistenceService.clearCookieData();
+                        UserPersistenceService.clearCookieData();
                     });
             },
             //---------------------------------------user Activation----------------------------------------------
@@ -136,12 +136,12 @@ app.service('authenticationService', ['$http', '$q', 'userPersistenceService', '
                 $http.get(API_URL + API_TYPE._MEMBERSHIP_.LOG_OUT)
                     .success(function (data) {
                         //user = false;
-                        userPersistenceService.clearCookieData();
+                        UserPersistenceService.clearCookieData();
                         deferred.resolve();
                     })
                     .error(function (data) {
                         //user = false;
-                        userPersistenceService.clearCookieData();
+                        UserPersistenceService.clearCookieData();
                         deferred.reject();
                     });
 
