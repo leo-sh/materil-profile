@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller('AccountSettingsController',
-    ['$rootScope', '$scope', '$state', '$stateParams', 'HTTP_CODES', 'envService', 'SettingsService', '$filter', '$mdDialog', '$mdMedia', 'showToastService',
-        function ($rootScope, $scope, $state, $stateParams, HTTP_CODES, envService, SettingsService, $filter, $mdDialog, $mdMedia, showToastService) {
+    ['$rootScope', '$scope', '$state', '$stateParams', 'HTTP_CODES', 'AuthService', 'SettingsService', '$filter', '$mdDialog', '$mdMedia', 'showToastService',
+        function ($rootScope, $scope, $state, $stateParams, HTTP_CODES, AuthService, SettingsService, $filter, $mdDialog, $mdMedia, showToastService) {
 
             $scope.setNewContactNumber = function (ev) {
 
@@ -99,8 +99,21 @@ app.controller('AccountSettingsController',
                     .ok('Yes!!')
                     .cancel('Cancel!!');
                 $mdDialog.show(confirm)
-                    .then(function () {
-                        console.log('You decided to get rid of your debt.');
+                    .then(function (user) {
+
+                        SettingsService.deleteUser()
+                            .then(function (response) {
+
+                                if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
+                                    AuthService.logout();
+                                    $state.go('authentication.signin', {alertParam: {'statusText': response.statusText}});
+                                } else {
+                                    showToastService.showSimpleToast(response.statusText);
+                                }
+
+                            }, function (response) {
+                                showToastService.showSimpleToast(response.statusText);
+                            })
                     });
             };
         }

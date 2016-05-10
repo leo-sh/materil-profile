@@ -15,8 +15,6 @@ var PhoneNumbersSchema = mongoose.Schema({
         },
         number: {
             type: String,
-            required: true,
-            index: true
         }
     },
     {

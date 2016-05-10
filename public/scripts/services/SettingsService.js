@@ -4,6 +4,23 @@ app.service('SettingsService',
         function ($http, HTTP_CODES, API_TYPE, GetURLFactory, $q) {
 
             return {
+                deleteUser: function () {
+
+                    var defer = $q.defer(), reject = $q.reject();
+                    $http.delete(GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.MEMBER_INFO)
+                        .then(
+                            // success
+                            function (response) {
+                                defer.resolve(response.data.result);
+                            },
+                            // failed
+                            function (response) {
+                                //user = false;
+                                reject.resolve(response.data.result);
+                            }
+                        );
+                    return defer.promise;
+                },
                 changePassword: function (user) {
 
                     var defer = $q.defer(), reject = $q.reject();

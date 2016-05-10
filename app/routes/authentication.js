@@ -13,6 +13,7 @@ module.exports = function (authentication, passport) {
     //----------------------------------Member Info-----------------------------------
     authentication.get('/member_info', userDetailsController.getMemberInfo);
     authentication.put('/member_info', userDetailsController.putMemberInfo);
+    authentication.delete('/member_info', userDetailsController.deleteMemberInfo);
 
     //-----------------------------------Defaults and Customs ----------------------------------------------------------------
     authentication.get('/labels', LabelsSettingsController.getLabels);

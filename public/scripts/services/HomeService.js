@@ -68,6 +68,10 @@ app.service('HomeService',
 
                     $rootScope.user.dob = new Date(dob);
                 },
+                unSetUser: function () {
+
+                    $rootScope.user = {};
+                },
                 userUtility: function (response) {
 
                     var user = {};

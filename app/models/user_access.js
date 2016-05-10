@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var randomstring = require("randomstring");
 var CheckUserType = require('./../helpers/checkUserType');
-var CONSTANT = require('./../helpers/constants');
+var CONSTANTS = require('./../helpers/constants');
 var Activities = require('./activities');
 
 // define the schema for our user model
@@ -29,7 +29,7 @@ var userAccessSchema = mongoose.Schema({
     contact_number: {
         type: String,
         index: true,
-        unique: true,
+        unique: true
     },
     contact_number_updated_at: {
         type: Date
@@ -74,12 +74,38 @@ userAccessSchema.pre('save', function (next) {
 
     this.updated_at = currentDate;
 
-    if (!this.email_updated_at || this.isModified('email')) {
+    if (this.email && this.isModified('email')) {
         this.email_updated_at = currentDate;
+
+        var newActivity = new Activities();
+        newActivity._user_access_id = this._id;
+        newActivity.activity_type = CONSTANTS.ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY;
+        newActivity.activity_text = 'Updated Email Address';
+        newActivity.icon = 'mdi-action-face-unlock';
+
+        newActivity.save(function (err) {
+            if (err) {
+                console.log('Error in saving activity: UserAccess->Email Address Activity');
+                throw err;
+            }
+        });
     }
 
-    if (!this.contact_number_updated_at || this.isModified('contact_number_updated_at')) {
+    if (this.isModified('contact_number')) {
         this.contact_number_updated_at = currentDate;
+
+        var newActivity = new Activities();
+        newActivity._user_access_id = this._id;
+        newActivity.activity_type = CONSTANTS.ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY;
+        newActivity.activity_text = 'Updated Contact Number';
+        newActivity.icon = 'mdi-action-face-unlock';
+
+        newActivity.save(function (err) {
+            if (err) {
+                console.log('Error in saving activity: UserAccess->Contact Number Activity');
+                throw err;
+            }
+        });
     }
 
     if (!this.password_updated_at || this.isModified('password')) {
@@ -88,6 +114,19 @@ userAccessSchema.pre('save', function (next) {
 
     if (!this.created_at) {
         this.created_at = currentDate;
+
+        var newActivity = new Activities();
+        newActivity._user_access_id = this._id;
+        newActivity.activity_type = CONSTANTS.ACTIVITY_TYPES.SIGN_UP_ACTIVITY;
+        newActivity.activity_text = 'Thank You for Signing UP';
+        newActivity.icon = 'mdi-action-face-unlock';
+
+        newActivity.save(function (err) {
+            if (err) {
+                console.log('Error in saving activity: UserAccess->CreatedAt Activity');
+                throw err;
+            }
+        });
 
         if (CheckUserType.checkIfTestEmail(this.email)) {
             this.activated = true;

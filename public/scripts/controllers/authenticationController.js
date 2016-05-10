@@ -1,7 +1,8 @@
 'use strict';
 
-app.controller('authenticationController', ['$scope', 'AuthService', '$state', '$stateParams', 'HTTP_CODES',
-    function ($scope, AuthService, $state, $stateParams, HTTP_CODES) {
+app.controller('authenticationController',
+    ['$rootScope', '$scope', 'AuthService', '$state', '$stateParams', 'HTTP_CODES',
+    function ($rootScope, $scope, AuthService, $state, $stateParams, HTTP_CODES) {
 
         $scope.alerts = [];
 
@@ -54,6 +55,7 @@ app.controller('authenticationController', ['$scope', 'AuthService', '$state', '
         $scope.logOut = function () {
             AuthService.logout()
             closeEarlierAlert();
+            $rootScope.user = [];
             $state.transitionTo('authentication.signin', {alertParam: {'statusText': 'Logged Out!!'}});
         }
 

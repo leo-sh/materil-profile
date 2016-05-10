@@ -27,11 +27,15 @@ module.exports = {
         var last_name = req.body.last_name;
         var email = req.body.email;
         var password = req.body.password;
+        var contact_number = req.body.contact_number;
+        var country_code = req.body.country_code;
 
         req.checkBody('first_name', 'First Name is Required').notEmpty();
         req.checkBody('last_name', 'Last Name is Required').notEmpty();
         req.checkBody('email', 'Valid Email is Required').isEmail();
         req.checkBody('password', 'Password is Required').notEmpty();
+        req.checkBody('contact_number', 'Contact Number is Required').notEmpty();
+        req.checkBody('country_code', 'Country Code is Required').notEmpty();
 
         var errors = req.validationErrors();
         if (errors) {

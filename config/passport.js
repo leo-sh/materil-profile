@@ -3,6 +3,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var debug = require('debug')('http');
 
 //middlewares
 var AfterLogin = require('./../app/middlewares/after_login');
@@ -78,7 +79,7 @@ module.exports = function (passport) {
                     }
 
                     // if no user is found, return the message
-                    if (!user || !user.validPassword(password)) {
+                    if (!user || user.deleted_at || !user.validPassword(password)) {
 
                         result = ResultResponses.failed(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
                             'Email or password Invalid!!.');
@@ -131,85 +132,74 @@ module.exports = function (passport) {
 
             // asynchronous
             process.nextTick(function () {
-                User.findOne({'email': email}, function (err, user) {
+                User.findOne({$or: [{'email': email}, {'contact_number': req.body.contact_number}]},
+                    function (err, user) {
 
-                    var result = {};
+                        var result = {};
 
-                    result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
-                        'Some Error Occurred.');
+                        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+                            'Some Error Occurred.');
 
-                    // if there are any errors, return the error
-                    if (err) {
-                        return done(err, req.flash('result', result));
-                    }
+                        // if there are any errors, return the error
+                        if (err) {
+                            console.log('Error in fetching User: passport->local-signup');
+                            return done(err, req.flash('result', result));
+                        }
 
-                    // check to see if theres already a user with that email
-                    if (user) {
+                        // check to see if theres already a user with that email
+                        if (user) {
 
-                        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.CLIENT_ERROR.CONFLICT,
-                            'That Email is already Taken.');
+                            result = ResultResponses.failed(CONSTANTS.HTTP_CODES.CLIENT_ERROR.CONFLICT,
+                                'Email Or Contact Number is already Registered.');
 
-                        return done(null, false, req.flash('result', result));
-                    } else {
-
-                        // create the user
-                        var newUser = new User();
-                        newUser.email = email;
-                        newUser.password = newUser.generateHash(password);
-
-                        if (CheckUserType.checkIfTestEmail(email)) {
-
-                            newUser.activated = true;
-                            newUser.activated_at = new Date();
-                            newUser.activation_code = null;
+                            return done(null, false, req.flash('result', result));
                         } else {
 
-                            newUser.activated = false;
-                            newUser.activation_code = newUser.generateActivationCode(new Date());
+                            // create the user
+                            var newUser = new User();
+                            newUser.email = email;
+                            newUser.contact_number = req.body.contact_number;
+                            newUser.country_code = req.body.country_code;
+                            newUser.password = newUser.generateHash(password);
+
+                            if (CheckUserType.checkIfTestEmail(email)) {
+
+                                newUser.activated = true;
+                                newUser.activated_at = new Date();
+                                newUser.activation_code = null;
+                            } else {
+
+                                newUser.activated = false;
+                                newUser.activation_code = newUser.generateActivationCode(new Date());
+                            }
+
+                            newUser.save(function (err) {
+                                if (err) {
+                                    console.log('Error in saving new User');
+                                    return done(err, req.flash('result', result));
+                                }
+                            });
+
+                            var userDetails = new UserDetails();
+                            userDetails.first_name = req.body.first_name;
+                            userDetails.last_name = req.body.last_name;
+                            userDetails._user_access_id = newUser._id;
+
+                            userDetails.save(function (err) {
+                                if (err) {
+                                    console.log('Error in saving new User Details');
+                                    return done(err, req.flash('result', result));
+                                }
+                            });
+
+                            // TODO - send email to the registered user for activation
+
+                            result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                                'Your Registration is successful.');
+
+                            return done(null, newUser, req.flash('result', result));
                         }
-
-                        newUser.save(function (err) {
-                            if (err)
-                                return done(err, req.flash('result', result));
-                        });
-
-                        var userDetails = new UserDetails();
-                        userDetails.first_name = req.body.first_name;
-                        userDetails.last_name = req.body.last_name;
-                        userDetails._user_access_id = newUser._id;
-
-                        userDetails.save(function (err) {
-                            if (err)
-                                return done(err, req.flash('result', flash));
-                        });
-
-                        // save activity
-                        var signUpActivity = {
-                            user_id: newUser._id,
-                            activity_type: CONSTANTS.ACTIVITY_TYPES.SIGN_UP_ACTIVITY,
-                            activity_text: 'Thank You for Signing UP',
-
-                        }
-
-                        var newActivity = new Activities();
-                        newActivity._user_access_id = newUser._id;
-                        newActivity.activity_type = CONSTANTS.ACTIVITY_TYPES.SIGN_UP_ACTIVITY;
-                        newActivity.activity_text = 'Thank You for Signing UP';
-                        newActivity.icon = 'mdi-action-face-unlock';
-
-                        newActivity.save(function(err){
-                            if (err)
-                                return done(err, req.flash('result', flash));
-                        });
-
-                        // TODO - send email to the registered user for activation
-
-                        result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
-                            'Your Registration is successful.');
-
-                        return done(null, newUser, req.flash('result', result));
-                    }
-                });
+                    });
 
             });
         })

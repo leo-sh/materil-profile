@@ -173,48 +173,6 @@ userDetailsSchema.pre('save', function (next) {
         });
     }
 
-    if (this.isModified('contact_numbers')) {
-
-        var activity = new Activities();
-        activity._user_access_id = this._user_access_id;
-        activity.activity_type = CONSTANT.ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY;
-        activity.activity_time = currentDate;
-        activity.activity_text = 'Updated Mobile phone book';
-        activity.activity_item = '';
-        activity.icon = 'mdi-hardware-phone-iphone';
-        activity.image = null;
-
-        activity.save(function (err) {
-
-            if (err) {
-                console.log('Error in saving Phone Number to activities: UserDetailsModel');
-                throw err;
-            }
-
-        });
-    }
-
-    if (this.isModified('email_addresses')) {
-
-        var activity = new Activities();
-        activity._user_access_id = this._user_access_id;
-        activity.activity_type = CONSTANT.ACTIVITY_TYPE.DETAILS_UPDATING_ACTIVITY;
-        activity.activity_time = currentDate;
-        activity.activity_text = 'Updated Email Address book';
-        activity.activity_item = '';
-        activity.icon = 'mdi-action-face-unlock';
-        activity.image = null;
-
-        activity.save(function (err) {
-
-            if (err) {
-                console.log('Error in saving Email Addresses to activities: UserDetailsModel');
-                throw err;
-            }
-
-        });
-    }
-
     if (this.isModified('addresses')) {
 
         var activity = new Activities();

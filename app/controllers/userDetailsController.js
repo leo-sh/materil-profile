@@ -24,7 +24,7 @@ module.exports = {
         UserAccess.findOne({_id: req.member._id}, function (err, user) {
 
             if (err) {
-                console.log('User Delete Error: userDetailsController');
+                console.log('User Delete Error: userDetailsController->deleteMemberInfo');
                 throw err;
             }
 
@@ -34,7 +34,7 @@ module.exports = {
                 user.save(function (err) {
 
                     if (err) {
-                        console.log('User Delete Error: userDetailsController');
+                        console.log('User Delete update Error: userDetailsController->deleteMemberInfo');
                         throw err;
                     }
                 });
