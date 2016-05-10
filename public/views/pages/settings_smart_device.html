@@ -7,26 +7,20 @@
                         <img src="images/a1.jpg" class="img-circle img-responsive">
                     </a>
                     <div class="m-b m-t-sm h2">
-                        <span class="text-black">Mike</span>
+                        <span class="text-black">{{ user.nick_name}}</span>
                     </div>
-                    <a md-ink-ripple="" class="md-btn md-raised md-fab m-r pull-right bg-white">23</a>
+                    <a md-ink-ripple="" class="md-btn md-raised md-fab m-r pull-right bg-white"><md-icon class="mdi-image-edit i-24"></md-icon></a>
                 </div>
             </div>
             <ul class="nav nav-lists b-t" ui-nav>
                 <li class="active">
-                    <a href>Profile</a>
+                    <a md-ink-ripple ui-sref="app.settings.public" ng-click="showSettingsPanel('public')">Profile</a>
                 </li>
                 <li>
-                    <a href>Account</a>
+                    <a md-ink-ripple ui-sref="app.settings.account" ng-click="showSettingsPanel('account')">Account</a>
                 </li>
                 <li>
-                    <a href>Contacts</a>
-                </li>
-                <li>
-                    <a href>Organizational</a>
-                </li>
-                <li>
-                    <a href>Notifications</a>
+                    <a md-ink-ripple ui-sref="app.settings.notifications" ng-click="showSettingsPanel('notifications')">Notifications</a>
                 </li>
             </ul>
         </div>
