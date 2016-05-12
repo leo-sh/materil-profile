@@ -196,6 +196,17 @@ angular.module('app')
                             folded: true
                         }
                     })
+                    .state('app.settings.profile', {
+                        url: '/profile',
+                        controller: 'ImageCropController',
+                        templateUrl: 'views/pages/partials/settings/image_crop.html',
+                        resolve: load(['scripts/controllers/ImageCropController.js']),
+                        data: {
+                            title: 'Profile Pic',
+                            restricted: true,
+                            child: true
+                        }
+                    })
                     .state('app.settings.public', {
                         url: '/public',
                         controller: 'PublicSettingsController',
