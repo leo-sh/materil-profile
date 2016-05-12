@@ -22,6 +22,7 @@ angular
         'ngMask',
         'ui.router',
         'ui.utils',
+        'ngFileUpload',
         'ui.bootstrap',
         'ui.load',
         'ui.jp',

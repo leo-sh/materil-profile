@@ -184,7 +184,10 @@ angular.module('app')
                         url: '/settings',
                         controller: 'SettingsController',
                         templateUrl: 'views/pages/settings.html',
-                        resolve: load(['scripts/controllers/material.js',
+                        resolve: load([
+                            'scripts/controllers/material.js',
+                            'scripts/services/HomeService.js',
+                            'ngImgCrop',
                             'scripts/controllers/SettingsController.js',
                             'scripts/services/SettingsService.js']),
                         data: {
