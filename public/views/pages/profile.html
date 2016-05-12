@@ -36,13 +36,13 @@
                                         </div>
                                     </md-list-item>
                                     <md-divider></md-divider>
-                                    <md-subheader class="md-no-sticky">Address</md-subheader>
+                                    <md-subheader class="md-no-sticky">Gender</md-subheader>
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-maps-place i-24"></md-icon>
-                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3>Nishi-Ikebukuro, 3-12-11 <br> Beverly Homes, 301 <br> Toshima-ku, Tokyo
-                                                <br> Japan<br> (171-0021)</h3>
-                                            <p> Home </p>
+                                        <div class="md-list-item-text">
+                                            <h3 ng-if="(user.sex == 1)">Male</h3>
+                                            <h3 ng-if="(user.sex == 0)">FeMale</h3>
+                                            <p>Sex</p>
                                         </div>
                                     </md-list-item>
                                 </md-list>
@@ -104,14 +104,14 @@
         <h4>Your Activities</h4>
         <md-content ng-cloak layout-xs="column" layout="row">
             <div flex-xs flex-gt-xs layout="column">
-                <div infinite-scroll='loadMore()'>
-                    <md-card ng-repeat="(index, activity) in activities">
+                <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
+                    <md-card ng-repeat="activity in reddit.items track by $index"">
                         <md-card-header>
                             <md-card-avatar>
                                 <img class="md-user-avatar" src="images/a2.jpg"/>
                             </md-card-avatar>
                             <md-card-header-text>
-                                <span class="md-title">{{ member_info.first_name + ' ' + member_info.last_name }}</span>
+                                <span class="md-title">{{ user.full_name }}</span>
                                 <span class="md-subhead">{{ activity.activity_time | FromNowFilter }}</span>
                             </md-card-header-text>
                         </md-card-header>

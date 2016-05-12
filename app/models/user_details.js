@@ -37,6 +37,8 @@ var userDetailsSchema = mongoose.Schema({
         },
         sex: {
             type: Number,
+            get: setAndGetSex,
+            set: setAndGetSex,
             enum: [
                 CONSTANT.USER_SEX.SEX_FEMALE, //0: female
                 CONSTANT.USER_SEX.SEX_MALE,   //1: male
@@ -159,7 +161,7 @@ userDetailsSchema.pre('save', function (next) {
         activity.activity_type = CONSTANT.ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY;
         activity.activity_time = currentDate;
         activity.activity_text = 'Updated Sex to ';
-        activity.activity_item = this.sex;
+        activity.activity_item = parseInt(this.sex);
         activity.icon = 'mdi-editor-border-color';
         activity.image = null;
 
@@ -248,7 +250,7 @@ userDetailsSchema.pre('save', function (next) {
 // getters
 function setAndGetFormatDateOfBirth(dob) {
 
-    return moment(dob);
+    return moment(dob).format();
 }
 
 //----------------------Setters-------------------------------
@@ -262,6 +264,10 @@ function setAndGetFormatNames(name) {
     string = string.join('');
 
     return string;
+}
+function setAndGetSex(sex) {
+
+    return parseInt(sex);
 }
 
 // create the model for users and expose it to our app

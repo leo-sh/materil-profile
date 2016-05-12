@@ -12,6 +12,9 @@ angular.module('app')
     .filter('CheckDateAndFormatFilter', function () {
 
         return function (item) {
+            console.log(item);
+            if (item == 0 || item == 1 || item == '' || item == null || item == 'undefined')
+                return item;
 
             if (moment(item).isValid()) {
                 return moment(item).format('MMM DD, YYYY');

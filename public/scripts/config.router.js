@@ -170,6 +170,7 @@ angular.module('app')
                             'scripts/services/ProfileService.js',
                             'scripts/services/LabelsService.js',
                             'scripts/services/ContactsService.js',
+                            'scripts/factories/ProfileFactory.js',
                             'scripts/filters/PhoneNumberFilters.js',
                             'moment']),
                         data: {
