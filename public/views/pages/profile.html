@@ -31,7 +31,7 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-social-cake i-24"></md-icon>
                                         <div class="md-list-item-text">
-                                            <h3>{{ user.dob | CheckDateAndFormatFilter}}</h3>
+                                            <h3>{{ user.dob | DateFilter }}</h3>
                                             <p>Birthday</p>
                                         </div>
                                     </md-list-item>
@@ -40,8 +40,7 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-maps-place i-24"></md-icon>
                                         <div class="md-list-item-text">
-                                            <h3 ng-if="(user.sex == 1)">Male</h3>
-                                            <h3 ng-if="(user.sex == 0)">FeMale</h3>
+                                            <h3>{{ user.sex | SexFilter }}</h3>
                                             <p>Sex</p>
                                         </div>
                                     </md-list-item>
@@ -55,7 +54,8 @@
                                     <md-list-item class="md-2-line">
                                         <md-icon class="mdi-hardware-phone-iphone i-24"></md-icon>
                                         <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> {{ user.contact_number | CreatePhoneNumberFilter: user.country_code }}</h3>
+                                            <h3> {{ user.contact_number | CreatePhoneNumberFilter: user.country_code
+                                                }}</h3>
                                             <p> Mobile Number </p>
                                         </div>
                                         <md-button class="md-secondary md-icon-button"
@@ -104,26 +104,28 @@
         <h4>Your Activities</h4>
         <md-content ng-cloak layout-xs="column" layout="row">
             <div flex-xs flex-gt-xs layout="column">
-                <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
-                    <md-card ng-repeat="activity in reddit.items track by $index"">
-                        <md-card-header>
-                            <md-card-avatar>
-                                <img class="md-user-avatar" src="images/a2.jpg"/>
-                            </md-card-avatar>
-                            <md-card-header-text>
-                                <span class="md-title">{{ user.full_name }}</span>
-                                <span class="md-subhead">{{ activity.activity_time | FromNowFilter }}</span>
-                            </md-card-header-text>
-                        </md-card-header>
-                        <md-card-content class="text-center">
-                            <div class="m-b-lg">
-                                <md-icon class="{{ activity.icon }}" style="font-size: 48px;"></md-icon>
-                            </div>
-                            <div class="text-md">
-                                {{ activity.activity_text}}
-                                <span class="text-info">{{ activity.activity_item | CheckDateAndFormatFilter }}</span>
-                            </div>
-                        </md-card-content>
+                <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy'
+                     infinite-scroll-distance='1'>
+                    <md-card ng-repeat="activity in reddit.items track by $index"
+                    ">
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" src="images/a2.jpg"/>
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">{{ user.full_name }}</span>
+                            <span class="md-subhead">{{ activity.activity_time | FromNowFilter }}</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content class="text-center">
+                        <div class="m-b-lg">
+                            <md-icon class="{{ activity.icon }}" style="font-size: 48px;"></md-icon>
+                        </div>
+                        <div class="text-md">
+                            {{ activity.activity_text}}
+                            <span class="text-info">{{ activity.activity_item | CheckDateAndFormatFilter:activity.activity_type }}</span>
+                        </div>
+                    </md-card-content>
                     </md-card>
                 </div>
             </div>

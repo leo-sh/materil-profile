@@ -9,17 +9,52 @@ angular.module('app')
             return moment(date).fromNow();
         }
     })
-    .filter('CheckDateAndFormatFilter', function () {
+    .filter('SexFilter', function () {
 
-        return function (item) {
-            console.log(item);
-            if (item == 0 || item == 1 || item == '' || item == null || item == 'undefined')
-                return item;
-
-            if (moment(item).isValid()) {
-                return moment(item).format('MMM DD, YYYY');
-            } else {
-                return item;
-            }
+        return function (sex) {
+            return (sex == 0) ? 'Female' : 'Male';
         }
     })
+    .filter('DateFilter', function () {
+
+        return function (date) {
+            return moment(date).format('MMM DD, YYYY');
+        }
+    })
+    .filter('CheckDateAndFormatFilter',
+        ['ACTIVITY_TYPES',
+            function (ACTIVITY_TYPES) {
+
+                return function (item, activity_type) {
+
+                    var changedItem;
+
+                    switch (activity_type) {
+
+                        case ACTIVITY_TYPES.NO_ACTIVITY:
+                            break;
+
+                        case ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY:
+
+                            if (item == '' || item == null || item == 'undefined') {
+                                changedItem = item;
+                            } else if (item == 0) {
+                                changedItem = 'Female';
+                            } else if (item == 1) {
+                                changedItem = 'Male';
+                            } else if (moment(item).isValid()) {
+                                changedItem = moment(item).format('MMM DD, YYYY');
+                            } else {
+                                changedItem = item;
+                            }
+                            break;
+
+                        default:
+                            changedItem = item;
+                    }
+
+                    return changedItem;
+                }
+            }
+        ]
+    )

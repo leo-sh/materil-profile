@@ -3,6 +3,11 @@ angular.module('app')
     .constant('AUTH_EVENTS', {
         notAuthenticated: 'auth-not-authenticated'
     })
+    .constant('ACTIVITY_TYPES', {
+        NO_ACTIVITY: 0,
+        SIGN_UP_ACTIVITY: 1,
+        DETAILS_UPDATING_ACTIVITY: 2,
+    })
     .constant('LOCAL_STORAGE', {
         _TOKEN_KEY_: 'user_id'
     })
