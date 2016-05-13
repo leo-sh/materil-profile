@@ -200,7 +200,8 @@ angular.module('app')
                         url: '/profile',
                         controller: 'ImageCropController',
                         templateUrl: 'views/pages/partials/settings/image_crop.html',
-                        resolve: load(['scripts/controllers/ImageCropController.js']),
+                        resolve: load(['scripts/controllers/ImageCropController.js',
+                            'scripts/services/ShowToastService.js',]),
                         data: {
                             title: 'Profile Pic',
                             restricted: true,

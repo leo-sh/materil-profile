@@ -209,6 +209,7 @@
             opacity: 1;
             font-size: 90px;
         }
+    }
 </style>
 <div layout="row" layout-padding>
     <div class="row">
@@ -238,7 +239,7 @@
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $uploadedImg[0].style.backgroundImage='url('+e.target.result+')';
+                $uploadedImg[0].style.backgroundImage = 'url(' + e.target.result + ')';
             };
 
             reader.readAsDataURL(input.files[0]);
@@ -250,13 +251,14 @@
             $uploadedImg = $("#uploadedImg"),
             $helpText = $("#helpText")
             ;
-    $file.on('change', function(){
+    $file.on('change', function () {
         readURL(this);
         $form.addClass('loading');
     });
-    $helpText.on('webkitAnimationEnd MSAnimationEnd oAnimationEnd animationend', function(){
-        setTimeout(function() {
-            $file.val('');  $form.removeClass('loading').removeClass('loaded');
+    $helpText.on('webkitAnimationEnd MSAnimationEnd oAnimationEnd animationend', function () {
+        setTimeout(function () {
+            $file.val('');
+            $form.removeClass('loading').removeClass('loaded');
         }, 5000);
     });
 </script>
