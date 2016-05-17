@@ -69,7 +69,8 @@
     "ngInfiniteScroll": "^1.2.2",
     "ngMask": "angular-mask#^3.0.16",
     "ng-intl-tel-input": "^1.4.0",
-    "ng-file-upload": "^12.0.4"
+    "ng-file-upload": "^12.0.4",
+    "angular-material-datetimepicker": "^1.4.0"
   },
   "resolutions": {
     "angular-touch": "1.4.x",
