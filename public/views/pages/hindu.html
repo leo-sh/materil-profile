@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-heading">
+        <h2>Download E-Paper</h2>
+        <small>The hindu News Paper</small>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-body">
+        <p class="m-b btn-groups">
+            <md-content class="autoScroll">
+                <h5 class="no-margin m-b font-bold">Choose Date</h5>
+                <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+            </md-content>
+        </p>
+        <p class="m-b btn-groups">
+            <md-content class="autoScroll">
+                <h5 class="no-margin m-b font-bold">Choose Edition</h5>
+                <md-input-container>
+                    <md-icon class="mdi-notification-event-available i-24"></md-icon>
+                    <label>Edition</label>
+                    <md-select ng-model="selectedItem" md-selected-text="getSelectedText()">
+                        <md-optgroup label="items">
+                            <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+            </md-content>
+        </p>
+        <p class="m-b btn-groups">
+            <md-content class="autoScroll">
+                <h5 class="no-margin m-b font-bold">Choose Edition</h5><md-radio-group ng-model="data.group3">
+                <md-radio-button ng-repeat="it in avatarData"
+                                 ng-value="it.value"
+                                 aria-label="{{it.title}}">
+                    <md-icon class="{{it.id}} i-24"></md-icon>
+                </md-radio-button>
+            </md-radio-group>
+            </md-content>
+        </p>
+        <p class="m-b btn-groups">
+            <button class="btn btn-addon btn-primary"><i class="fa fa-cloud-download"></i>Download</button>
+        </p>
+    </div>
+</div>
