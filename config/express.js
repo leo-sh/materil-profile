@@ -110,21 +110,21 @@ module.exports = function () {
 
     api_routes.use('/api', api_routes);   // adding '/api ' prefix to all the routes
 
-    app.use(multer({
-        dest: './public/uploads',
-        changeDest: function(dest, req, res){
-            dest += '/haha/';
-            try{
-                stat = fs.statSync(dest);
-            }catch(err){
-                fs.mkdirSync(dest);
-            }
-            return dest;
-        },
-        onFileUploadStart: function(file){
-            console.log('starting');
-        }
-    }));
+    //app.use(multer({
+    //    dest: './public/uploads',
+    //    changeDest: function(dest, req, res){
+    //        dest += '/haha/';
+    //        try{
+    //            stat = fs.statSync(dest);
+    //        }catch(err){
+    //            fs.mkdirSync(dest);
+    //        }
+    //        return dest;
+    //    },
+    //    onFileUploadStart: function(file){
+    //        console.log('starting');
+    //    }
+    //}));
 
     // routes for authentication of users
     //require('./../app/routes/user')(route_user);
