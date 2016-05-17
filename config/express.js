@@ -108,7 +108,7 @@ module.exports = function () {
     require('./../app/routes/authentication')(route_authentication, passport);
     api_routes.use('/authentication', route_authentication);
 
-    api_routes.use('/api', api_routes);   // adding '/api ' prefix to all the routes
+    app.use('/api', api_routes);   // adding '/api ' prefix to all the routes
 
     //app.use(multer({
     //    dest: './public/uploads',
