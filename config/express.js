@@ -3,6 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
+var multer = require('multer');
 
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -84,7 +85,7 @@ module.exports = function () {
 
     var throwjs = require('throw.js');
 
-    // Routes ======================================================================
+    // Routes ======================================================================var fs = require('fs');
 
     var api_routes = express.Router();
     var route_user = express.Router();
@@ -108,6 +109,22 @@ module.exports = function () {
     api_routes.use('/authentication', route_authentication);
 
     app.use('/api', api_routes);   // adding '/api ' prefix to all the routes
+
+    //app.use(multer({
+    //    dest: './public/uploads',
+    //    changeDest: function(dest, req, res){
+    //        dest += '/haha/';
+    //        try{
+    //            stat = fs.statSync(dest);
+    //        }catch(err){
+    //            fs.mkdirSync(dest);
+    //        }
+    //        return dest;
+    //    },
+    //    onFileUploadStart: function(file){
+    //        console.log('starting');
+    //    }
+    //}));
 
     // routes for authentication of users
     //require('./../app/routes/user')(route_user);
