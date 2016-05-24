@@ -201,7 +201,9 @@ angular.module('app')
                         controller: 'ImageCropController',
                         templateUrl: 'views/pages/partials/settings/image_crop.html',
                         resolve: load(['scripts/controllers/ImageCropController.js',
-                            'scripts/services/ShowToastService.js',]),
+                            'scripts/services/ShowToastService.js',
+                            'bower_components/ng-file-upload/ng-file-upload.min.js',
+                            'bower_components/ng-file-upload/ng-file-upload-shim.min.js',]),
                         data: {
                             title: 'Profile Pic',
                             restricted: true,

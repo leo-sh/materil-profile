@@ -108,27 +108,36 @@ module.exports = function () {
     require('./../app/routes/authentication')(route_authentication, passport);
     api_routes.use('/authentication', route_authentication);
 
+    var storage = multer.diskStorage({
+        dest: function (req, file, cb) {
+            cb(null, './uploads/');
+        },
+        filename: function (req, file, cb) {
+            var datetimestamp = Date.now();
+            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
+        }
+    });
+
+    var upload = multer({ //multer settings
+        storage: storage
+    }).single('file');
+
+    api_routes.post('/authentication/upload/profile/pic', function (req, res) {
+
+        upload(req, res, function (err) {
+
+            console.log(req.files);
+            if (err) {
+                console.log("Error here");
+                res.json({error_code: 1, err_desc: err});
+                return;
+            }
+            res.json({error_code: 0, err_desc: null});
+        })
+
+    });
+
     app.use('/api', api_routes);   // adding '/api ' prefix to all the routes
-
-    //app.use(multer({
-    //    dest: './public/uploads',
-    //    changeDest: function(dest, req, res){
-    //        dest += '/haha/';
-    //        try{
-    //            stat = fs.statSync(dest);
-    //        }catch(err){
-    //            fs.mkdirSync(dest);
-    //        }
-    //        return dest;
-    //    },
-    //    onFileUploadStart: function(file){
-    //        console.log('starting');
-    //    }
-    //}));
-
-    // routes for authentication of users
-    //require('./../app/routes/user')(route_user);
-    //app.use('/api', route_user);
 
     return app;
 }

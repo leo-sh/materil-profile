@@ -1,27 +1,30 @@
 // persisting email as _user in the cookies for the user to identify in the sessions.
 app.service('SettingsService',
-    ['$http', 'HTTP_CODES', 'API_TYPE', 'GetURLFactory', '$q',
-        function ($http, HTTP_CODES, API_TYPE, GetURLFactory, $q) {
+    ['$http', 'HTTP_CODES', 'API_TYPE', 'GetURLFactory', '$q', 'Upload',
+        function ($http, HTTP_CODES, API_TYPE, GetURLFactory, $q, Upload) {
 
             return {
                 postProfilePic: function (profilePic) {
 
                     console.log(profilePic);
 
-                    var defer = $q.defer(), reject = $q.reject();
-                    $http.post(GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.CHANGE_PROFILE_PIC)
-                        .then(
-                            // success
-                            function (response) {
-                                defer.resolve(response.data.result);
-                            },
-                            // failed
-                            function (response) {
-                                //user = false;
-                                reject.resolve(response.data.result);
-                            }
-                        );
-                    return defer.promise;
+                    Upload.upload({
+                        url: GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.CHANGE_PROFILE_PIC, //webAPI exposed to upload the file
+                        data: {file: profilePic} //pass file as data, should be user ng-model
+                    }).then(function (resp) { //upload function returns a promise
+                        if (resp.data.error_code === 0) { //validate success
+                            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                        } else {
+                            console.log('an error occured');
+                        }
+                    }, function (resp) { //catch error
+                        console.log('Error status: ' + resp.status);
+                    }, function (evt) {
+                        console.log(evt);
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                    });
+
                 },
                 deleteUser: function () {
 
