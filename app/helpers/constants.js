@@ -4,6 +4,11 @@ var define = require("node-constants")(exports);
 define('TOKEN', {
     EXPIRATION_TIME_IN_MINUTES: 3600,
 })
+// API
+define('API', {
+    DEFAULT_LIMIT: 20,
+    DEFAULT_OFFSET: 0,
+})
 // User Type
 define('USER_TYPE', {
     TEST_USER: 'test',

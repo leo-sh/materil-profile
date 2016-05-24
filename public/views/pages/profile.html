@@ -105,27 +105,26 @@
         <md-content ng-cloak layout-xs="column" layout="row">
             <div flex-xs flex-gt-xs layout="column">
                 <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy'
-                     infinite-scroll-distance='1'>
-                    <md-card ng-repeat="activity in reddit.items track by $index"
-                    ">
-                    <md-card-header>
-                        <md-card-avatar>
-                            <img class="md-user-avatar" src="images/a2.jpg"/>
-                        </md-card-avatar>
-                        <md-card-header-text>
-                            <span class="md-title">{{ user.full_name }}</span>
-                            <span class="md-subhead">{{ activity.activity_time | FromNowFilter }}</span>
-                        </md-card-header-text>
-                    </md-card-header>
-                    <md-card-content class="text-center">
-                        <div class="m-b-lg">
-                            <md-icon class="{{ activity.icon }}" style="font-size: 48px;"></md-icon>
-                        </div>
-                        <div class="text-md">
-                            {{ activity.activity_text}}
-                            <span class="text-info">{{ activity.activity_item | CheckDateAndFormatFilter:activity.activity_type }}</span>
-                        </div>
-                    </md-card-content>
+                     infinite-scroll-distance='3'>
+                    <md-card ng-repeat="activity in reddit.items track by $index">
+                        <md-card-header>
+                            <md-card-avatar>
+                                <img class="md-user-avatar" src="images/a2.jpg"/>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{ user.full_name }}</span>
+                                <span class="md-subhead">{{ activity.activity_time | FromNowFilter }}</span>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content class="text-center">
+                            <div class="m-b-lg">
+                                <md-icon class="{{ activity.icon }}" style="font-size: 48px;"></md-icon>
+                            </div>
+                            <div class="text-md">
+                                {{ activity.activity_text}}
+                                <span class="text-info">{{ activity.activity_item | CheckDateAndFormatFilter:activity.activity_type }}</span>
+                            </div>
+                        </md-card-content>
                     </md-card>
                 </div>
             </div>

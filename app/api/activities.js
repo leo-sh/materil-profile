@@ -13,8 +13,8 @@ module.exports = {
     getActivities: function (req, res, next) {
 
         var member_id = req.member._id;
-        var limit = req.query.limit;
-        var offset = req.query.offset;
+        var limit = req.query.limit ? req.query.limit : CONSTANTS.API.DEFAULT_LIMIT;
+        var offset = req.query.offset ? req.query.offset : CONSTANTS.API.DEFAULT_OFFSET;
         var data, result = {};
 
         result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
@@ -23,7 +23,7 @@ module.exports = {
         Activities.find({_user_access_id: member_id}, {__v: 0}, {
             skip: offset,
             limit: limit,
-            sort:{
+            sort: {
                 activity_time: -1 //Sort by activity_time Added DESC
             }
         }, function (err, activities) {
