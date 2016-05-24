@@ -1,31 +1,27 @@
 'use strict';
 
 app.controller('EpaperController',
-    ['$rootScope', '$scope', '$state', '$stateParams', 'HTTP_CODES',
-        function ($rootScope, $scope, $state, $stateParams, HTTP_CODES) {
+    ['$rootScope', '$scope', '$state', '$http', '$window',
+        function ($rootScope, $scope, $state, $http, $window) {
 
-            $scope.items = [1, 2, 3, 4, 5, 6, 7];
-            $scope.selectedItem;
-            $scope.getSelectedText = function() {
-                if ($scope.selectedItem !== undefined) {
-                    return "You have selected: Item " + $scope.selectedItem;
-                } else {
-                    return "Please select an item";
-                }
+            $scope.paper = {
+                date: new Date()
             };
-            $scope.avatarData = [{
-                id: "mdi-device-signal-wifi-3-bar",
-                title: 'avatar 1',
-                value: 'avatar-1'
-            },{
-                id: "mdi-device-signal-wifi-3-bar",
-                title: 'avatar 2',
-                value: 'avatar-2'
-            },{
-                id: "mdi-device-signal-wifi-3-bar",
-                title: 'avatar 3',
-                value: 'avatar-3'
-            }];
 
+            $scope.downloadPaper = function (paper) {
+                var date = moment(paper.date).format('YYYY/MM/DD');
+                var dateType = moment(paper.date).format('YYYYMMDD');
+
+                var url = "https://epaper.thehindu.com/pdf/" + date + "/" + dateType + paper.edition + paper.type + ".zip";
+
+                $http.get(url)
+                    .then(function (response) {
+                        console.log(response)
+                    }, function (response) {
+                        console.log(response)
+                    });
+
+                //$window.open(url);
+            }
         }
     ]);
