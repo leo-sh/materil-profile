@@ -12,6 +12,7 @@ var session = require('express-session');
 var validator = require('express-validator');
 var config = require('./config');
 var favicon = require('serve-favicon');
+var multiparty = require('connect-multiparty');
 
 
 module.exports = function () {
@@ -85,6 +86,10 @@ module.exports = function () {
 
     var throwjs = require('throw.js');
 
+    app.use(multiparty({
+        uploadDir: './config/uploads/'
+    }));
+
     // Routes ======================================================================var fs = require('fs');
 
     var api_routes = express.Router();
@@ -107,35 +112,6 @@ module.exports = function () {
 
     require('./../app/routes/authentication')(route_authentication, passport);
     api_routes.use('/authentication', route_authentication);
-
-    var storage = multer.diskStorage({
-        dest: function (req, file, cb) {
-            cb(null, './uploads/');
-        },
-        filename: function (req, file, cb) {
-            var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
-        }
-    });
-
-    var upload = multer({ //multer settings
-        storage: storage
-    }).single('file');
-
-    api_routes.post('/authentication/upload/profile/pic', function (req, res) {
-
-        upload(req, res, function (err) {
-
-            console.log(req.files);
-            if (err) {
-                console.log("Error here");
-                res.json({error_code: 1, err_desc: err});
-                return;
-            }
-            res.json({error_code: 0, err_desc: null});
-        })
-
-    });
 
     app.use('/api', api_routes);   // adding '/api ' prefix to all the routes
 

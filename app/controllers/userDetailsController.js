@@ -7,6 +7,54 @@ var ResultResponses = require('./../helpers/resultResponses');
 
 module.exports = {
 
+    postProfilePic: function (req, res, next) {
+
+        console.log(req.files);
+        console.log(req.member);
+        console.log(req.profilePic);
+        console.log('---------');
+        console.log(req.files.file);
+        console.log('-------------');
+
+        // Everything went fine
+
+        result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
+            'Some Error Occurred.');
+
+        userDetails.findOne({_id: req.member.member_details_id}, function (err, user) {
+
+            if (err) {
+                console.log('ProfilePIC User Cannot Find Error: userDetailsController');
+                throw err;
+            }
+
+            if (user) {
+
+                console.log(req.files.file.filename);
+                console.log(req.files.profilePic);
+
+                user.profile_pic = req.files.file.filename;
+
+                user.save(function (err) {
+
+                    if (err) {
+                        console.log('ProfilePIC Save Error: userDetailsController');
+                        throw err;
+                    }
+                });
+
+                result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,
+                    'Profile Pic Successfully Updated!!', user);
+            } else {
+
+                result = ResultResponses.invalid(CONSTANTS.HTTP_CODES.CLIENT_ERROR.UNAUTHORISED,
+                    'User not found.!!');
+            }
+
+            res.json({'result': result})
+        });
+    },
+
     getMemberInfo: function (req, res, next) {
 
         var result = ResultResponses.success(CONSTANTS.HTTP_CODES.SUCCESS.OK,

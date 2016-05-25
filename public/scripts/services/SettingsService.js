@@ -12,6 +12,7 @@ app.service('SettingsService',
                         url: GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.CHANGE_PROFILE_PIC, //webAPI exposed to upload the file
                         data: {file: profilePic} //pass file as data, should be user ng-model
                     }).then(function (resp) { //upload function returns a promise
+                        console.log(resp);
                         if (resp.data.error_code === 0) { //validate success
                             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
                         } else {

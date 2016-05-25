@@ -1,6 +1,6 @@
 app.controller('ImageCropController',
-    ['$scope', 'showToastService', 'SettingsService', 'Upload',
-        function ($scope, showToastService, SettingsService, Upload) {
+    ['$scope', 'showToastService', 'SettingsService', 'Upload', 'GetURLFactory', 'API_TYPE',
+        function ($scope, showToastService, SettingsService, Upload, GetURLFactory, API_TYPE) {
             $scope.myImage = '';
             $scope.myCroppedImage = '';
             $scope.cropType = "circle";
@@ -34,14 +34,8 @@ app.controller('ImageCropController',
 
             $scope.uploadPicture = function (myForm) {
                 console.log(myForm);
+
                 SettingsService.postProfilePic(myForm.profilePic);
-                    //.then(function (uploadResponse) {
-                    //    // Handle response from server
-                    //    console.log(uploadResponse);
-                    //}, function (uploadResponse) {
-                    //    // Handle response from server
-                    //    console.log(uploadResponse);
-                    //});
             }
         }]
 )

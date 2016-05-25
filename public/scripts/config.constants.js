@@ -21,7 +21,7 @@ angular.module('app')
             CHANGE_PASSWORD: '/api/authentication/change/password',
             CHANGE_CONTACT_NUMBER: '/api/authentication/numbers',
             CHANGE_EMAIL_ADDRESS: '/api/authentication/emails',
-            CHANGE_PROFILE_PIC: '/api/authentication/upload/profile/pic',
+            CHANGE_PROFILE_PIC: '/api/authentication/profile/pic',
         },
         _MEMBERSHIP_: {
             SIGN_UP: '/api/membership/signup',
