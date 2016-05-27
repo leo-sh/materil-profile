@@ -3,7 +3,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
-var multer = require('multer');
 
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -12,7 +11,6 @@ var session = require('express-session');
 var validator = require('express-validator');
 var config = require('./config');
 var favicon = require('serve-favicon');
-var multiparty = require('connect-multiparty');
 
 
 module.exports = function () {
@@ -85,10 +83,6 @@ module.exports = function () {
     app.use(favicon(__dirname + './../public/favicon.ico'));
 
     var throwjs = require('throw.js');
-
-    app.use(multiparty({
-        uploadDir: './config/uploads/'
-    }));
 
     // Routes ======================================================================var fs = require('fs');
 

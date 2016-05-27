@@ -8,16 +8,7 @@ var ResultResponses = require('./../helpers/resultResponses');
 module.exports = {
 
     postProfilePic: function (req, res, next) {
-
-        console.log(req.files);
-        console.log(req.member);
-        console.log(req.profilePic);
-        console.log('---------');
-        console.log(req.files.file);
-        console.log('-------------');
-
         // Everything went fine
-
         result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
             'Some Error Occurred.');
 
@@ -30,11 +21,10 @@ module.exports = {
 
             if (user) {
 
-                console.log(req.files.file.filename);
-                console.log(req.files.profilePic);
+                console.log(req.body);
+                console.log(req.params);
 
-                user.profile_pic = req.files.file.filename;
-
+                user.profile_pic = req.file.filename;
                 user.save(function (err) {
 
                     if (err) {

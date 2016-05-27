@@ -8,6 +8,7 @@ var LabelsSettingsController = require('./../controllers/LabelsSettingsControlle
 var ContactNumbersSettingsController = require('./../controllers/ContactNumbersSettingsController');
 var SettingsController = require('./../controllers/SettingsController');
 var multer = require('multer');
+var fs = require('fs');
 
 module.exports = function (authentication, passport, upload) {
 
@@ -20,39 +21,52 @@ module.exports = function (authentication, passport, upload) {
 
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname + '../../config/uploads/');
+            var dir_name = __dirname + './../../config/uploads/' + req.member._id + '/';
+
+            if (!fs.existsSync(dir_name)) {
+                fs.mkdirSync(dir_name);
+            }
+            cb(null, dir_name);
         },
         filename: function (req, file, cb) {
-            console.log(file);
             var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
+            cb(null, 'profile_' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
         }
     });
 
     var upload = multer({ //multer settings
         storage: storage
-    }).single('profilePic');
+    }).single('file');
 
-    //var upload = multer({dest: __dirname + '../../config/uploads/'}).single('profilePic');
+    authentication.post('/profile/pic', function (req, res, next) {
 
-    authentication.post('/profile/pic', userDetailsController.postProfilePic);
+        upload(req, res, function (err) {
 
-    //-----------------------------------Defaults and Customs ----------------------------------------------------------------
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            next();
+        });
+    }, userDetailsController.postProfilePic);
+
+    //-----------------------------------Defaults and Customs ----------------------------------------------------------
     authentication.get('/labels', LabelsSettingsController.getLabels);
     //authentication.post('/labels', LabelsSettingsValidator.postLabelsValidator, LabelsSettingsController.postLabels);
     //authentication.patch('/labels/:label_id/:new_label_name', LabelsSettingsValidator.patchLabelsValidator, LabelsSettingsController.patchLabels);
     //authentication.delete('/labels/:label_id', LabelsSettingsValidator.deleteLabelsValidator, LabelsSettingsController.deleteLabels);
 
-    // -------------------------------------- Phone Numbers ----------------------------------------------------------------
+    // -------------------------------------- Phone Numbers ------------------------------------------------------------
     authentication.patch('/numbers', userAccessController.patchChangeContactNumber);
 
-    // -------------------------------------- Email Address ----------------------------------------------------------------
+    // -------------------------------------- Email Address ------------------------------------------------------------
     authentication.patch('/emails', userAccessController.patchEmailAddress);
 
-    // -------------------------------------- Activities ----------------------------------------------------------------
+    // -------------------------------------- Activities ---------------------------------------------------------------
     authentication.get('/activities', ActivitiesAPI.getActivities);
 
-    // -------------------------------------- Notifications ----------------------------------------------------------------
+    // -------------------------------------- Notifications ------------------------------------------------------------
     authentication.get('/notifications', SettingsController.getNotifications);
     authentication.put('/notifications', SettingsController.putNotifications);
 

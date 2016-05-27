@@ -33,8 +33,6 @@ app.controller('ImageCropController',
             };
 
             $scope.uploadPicture = function (myForm) {
-                console.log(myForm);
-
                 SettingsService.postProfilePic(myForm.profilePic);
             }
         }]
