@@ -12,12 +12,12 @@ app.service('SettingsService',
                         data: {file: profilePic, 'type': IMAGE_TYPE.PROFILE} //pass file as data, should be user ng-model
                     }).then(function (response) { //upload function returns a promise
                         defer.resolve(response.data.result);
-                    }, function (resp) { //catch error
+                    }, function (response) { //catch error
                         console.log('Error status: ' + response.data.result.statusCode);
                     }, function (evt) {
-                        defer.resolve(response.data.result);
+                        console.log(evt);
                     });
-
+                    return defer.promise;
                 },
                 deleteUser: function () {
 

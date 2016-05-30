@@ -71,6 +71,8 @@ module.exports = function (req, res, next) {
                                 member.dob = userDetails.dob;
                                 member.show_dob = userDetails.show_dob;
                                 member.addresses = userDetails.addresses;
+                                member.profile_pic = userDetails.profile_pic;
+                                member.profile_pic_updated_at = userDetails.profile_pic_updated_at;
 
                                 req.member = member;
                                 next();

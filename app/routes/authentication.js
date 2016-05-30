@@ -21,7 +21,7 @@ module.exports = function (authentication, passport, upload) {
 
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            var dir_name = __dirname + './../../config/uploads/' + req.member._id + '/';
+            var dir_name = __dirname + './../../public/uploads/' + req.member._id + '/';
 
             if (!fs.existsSync(dir_name)) {
                 fs.mkdirSync(dir_name);

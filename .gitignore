@@ -13,3 +13,5 @@ config/uploads
 *.iml
 out
 gen
+/public/uploads/
+/public/uploads/*
