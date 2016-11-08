@@ -95,6 +95,9 @@ module.exports = {
         result = ResultResponses.failed(CONSTANTS.HTTP_CODES.SERVER_ERROR.INTERNAL_SERVER_ERROR,
             'Some Error Occurred.');
 
+        console.log(req.body);
+        console.log(req.member);
+
         userDetails.findOne({_id: req.member.member_details_id}, function (err, user) {
 
             if (err) {
