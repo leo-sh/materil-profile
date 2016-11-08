@@ -179,6 +179,21 @@ angular.module('app')
                             restricted: true
                         }
                     })
+                    // Profile Page ------------------------------------------------------------------------------------Start
+                    .state('app.hindu', {
+                        url: '/epaper',
+                        templateUrl: 'views/pages/hindu.html',
+                        controller: 'EpaperController',
+                        resolve: load(['scripts/controllers/material.js',
+                            'scripts/controllers/EpaperController.js',
+                            'moment',
+                            'bower_components/angular-material-datetimepicker/js/angular-material-datetimepicker.min.js']),
+                        data: {
+                            title: 'Profile',
+                            folded: true,
+                            restricted: true
+                        }
+                    })
                     // Settings Page ------------------------------------------------------------------------------------Start
                     .state('app.settings', {
                         url: '/settings',

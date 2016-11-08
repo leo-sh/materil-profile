@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="card-heading">
+        <h2>Download E-Paper</h2>
+        <small>The hindu News Paper</small>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-body">
+        <p class="m-b btn-groups">
+            <md-content class="autoScroll">
+                <h5 class="no-margin m-b font-bold">Choose Date</h5>
+                <md-datepicker ng-model="paper.date" md-placeholder="Enter date"
+                               style="margin-left: -13px;"></md-datepicker>
+            </md-content>
+        </p>
+        <p class="m-b btn-groups">
+            <md-content class="autoScroll">
+                <h5 class="no-margin m-b font-bold">Choose Edition</h5>
+                <md-input-container>
+                    <md-icon class="mdi-notification-event-available i-24"></md-icon>
+                    <md-select ng-model="paper.edition" placeholder="Edition" style="margin-left: 15px;">
+                        <md-option value="1">Chennai</md-option>
+                        <md-option value="2">Hyderabad</md-option>
+                        <md-option value="3" selected>Delhi</md-option>
+                        <md-option value="4">Bengaluru</md-option>
+                        <md-option value="5">Kochi</md-option>
+                    </md-select>
+                </md-input-container>
+            </md-content>
+        </p>
+        <p class="m-b btn-groups">
+            <md-content class="autoScroll">
+                <h5 class="no-margin m-b font-bold">Choose Edition</h5>
+                <md-radio-group ng-model="paper.type" ng-init="paper.type='A'">
+                    <md-radio-button value="A" class="md-primary">The Hindu</md-radio-button>
+                    <md-radio-button value="B"> Metro Plus</md-radio-button>
+                    <md-radio-button value="C"> Education Plus</md-radio-button>
+                </md-radio-group>
+            </md-content>
+        </p>
+        <p class="m-b btn-groups">
+            <button class="btn btn-primary" ng-click="downloadPaper(paper)">Download</button>
+        </p>
+    </div>
+</div>
