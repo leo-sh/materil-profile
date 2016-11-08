@@ -11,6 +11,10 @@ angular.module('app')
     .constant('LOCAL_STORAGE', {
         _TOKEN_KEY_: 'user_id'
     })
+    .constant('IMAGE_TYPE', {
+        PROFILE: 'profile',
+        COVER: 'cover'
+    })
     .constant('API_TYPE', {
         _TOKEN_: {
             GET_TOKEN: '/api/x/token'

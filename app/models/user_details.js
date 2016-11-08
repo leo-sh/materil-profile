@@ -54,10 +54,10 @@ var userDetailsSchema = mongoose.Schema({
                 _id: false
             }
         ],
-        pic: {
+        profile_pic: {
             type: String,
         },
-        pic_updated_at: {
+        profile_pic_updated_at: {
             type: Date,
             default: Date.now,
         },
@@ -196,22 +196,22 @@ userDetailsSchema.pre('save', function (next) {
         });
     }
 
-    if (this.isModified('pic')) {
-        this.pic_updated_at = currentDate;
+    if (this.isModified('profile_pic')) {
+        this.profile_pic_updated_at = currentDate;
 
         var activity = new Activities();
         activity._user_access_id = this._user_access_id;
-        activity.activity_type = CONSTANT.ACTIVITY_TYPE.DETAILS_UPDATING_ACTIVITY;
+        activity.activity_type = CONSTANT.ACTIVITY_TYPES.DETAILS_UPDATING_ACTIVITY;
         activity.activity_time = currentDate;
-        activity.activity_text = 'Updated Profile Pic';
-        activity.activity_item = this.pic;
+        activity.activity_text = 'Updated Profile profile_pic';
+        activity.activity_item = this.profile_pic;
         activity.icon = 'mdi-action-face-unlock';
         activity.image = null;
 
         activity.save(function (err) {
 
             if (err) {
-                console.log('Error in saving Profile pic to activities: UserDetailsModel');
+                console.log('Error in saving Profile profile_pic to activities: UserDetailsModel');
                 throw err;
             }
 

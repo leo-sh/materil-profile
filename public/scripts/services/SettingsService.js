@@ -1,26 +1,22 @@
 // persisting email as _user in the cookies for the user to identify in the sessions.
 app.service('SettingsService',
-    ['$http', 'HTTP_CODES', 'API_TYPE', 'GetURLFactory', '$q',
-        function ($http, HTTP_CODES, API_TYPE, GetURLFactory, $q) {
+    ['$http', 'HTTP_CODES', 'API_TYPE', 'IMAGE_TYPE', 'GetURLFactory', '$q', 'Upload',
+        function ($http, HTTP_CODES, API_TYPE, IMAGE_TYPE, GetURLFactory, $q, Upload) {
 
             return {
                 postProfilePic: function (profilePic) {
 
-                    console.log(profilePic);
-
-                    var defer = $q.defer(), reject = $q.reject();
-                    $http.post(GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.CHANGE_PROFILE_PIC)
-                        .then(
-                            // success
-                            function (response) {
-                                defer.resolve(response.data.result);
-                            },
-                            // failed
-                            function (response) {
-                                //user = false;
-                                reject.resolve(response.data.result);
-                            }
-                        );
+                    var defer = $q.defer();
+                    Upload.upload({
+                        url: GetURLFactory.getURL() + API_TYPE._AUTHENTICATION_.CHANGE_PROFILE_PIC, //webAPI exposed to upload the file
+                        data: {file: profilePic, 'type': IMAGE_TYPE.PROFILE} //pass file as data, should be user ng-model
+                    }).then(function (response) { //upload function returns a promise
+                        defer.resolve(response.data.result);
+                    }, function (response) { //catch error
+                        console.log('Error status: ' + response.data.result.statusCode);
+                    }, function (evt) {
+                        console.log(evt);
+                    });
                     return defer.promise;
                 },
                 deleteUser: function () {

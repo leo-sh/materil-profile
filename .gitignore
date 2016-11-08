@@ -7,6 +7,11 @@
 .idea/
 .idea/*
 
+config/uploads/*
+config/uploads
+
 *.iml
 out
 gen
+/public/uploads/
+/public/uploads/*

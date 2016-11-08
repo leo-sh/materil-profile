@@ -1,6 +1,6 @@
 app.controller('ImageCropController',
-    ['$scope', 'showToastService', 'SettingsService',
-        function ($scope, showToastService, SettingsService) {
+    ['$scope', 'showToastService', 'SettingsService', 'Upload', 'showToastService', 'HomeService', 'HTTP_CODES',
+        function ($scope, showToastService, SettingsService, Upload, showToastService, HomeService, HTTP_CODES) {
             $scope.myImage = '';
             $scope.myCroppedImage = '';
             $scope.cropType = "circle";
@@ -32,16 +32,22 @@ app.controller('ImageCropController',
                 $scope.uploadPic = false;
             };
 
-            $scope.uploadPicture = function (profilePic) {
-                console.log(profilePic);
-                SettingsService.postProfilePic(profilePic)
-                    .success(function (uploadResponse) {
-                        // Handle response from server
-                        console.log(uploadResponse);
-                    }).error(function (error) {
-                    // Handle error from server
-                    console.log(error);
-                });
+            $scope.uploadPicture = function (myForm) {
+                SettingsService.postProfilePic(myForm.profilePic)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.statusCode == HTTP_CODES.SUCCESS.OK) {
+
+                            showToastService.showSimpleToast(response.statusText);
+                            HomeService.setProfilePic(response.data.profile_pic, response.data._user_access_id);
+                            $scope.clear();
+                        } else {
+                            showToastService.showSimpleToast(response.statusText);
+                        }
+
+                    }, function (response) {
+                        showToastService.showSimpleToast(response.statusText);
+                    })
             }
         }]
 )

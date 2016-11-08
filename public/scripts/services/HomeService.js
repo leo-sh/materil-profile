@@ -15,6 +15,8 @@ app.service('HomeService',
                             // success
                             function (response) {
 
+                                console.log(response);
+
                                 defer.resolve(response.data.result.data);
                             },
                             // failed
@@ -68,6 +70,16 @@ app.service('HomeService',
 
                     $rootScope.user.dob = new Date(dob);
                 },
+                setProfilePic: function (pic, user_access_id) {
+
+                    if (pic) {
+
+                        $rootScope.user.profile_pic = './../../uploads/' + user_access_id + '/' + pic;
+                    } else {
+
+                        $rootScope.user.profile_pic = 'images/a2.jpg';
+                    }
+                },
                 unSetUser: function () {
 
                     $rootScope.user = {};
@@ -87,6 +99,8 @@ app.service('HomeService',
                     user.contact_number = response.contact_number;
                     user.show_dob = response.show_dob;
                     user.dob = new Date(response.dob);
+
+                    user.profile_pic = 'uploads/' + response._id + '/' + response.profile_pic;
 
                     return user;
                 }
